@@ -1,0 +1,170 @@
+{% extends "index.html" %}
+{% load static %}
+{% block content %}
+<!-- <script>
+  function validateForm() {
+    let x = document.forms["myForm"]["name"].value;
+    if (x == "") {
+      alert("Name must be filled out");
+      return false;
+    }
+  }
+  </script> -->
+<!-- Content wrapper -->
+<div class="content-wrapper">
+  <!-- Content -->
+
+  <div class="container-xxl flex-grow-1 container-p-y">
+    <h4 class="fw-bold py-3 mb-3" style="font-size: 26px;"><span class="text-muted fw-light"></span>Add Category</h4>
+
+    <!-- Basic Layout & Basic with Icons -->
+    <div class="row">
+      <!-- Basic Layout -->
+      <div class="col-xxl">
+        <div class="card mb-4">
+         
+
+
+          <div class="card-body">
+
+            <form action="{% url 'add_main_category' %}" method="post" enctype="multipart/form-data"
+              onclick="return sub()" name="myForm">
+              {% csrf_token %}
+
+              <div class="row mb-3">
+                <!-- Name: <input type="text" name="fname"> -->
+                <label class="col-sm-2 " for="basic-default-name" style="font-size: 15px;"> Category Name</label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" id="basic-default-name" name="name"
+                    placeholder="Enter Main Category" onblur="checkfname()" id="fname" />
+                  <!-- <p style="color: red;">{% for msg in messages %}{{msg}}{% endfor %}</p> -->
+                  <p style="color: red;" id="demo"></p>
+                  <p style="font-size: 20px;color: red;">{{msg}}</p>
+
+                </div>
+              </div>
+              <div class="row mb-3">
+                <label class="col-sm-2 " for="basic-default-name" style="font-size: 15px;">Category Image</label>
+                <div class="col-sm-10">
+                  <input type="file" class="form-control" id="basic-default-name" name="img"
+                    placeholder="Enter Main Category" onblur="checkImage()" id="img" />
+                  <p style="color: red;" id="imgError"></p> 
+                  <p style="font-size: 20px;color: red;">{{msg1}}</p>
+                </div>
+              </div>
+
+
+
+              <div class="row justify-content-end">
+                <div class="col-sm-10">
+                  <!-- <input type="submit" value="Submit"> -->
+                  <button type="submit" class="btn btn-primary">Send</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <!-- Basic with Icons -->
+
+    </div>
+  </div>
+  <!-- / Content -->
+  <script>
+    // function validateForm() {
+    //   let x = document.forms["myForm"]["name"].value;
+    //   let y = document.forms["myForm"]["img"].value;
+    //   if (x == "") {
+    //     document.getElementById('demo').innerHTML = 'Please Enter Your Firstname';
+    //     return false;
+    //   }
+    //   if (y == "") {
+    //     document.getElementById('demo').innerHTML = 'Please Enter Your Firstname';
+    //     return false;
+    //   }
+    // }
+  //   function checkfname() {
+  //     let fname = document.forms["myForm"]["name"].value;
+  //     let name = /^[a-zA-Z]+([a-zA-Z ])+$/;
+  //     if (fname == '') {
+  //       document.getElementById('demo').innerHTML = 'Please Enter Your Firstname';
+  //     }
+  //     else if (!fname.match(name)) {
+  //       document.getElementById('demo').innerHTML = 'Invailid Firstname';
+  //     }
+  //     else {
+  //       document.getElementById('demo').style.display = 'none';
+  //     }
+  //   }
+  //   function checkImage() {
+  //     let fileInput = document.forms["myForm"]["img"];
+  //     let allowedExtensions = /(\.jpg|\.jpeg|\.png|\.gif)$/i; // Define the allowed file extensions
+
+  //     if (fileInput.files.length === 0) {
+  //       document.getElementById('imgError').innerHTML = 'Please select an image.';
+  //     } else {
+  //       let fileName = fileInput.files[0].name;
+  //       if (!allowedExtensions.test(fileName)) {
+  //         document.getElementById('imgError').innerHTML = 'Invalid file format. Allowed formats: .jpg, .jpeg, .png, .gif';
+  //       } else {
+  //         document.getElementById('imgError').style.display = 'none';
+  //       }
+  //     }
+  //   }
+
+  //   function sub() {
+  //     let fname = document.forms["myForm"]["name"].value;
+  //     let fileInput = document.forms["myForm"]["img"];
+
+  //     // let lname = document.getElementById('lname').value;
+
+  //     let name = /^[a-zA-Z]+([a-zA-Z ])+$/;
+  //     let allowedExtensions = /(\.jpg|\.jpeg|\.png|\.gif)$/i; // Define the allowed file extensions
+
+  //     // let namel =  /^[a-zA-Z]+([a-zA-Z ])+$/;
+
+  //     if (fname == '') {
+  //       document.getElementById('demo').innerHTML = 'Please Enter Your Firstname';
+
+  //       return false;
+  //     }
+  //     else if (!fname.match(name)) {
+  //       document.getElementById('demo').innerHTML = 'Invailid Firstname';
+  //       // document.getElementById('demo1').innerHTML = '';
+  //       return false;
+  //     }
+  //     else if (fileInput.files.length > 0) {
+  //       let fileName = fileInput.files[0].name;
+  //       if (!allowedExtensions.test(fileName)) {
+  //           document.getElementById('imgError').innerHTML = 'Invalid file format. Allowed formats: .jpg, .jpeg, .png, .gif';
+  //           return false;
+  //       }
+  //       else {
+  //           // Clear the error message when a valid file is selected
+  //           document.getElementById('imgError').innerHTML = 'ok';
+            
+  //       }
+  //   }
+    
+  //     // else {
+  //     return true;
+  //     // }
+  //   }
+  // </script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+  {% for i in messages %}
+  swal.fire({
+      html: "<span style='color: red;'><h3 style='color: red;'><b>{{i}}</b></h3></span>"
+  });
+  {% endfor %}
+</script>
+
+
+
+
+
+
+
+  {% endblock %}

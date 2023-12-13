@@ -1,0 +1,390 @@
+{% load static %}
+
+<html lang="en">
+
+<head>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+    crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="{% static 'assets/css/mentee.css' %}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <style>
+   
+  
+  
+        .valid-feedback.feedback-icon,
+        .invalid-feedback.feedback-icon {
+          position: absolute;
+          width: auto;
+          bottom: 10px;
+          right: 10px;
+          margin-top: 0;
+  
+        }
+  
+        .main {
+          width: 50%;
+          margin: 50px auto;
+  
+  
+        }
+  
+  
+  
+        .has-search .form-control {
+          padding-left: 2.375rem;
+  
+        }
+  
+        .has-search .form-control-feedback {
+          position: absolute;
+          z-index: 2;
+          display: block;
+          width: 2.375rem;
+          height: 2.375rem;
+          line-height: 2.375rem;
+          text-align: center;
+          pointer-events: none;
+          color: #aaa;
+  
+  
+        }
+    
+  
+      .form-control:focus {
+        box-shadow: none;
+      }
+  
+  
+    
+  
+      .block-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(215, 208, 208, 0.5);
+       
+        pointer-events: all;
+     
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 999;
+        
+      }
+
+      .hidden {
+    display: none;
+  }
+    </style>
+</head>
+
+<body>
+ 
+
+ 
+  
+
+
+
+   <!--<div class="container">
+    <div class="input-group "
+        style="border: 2px solid rgb(243, 210, 23); border-radius: 50px; padding: 5px; align-items: center; ">
+
+        <i class="fa fa-search" style="margin-top: 5px;margin-left: 5px;"></i>
+        <input type="search" id="search-input" class="form-control"
+          style="border:hide  ; border-radius: 50px; padding: 0; border-left: none;margin-left: 10px;"
+          placeholder="Search Mentee by Name, Job Title or Company">
+      </div> -->
+
+<!-- 
+    <div class="main">
+
+      <div class="form-group has-search">
+
+        <span class="fa fa-search form-control-feedback" style="margin-left:25px;"></span>
+
+
+        <input type="text" class="form-control" id="search-input"
+          placeholder="Search"
+          style="border-radius: 50px;border: 3px solid  rgb(243, 210, 23);;margin-top: -27px;padding-left: 55px;">
+      </div>
+    </div> 
+
+  </div>-->
+
+
+  
+
+    
+
+
+
+
+
+  
+
+
+
+
+  
+
+
+
+
+<script src="{% static '/assets/js/add.js' %}"></script>
+
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  
+
+
+
+      <!DOCTYPE html>
+      <html lang="en">
+        <head>
+          <!-- Required meta tags -->
+          <meta charset="utf-8" />
+          <meta name="viewport" content="width=device-width, initial-scale=1" />
+      
+          <!-- Bootstrap CSS -->
+          <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+            crossorigin="anonymous"
+          />
+      
+          <title>Dependent Dropdown List</title>
+          <link rel="stylesheet" href="style.css" />
+        </head>
+        <body>
+          <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+            crossorigin="anonymous"
+          ></script>
+          
+          <div class="container">
+            <h3>Search And Select Location </h3>
+      
+            <div class="select_option">
+              <select
+                class="form-select country"
+                aria-label="Default select example"
+                onchange="loadStates()"
+              >
+                <option selected>Select Country</option>
+              </select>
+              <select
+                class="form-select state"
+                aria-label="Default select example"
+                onchange="loadCities()"
+              >
+                <option selected>Select State</option>
+              </select>
+              <select class="form-select city" aria-label="Default select example">
+                <option selected>Select City</option>
+              </select>
+            </div>
+          </div>
+      
+          <script>
+            var config = {
+              cUrl: "https://api.countrystatecity.in/v1/countries",
+              ckey: "NHhvOEcyWk50N2Vna3VFTE00bFp3MjFKR0ZEOUhkZlg4RTk1MlJlaA==",
+            };
+      
+            var countrySelect = document.querySelector(".country"),
+              stateSelect = document.querySelector(".state"),
+              citySelect = document.querySelector(".city");
+      
+            function loadCountries() {
+              let apiEndPoint = config.cUrl;
+      
+              fetch(apiEndPoint, { headers: { "X-CSCAPI-KEY": config.ckey } })
+                .then((Response) => Response.json())
+                .then((data) => {
+                  // console.log(data);
+      
+                  data.forEach((country) => {
+                    const option = document.createElement("option");
+                    option.value = country.iso2;
+                    option.textContent = country.name;
+                    countrySelect.appendChild(option);
+                  });
+                })
+                .catch((error) => console.error("Error loading countries:", error));
+      
+              stateSelect.disabled = true;
+              citySelect.disabled = true;
+              stateSelect.style.pointerEvents = "none";
+              citySelect.style.pointerEvents = "none";
+            }
+      
+            function loadStates() {
+              stateSelect.disabled = false;
+              citySelect.disabled = true;
+              stateSelect.style.pointerEvents = "auto";
+              citySelect.style.pointerEvents = "none";
+      
+              const selectedCountryCode = countrySelect.value;
+              // console.log(selectedCountryCode);
+              stateSelect.innerHTML = '<option value="">Select State</option>'; // for clearing the existing states
+              citySelect.innerHTML = '<option value="">Select City</option>'; // Clear existing city options
+      
+              fetch(`${config.cUrl}/${selectedCountryCode}/states`, {
+                headers: { "X-CSCAPI-KEY": config.ckey },
+              })
+                .then((response) => response.json())
+                .then((data) => {
+                  // console.log(data);
+      
+                  data.forEach((state) => {
+                    const option = document.createElement("option");
+                    option.value = state.iso2;
+                    option.textContent = state.name;
+                    stateSelect.appendChild(option);
+                  });
+                })
+                .catch((error) => console.error("Error loading countries:", error));
+            }
+      
+            function loadCities() {
+              citySelect.disabled = false;
+              citySelect.style.pointerEvents = "auto";
+      
+              const selectedCountryCode = countrySelect.value;
+              const selectedStateCode = stateSelect.value;
+              // console.log(selectedCountryCode, selectedStateCode);
+      
+              citySelect.innerHTML = '<option value="">Select City</option>'; // Clear existing city options
+      
+              fetch(
+                `${config.cUrl}/${selectedCountryCode}/states/${selectedStateCode}/cities`,
+                { headers: { "X-CSCAPI-KEY": config.ckey } }
+              )
+                .then((response) => response.json())
+                .then((data) => {
+                  // console.log(data);
+      
+                  data.forEach((city) => {
+                    const option = document.createElement("option");
+                    option.value = city.iso2;
+                    option.textContent = city.name;
+                    citySelect.appendChild(option);
+                  });
+                });
+            }
+      
+
+            
+            window.onload = loadCountries;
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+            function loadCities() {
+        citySelect.disabled = false;
+        citySelect.style.pointerEvents = "auto";
+      
+        const selectedCountryCode = countrySelect.value;
+        const selectedStateCode = stateSelect.value;
+      
+        // Check if the selected country is India (ISO2 code for India is "IN")
+        if (selectedCountryCode === "IN") {
+          citySelect.innerHTML = '<option value="">Select City</option>'; // Clear existing city options
+      
+          fetch(
+            `${config.cUrl}/${selectedCountryCode}/states/${selectedStateCode}/cities`,
+            { headers: { "X-CSCAPI-KEY": config.ckey } }
+          )
+            .then((response) => response.json())
+            .then((data) => {
+              data.forEach((city) => {
+                const option = document.createElement("option");
+                option.value = city.iso2;
+                option.textContent = city.name;
+                citySelect.appendChild(option);
+              });
+            })
+            .catch((error) => console.error("Error loading cities:", error));
+        } else {
+          // If the selected country is not India, clear the city options
+          citySelect.innerHTML = '<option value="">Select City</option>';
+        }
+      }
+      
+          </script>
+      
+      
+    
+<script>
+  // ... (existing code)
+
+  function loadCountries() {
+    let apiEndPoint = config.cUrl;
+
+    fetch(apiEndPoint, { headers: { "X-CSCAPI-KEY": config.ckey } })
+      .then((Response) => Response.json())
+      .then((data) => {
+        // Get the search input and selected option
+        const searchInput = document.getElementById("search-input");
+        const selectedCountry = countrySelect.options[countrySelect.selectedIndex];
+
+        // Clear existing options
+        countrySelect.innerHTML = '<option selected>Select Country</option>';
+
+        data.forEach((country) => {
+          const option = document.createElement("option");
+          option.value = country.iso2;
+          option.textContent = country.name;
+
+          // Add the 'hidden' class to options that do not match the search input
+          if (
+            searchInput.value.trim() !== "" &&
+            !country.name.toLowerCase().includes(searchInput.value.trim().toLowerCase())
+          ) {
+            option.classList.add("hidden");
+          }
+
+          countrySelect.appendChild(option);
+        });
+
+        // If a country was selected before the search, re-select it
+        if (selectedCountry) {
+          countrySelect.value = selectedCountry.value;
+        }
+      })
+      .catch((error) => console.error("Error loading countries:", error));
+
+    stateSelect.disabled = true;
+    citySelect.disabled = true;
+    stateSelect.style.pointerEvents = "none";
+    citySelect.style.pointerEvents = "none";
+  }
+
+  // ... (existing code)
+
+  // Add an event listener to the search input for real-time filtering
+  document.getElementById("search-input").addEventListener("input", loadCountries);
+
+  // ... (existing code)
+</script>  
+      
+        </body>
+      </html>
+      

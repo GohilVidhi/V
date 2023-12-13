@@ -1,0 +1,133 @@
+{% extends "index.html" %}
+{% load static %}
+{% block content %}
+
+
+
+<div style="margin-top:70px;row-gap:100px;column-gap: 25px; display: grid;grid-template-columns: auto auto auto; justify-content: space-evenly;">
+  <!-- <button style="border-radius:50px;height: 100px;width: 250px;background-color: aqua;overflow: hidden;"><a class="dropdown-item" style="border-radius:50px;height: 100px;width: 250px;padding: 32px; font-weight: 800;text-decoration: none;"  href="#"> Payment-{{m_count}}</a></button>
+  <button style="border-radius:50px;height: 100px;width: 250px;background-color: aqua;"><a class="dropdown-item" style="border-radius:50px;height: 100px;width: 250px;padding: 32px; font-weight: 800;text-decoration: none;" href="#"><i></i>Menter-{{s_count}}</a></button>
+  <button style="border-radius:50px;height: 100px;width: 250px;background-color: aqua;"><a class="dropdown-item" style="border-radius:50px;height: 100px;width: 250px;padding: 32px; font-weight: 800;text-decoration: none;" href="#"><i> Mentee-{{t_count}}</i></a></button>
+  <button style="border-radius:50px;height: 100px;width: 250px;background-color: aqua;"><a class="dropdown-item" style="border-radius:50px;height: 100px;width: 250px;padding: 32px; font-weight: 800;text-decoration: none;" href="{% url 'upcoming_appointment' %}"><i ></i> Upcoming Appointment-{{u_count}}</a></button> -->
+  <!-- <button style="border-radius:50px;height: 100px;width: 250px;background-color: aqua;"><a class="dropdown-item" href="{% url 'show_topic' %}"><i> Topic-{{t_count}}</i></a></button> -->
+  <!-- <button style="border-radius:50px;height: 100px;width: 250px;background-color: aqua;"><a class="dropdown-item" style="border-radius:50px;height: 100px;width: 250px;padding: 32px; font-weight: 800;text-decoration: none;" href="{% url 'confirm_appointment' %}"><i></i>Confirm Appointment-{{c_count}}</a></button>
+  <button style="border-radius:50px;height: 100px;width: 250px;background-color: aqua;"><a class="dropdown-item" style="border-radius:50px;height: 100px;width: 250px;padding: 32px; font-weight: 800;text-decoration: none;" href="{% url 'cancel_appointment' %}"><i ></i> Cancel Appointment-{{c1_count}}</a></button>
+  <button style="border-radius:50px;height: 100px;width: 250px;background-color: aqua;"><a class="dropdown-item" style="border-radius:50px;height: 100px;width: 250px;padding: 32px; font-weight: 800;text-decoration: none;" href="{% url 'show_refund' %}"><i ></i> Refund Request -{{r_count}}</a></button>-->
+  <button style="height: 100px; width: 250px; background-color: aqua; overflow: hidden;"> 
+    <a class="dropdown-item" style="height: 100px; width: 250px; padding: 32px; font-weight: 800; text-decoration: none;" href="#">
+      Payment-{{m_count}}
+    </a>
+</button>
+<button style="height: 100px; width: 250px; background-color: aqua; overflow: hidden;">
+  <a class="dropdown-item" style="height: 100px; width: 250px; padding: 32px; font-weight: 800; text-decoration: none;" href="{% url 'mentor_table' %}">
+    Mentor-{{s_count}}
+  </a>
+</button>
+<button style="height: 100px; width: 250px; background-color: aqua; overflow: hidden;">
+  <a class="dropdown-item" style="height: 100px; width: 250px; padding: 32px; font-weight: 800; text-decoration: none;" href="{% url 'show_mentee_data' %}">
+    Mentee-{{t_count}}
+  </a>
+</button>
+<button style="height: 100px; width: 250px; background-color: aqua; overflow: hidden;">
+  <a class="dropdown-item" style="height: 100px; width: 250px; padding: 32px; font-weight: 800; text-decoration: none;" href="{% url 'upcoming_appointment' %}">
+    Upcoming Appointment-{{u_count}}
+  </a>
+</button>
+<button style="height: 100px; width: 250px; background-color: aqua; overflow: hidden;">
+  <a class="dropdown-item" style="height: 100px; width: 250px; padding: 32px; font-weight: 800; text-decoration: none;" href="{% url 'confirm_appointment' %}">
+    Confirm Appointment-{{c_count}}
+  </a>
+</button>
+<button style="height: 100px; width: 250px; background-color: aqua; overflow: hidden;">
+  <a class="dropdown-item" style="height: 100px; width: 250px; padding: 32px; font-weight: 800; text-decoration: none;" href="{% url 'cancel_appointment' %}">
+    Cancel Appointment-{{c1_count}}
+  </a>
+</button>
+<button style="height: 100px; width: 250px; background-color: aqua; overflow: hidden;">
+  <a class="dropdown-item" style="height: 100px; width: 250px; padding: 32px; font-weight: 800; text-decoration: none;" href="{% url 'show_refund' %}">
+    Refund Request -{{r_count}}
+  </a>
+</button>
+</div>
+
+
+
+
+<!-- <style>
+  /* Add this CSS in a separate stylesheet or within a <style> tag in the <head> of your HTML document */
+  .button-container {
+    margin: 40px;
+    gap: 170px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  .responsive-button {
+    width: calc(40.33% - 200px); /* Set the width to 33.33% of the container width with some margin */
+    max-width: 300px; /* Limit the maximum width of the buttons */
+    padding: 10px;
+    margin-bottom: 20px; /* Add margin at the bottom of each button for vertical gap */
+    border-radius: 50px;
+    height: 100px;
+    background-color: aqua;
+    transition: background-color 0.3s; /* Add a transition for the background color change on hover */
+  }
+
+  .responsive-button:hover {
+    background-color: lightblue; /* Change the background color on hover */
+  }
+
+  .responsive-button a {
+    display: block;
+    text-decoration: none;
+    color: white; /* Set the text color for the links */
+  }
+
+  .responsive-button a:hover {
+    text-decoration: underline; /* Add underline on link hover */
+  }
+
+  @media (max-width: 768px) {
+    .responsive-button {
+      max-width: 200px; /* Adjust the maximum width for smaller screens */
+    }
+  }
+</style>
+
+<div style="margin-top: 70px; text-align: center;">
+
+  <div class="button-container">
+    <button class="responsive-button">
+      <a class="dropdown-item" href="#">Payment-{{m_count}}</a>
+    </button>
+
+    <button class="responsive-button">
+      <a class="dropdown-item" href="#">Menter-{{s_count}}</a>
+    </button>
+
+    <button class="responsive-button">
+      <a class="dropdown-item" href="#">Mentee-{{t_count}}</a>
+    </button>
+
+    <button class="responsive-button">
+      <a class="dropdown-item" href="{% url 'upcoming_appointment' %}">Upcoming Appointment-{{u_count}}</a>
+    </button>
+
+    <button class="responsive-button">
+      <a class="dropdown-item" href="{% url 'confirm_appointment' %}">Confirm Appointment-{{c_count}}</a>
+    </button>
+
+    <button class="responsive-button">
+      <a class="dropdown-item" href="{% url 'cancel_appointment' %}">Cancel Appointment-{{c1_count}}</a>
+    </button>
+  </div>
+</div>
+
+
+ -->
+
+
+ {% endblock %}  
+
+

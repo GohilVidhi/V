@@ -1,0 +1,214 @@
+{% extends "index.html" %}
+{% load static %}
+{% block content %}
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<style>
+  .round-image {
+width: 50px; /* Set the width of the container */
+height: 50px; /* Set the height of the container to create a square shape */
+border-radius: 50%; /* Make the container circular */
+overflow: hidden; /* Hide the overflow to ensure the image is clipped to the circle */
+}
+
+.round-image img {
+width: 100%; /* Make the image fill the circular container */
+height: 100%; /* Make the image fill the circular container */
+object-fit: cover; /* Ensure the image covers the container */
+}
+</style>
+          <!-- Content wrapper -->
+          <div class="content-wrapper">
+            <!-- Content -->
+
+            <div class="container-xxl flex-grow-1 container-p-y">
+              <h4 class="fw-bold py-3 mb-3" style="font-size: 26px;"><span class="text-muted fw-light"></span>Edit Category</h4>
+
+              <!-- Basic Layout & Basic with Icons -->
+              <div class="row">
+                <!-- Basic Layout -->
+                <div class="col-xxl">
+                  <div class="card mb-4">
+                    
+                    <div class="card-body">
+                       
+                      <form action="{% url 'edit_main_category' mid.id %}" method="post" enctype="multipart/form-data"
+                      onclick="return sub()" name="myForm">
+                      {% csrf_token %}
+        
+                      <div class="row mb-3">
+                        <!-- Name: <input type="text" name="fname"> -->
+                        <label class="col-sm-2 " for="basic-default-name" style="font-size: 15px;"> Category Name</label>
+                        <div class="col-sm-10">
+                          <input type="text" class="form-control" value="{{mid.name}}" id="basic-default-name" name="name"
+                            placeholder="Enter Main Category" onblur="checkfname()" id="fname" />
+                          <!-- <p style="color: red;">{% for msg in messages %}{{msg}}{% endfor %}</p> -->
+                          <p style="color: red;" id="demo"></p>
+                          <p style="font-size: 20px;color: red;">{{msg}}</p>
+        
+                        </div>
+                      </div>
+                      <div class="row mb-3">
+                        <!-- <label class="col-sm-2 col-form-label" for="basic-default-name">Image</label> -->
+                        <label class="col-sm-2 " for="basic-default-name" style="font-size: 15px;">Category Image</label>
+                        <div class="col-sm-10">
+                          <input type="file" class="form-control" id="basic-default-name" name="img"
+                            placeholder="Enter Main Category" onblur="checkImage()" id="img" />
+                            <!-- <p style="font-size: 20px;color: red;">{{msg}}</p> -->
+                            <!-- <a href="{{mid.image.url}}" download>{{mid.image.name}}</a> -->
+                            <br>  
+                            <div class="round-image">
+                              <img width="50px" height="10%" src="{{mid.image.url}}" />
+                              </div>
+                          <p style="color: red;" id="imgError"></p> 
+                          <p style="font-size: 20px;color: red;">{{msg1}}</p>
+                        </div>
+                      </div>
+        
+        
+        
+                      <div class="row justify-content-end">
+                        <div class="col-sm-10">
+                          <!-- <input type="submit" value="Submit"> -->
+                          <!-- <button type="submit" class="btn btn-primary" id="edit-link">Send</button> -->
+                          <button type="submit" class="btn btn-primary" >Send</button>
+                        
+                        </div>
+                      </div>
+                    </form>
+                    </div>
+                  </div>
+                </div>
+                <!-- Basic with Icons -->
+                
+              </div>
+            </div>
+            <!-- / Content -->
+            <div class="content-backdrop fade"></div>
+          </div>
+
+          <script>
+            // function validateForm() {
+            //   let x = document.forms["myForm"]["name"].value;
+            //   let y = document.forms["myForm"]["img"].value;
+            //   if (x == "") {
+            //     document.getElementById('demo').innerHTML = 'Please Enter Your Firstname';
+            //     return false;
+            //   }
+            //   if (y == "") {
+            //     document.getElementById('demo').innerHTML = 'Please Enter Your Firstname';
+            //     return false;
+            //   }
+            // }
+            // function checkfname() {
+            //   let fname = document.forms["myForm"]["name"].value;
+            //   let name = /^[a-zA-Z]+([a-zA-Z ])+$/;
+            //   if (fname == '') {
+            //     document.getElementById('demo').innerHTML = 'Please Enter Your Firstname';
+            //   }
+            //   else if (!fname.match(name)) {
+            //     document.getElementById('demo').innerHTML = 'Invailid Firstname';
+            //   }
+            //   else {
+            //     document.getElementById('demo').style.display = 'none';
+            //   }
+            // }
+            // function checkImage() {
+            //   let fileInput = document.forms["myForm"]["img"];
+            //   let allowedExtensions = /(\.jpg|\.jpeg|\.png|\.gif)$/i; // Define the allowed file extensions
+        
+            //   if (fileInput.files.length === 1) {
+            //     document.getElementById('imgError').innerHTML = 'Please select an image.';
+            //   } else {
+            //     let fileName = fileInput.files[0].name;
+            //     if (!allowedExtensions.test(fileName)) {
+            //       document.getElementById('imgError').innerHTML = 'Invalid file format. Allowed formats: .jpg, .jpeg, .png, .gif';
+            //     } else {
+            //       document.getElementById('imgError').style.display = 'none';
+            //     }
+            //   }
+            // }
+        
+            // function sub() {
+            //   let fname = document.forms["myForm"]["name"].value;
+            //   let fileInput = document.forms["myForm"]["img"];
+        
+            //   // let lname = document.getElementById('lname').value;
+        
+            //   let name = /^[a-zA-Z]+([a-zA-Z ])+$/;
+            //   let allowedExtensions = /(\.jpg|\.jpeg|\.png|\.gif)$/i; // Define the allowed file extensions
+        
+            //   // let namel =  /^[a-zA-Z]+([a-zA-Z ])+$/;
+        
+            //   if (fname == '') {
+            //     document.getElementById('demo').innerHTML = 'Please Enter Your Firstname';
+        
+            //     return false;
+            //   }
+            //   else if (!fname.match(name)) {
+            //     document.getElementById('demo').innerHTML = 'Invailid Firstname';
+            //     // document.getElementById('demo1').innerHTML = '';
+            //     return false;
+            //   }
+            //   else if (fileInput.files.length > 0) {
+            //     let fileName = fileInput.files[0].name;
+            //     if (!allowedExtensions.test(fileName)) {
+            //         document.getElementById('imgError').innerHTML = 'Invalid file format. Allowed formats: .jpg, .jpeg, .png, .gif';
+            //         return false;
+            //     }
+            //     else {
+            //         // Clear the error message when a valid file is selected
+            //         document.getElementById('imgError').innerHTML = '';
+                    
+            //     }
+            // }
+            
+            //   // else {
+            //   return true;
+            //   // }
+            // }
+
+  document.addEventListener("DOMContentLoaded", function() {
+  const editLink = document.getElementById("edit-link");
+
+  editLink.addEventListener("click", function(event) {
+    event.preventDefault();
+    
+    Swal.fire({
+      title: 'Do you want to save the changes?',
+      showDenyButton: true,
+      showCancelButton: true,
+      confirmButtonText: 'Save',
+      denyButtonText: `Don't save`,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire('Saved!', '', 'success');
+        
+        const inputData = document.getElementById("basic-default-name").value;
+        
+        // Make an AJAX request to the Django view
+        fetch('/edit_main_category', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'X-CSRFToken': csrftoken, // Ensure you have included CSRF token in your HTML
+          },
+          body: JSON.stringify({ data: inputData })
+        })
+        .then(response => {
+          if (response.ok) {
+            // Data saved successfully
+            window.location.href = 'https://example.com/otherpage';
+          } else {
+            Swal.fire('Error saving data', '', 'error');
+          }
+        })
+      } else if (result.isDenied) {
+        Swal.fire('Changes are not saved', '', 'info');
+      }
+    });
+  });
+});
+
+
+          </script>
+{% endblock %}        

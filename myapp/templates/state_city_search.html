@@ -1,0 +1,662 @@
+{% load static %}
+
+<html lang="en">
+
+<head>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+    crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="{% static 'assets/css/mentee.css' %}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="path/to/bootstrap.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.min.js"></script>
+  <style>
+    a.blocked i.fa-ban {
+      color: red; 
+      
+    }
+
+    a.not-blocked i.fa-ban {
+      color: green;
+
+
+      .valid-feedback.feedback-icon,
+      .invalid-feedback.feedback-icon {
+        position: absolute;
+        width: auto;
+        bottom: 10px;
+        right: 10px;
+        margin-top: 0;
+
+      }
+
+      .main {
+        width: 50%;
+        margin: 50px auto;
+
+
+      }
+
+
+
+      .has-search .form-control {
+        padding-left: 2.375rem;
+
+      }
+
+      .has-search .form-control-feedback {
+        position: absolute;
+        z-index: 2;
+        display: block;
+        width: 2.375rem;
+        height: 2.375rem;
+        line-height: 2.375rem;
+        text-align: center;
+        pointer-events: none;
+        color: #aaa;
+
+
+      }
+    }
+
+    .form-control:focus {
+      box-shadow: none;
+    }
+
+
+
+
+
+    .block-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(215, 208, 208, 0.5);
+      
+      pointer-events: all;
+    
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 999;
+     
+    }
+
+
+
+
+    /* Style the modal backdrop (background overlay) */
+.modal-backdrop {
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black background */
+}
+
+/* Style the modal content */
+.modal-content {
+  background-color: #fff; /* White background for the modal */
+ 
+  border-radius: 10px; /* Rounded corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add a box shadow */
+}
+
+/* Style the modal title */
+.modal-title {
+  font-size: 1.25rem; /* Larger font size */
+  margin-bottom: 10px; /* Add space below the title */
+}
+
+/* Style the modal body */
+.modal-body {
+  padding: 15px; /* Add padding to the body */
+}
+
+/* Style the modal close button */
+.modal-header .btn-close {
+  font-size: 1.5rem; /* Larger close button */
+}
+
+/* Style the modal footer */
+.modal-footer {
+ 
+  padding: 15px; /* Add padding to the footer */
+}
+
+/* Style the links inside the modal body */
+.modal-body a {
+  color: #0a0a0a; /* Blue link color */
+  text-decoration: none; /* Remove underline */
+  transition: color 0.2s; /* Add a smooth color transition on hover */
+}
+
+.modal-body a:hover {
+  color: #0b0b0b; /* Darker blue on hover */
+}
+
+/* Style the list items in the modal body */
+.modal-body ul li {
+  list-style: none; /* Remove bullet points */
+  margin-bottom: 8px; /* Add space between list items */
+}
+
+/* Style the horizontal divider */
+.modal-body .dropdown-divider {
+
+  margin: 5px 0; /* Add space above and below the divider */
+}
+
+  </style>
+</head>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<body>
+  <div class="dashboard">
+    <div class="dash-head">
+      <i class="fa-solid fa-bars fa-2x" id="hamburger"></i>
+    </div>
+    <div class="dash-head1"></div>
+  </div>
+
+  <div class="menu" id="menuBox">
+    <nav class="Nav">
+      <ul>
+        <li><a href="{% url 'index' %}" class="menu-link">DashBoard</a></li>
+        <li><a href="{% url 'admin_page' %}" class="menu-link">Admin</a></li>
+        <li><a href="{% url 'mentor_table' %}" class="menu-lin">Mentor</a></li>
+        <li><a href="{% url 'show_mentee_data' %}" class="menu-link">Mentee</a></li>
+        <li><a href="#" class="menu-link">Log</a></li>
+      </ul>
+    </nav>
+  </div>
+  <br>
+  <div>
+    <a href="{% url 'mentee_form' %}">
+      <button class="btn-warning" style="background-color: rgb(243, 210, 23);border-radius: 5px;padding: 15px 45px;margin-left: 75px;border: none;
+      margin-bottom:-25px;">Add Mentee</button>
+    </a>
+  </div>
+  <br>
+  <br>
+
+
+
+  <div class="container" >
+    <!-- <div class="input-group "
+        style="border: 2px solid rgb(243, 210, 23); border-radius: 50px; padding: 5px; align-items: center; ">
+
+        <i class="fa fa-search" style="margin-top: 5px;margin-left: 5px;"></i>
+        <input type="search" id="search-input" class="form-control"
+          style="border:hide  ; border-radius: 50px; padding: 0; border-left: none;margin-left: 10px;"
+          placeholder="Search Mentee by Name, Job Title or Company">
+      </div> -->
+
+
+    <div class="main">
+
+      <div class="form-group has-search">
+
+        <span class="fa fa-search form-control-feedback" style="margin-left:25px;"></span>
+
+
+        <input type="text" class="form-control" id="search-input"
+          placeholder="Search Mentee by Name, Job Title or Company"
+          style="border-radius: 50px;border: 3px solid  rgb(243, 210, 23);;margin-top: -27px;padding-left: 55px;">
+      </div>
+    </div>
+
+  </div>
+  
+  <br>
+  <div id="search-results-div">
+    {% if sid1 < 1 %} <div
+      style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 40vh; margin-top: 50px;">
+      <img src="../static/assets/img/backgrounds/mentee.png" style="width: 350px; height: auto;" alt />
+      <br>
+      <div class="d-inline-flex" style="margin-top: -45px;margin-left: -55px;">
+        <a href="{% url 'mentee_form' %}" size="40px" class="btn btn-warning cart-btn-transform m-3" data-abc="true">Add
+          Mentee Profiles</a>
+      </div>
+  </div>
+
+  {% else %}
+  <div class="container" id="search-results-div">
+    <div class="btnall container">
+      <div class="button container">
+        <div class="dropdown">
+        
+          <button class="btn btn-secondary " type="button" data-toggle="modal" data-target="#profilesModal1"><a class="dropdown-item active" href="{% url 'show_mentee_data' %}">Now Search</a>
+           
+          </button>
+         
+        </div>
+
+<!-- Button to open the modal -->
+<button class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#categoryModal">
+  All Categories
+</button> 
+
+<!-- Modal for displaying categories -->
+<div class="modal fade" id="categoryModal" tabindex="-1" role="dialog" aria-labelledby="categoryModalLabel" aria-hidden="true" style="margin-left: 65px;" >
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content" style="width: 300px;border-radius:5px;">
+      <div class="modal-header" style="height: 150px;border: none;" >
+        <h5 class="modal-title" id="categoryModalLabel" style="margin-top: -55px;margin-left: 15px;">Select a category</h5>
+        <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
+      </div>  
+      <div class="modal-body" style="margin-top: -85px;border: none;">
+        <ul style="padding-left: 1rem">
+          <!-- Display main categories -->
+          {% for category in main_categories %}
+            <li>
+              <a href="{% url 'show_mentee_data' %}?category_id={{ category.id }}" style="line-height: 30px;">{{ category.name }}</a>
+            </li>
+          {% endfor %}
+          <li class="dropdown-divider"></li>
+          <!-- Display sub-categories -->
+          <!-- {% for sub_category in sub_categories %}
+            <li>
+              <a href="{% url 'show_mentee_data' %}?category_id={{ sub_category.id }}">{{ sub_category.name }}</a>
+            </li>
+          {% endfor %} -->
+        </ul>
+      </div> 
+
+    </div>
+  </div>
+</div>
+
+
+
+       <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#profilesModal">
+        All Profiles
+      </button>                                                         
+
+
+       <div class="modal fade" id="profilesModal" tabindex="-1" role="dialog" aria-labelledby="profilesModalLabel"
+       aria-hidden="true" style="margin-left: 65px;">
+       <div class="modal-dialog modal-dialog-centered" role="document">
+         <div class="modal-content" style="width: 300px;border-radius:5px;">
+           <h5 class="modal-title" style="height: 110px;border: none;padding-left: 25px;margin-top: 25px;" >Select Profile Type</h5>
+           <div class="modal-body" style="margin-top: -85px;border: none;text-decoration: none;padding-left: 25px;">
+            
+             <p><a href="#" style="text-decoration: none;">Complete Profile</a></p>
+             <p><a href="#" style="text-decoration: none">Incomplete Profile</a></p>
+             <p><a href="{% url 'blocked_profile_list1' %}" style="text-decoration: none;">Blocked Profile</a></p>
+         </div>
+           {% comment %} <div class="modal-footer">
+             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+           </div> {% endcomment %}
+         </div>
+       </div>
+     </div>
+     <div class="modal fade" id="profilesModal1" tabindex="-1" role="dialog" aria-labelledby="profilesModalLabel"
+       aria-hidden="true" >
+       <div class="modal-dialog modal-dialog-centered" role="document">
+         <div class="modal-content" style="height: 200px;">
+           <h5 class="modal-title" >Select Profile Type</h5>
+           <div class="modal-body" >
+             {% for i in mid %}
+             <p><a href="#" style="text-decoration: none;color: black;"><strong>{{i.name}}</strong></a></p>
+              {% endfor %}
+         </div>
+           {% comment %} <div class="modal-footer">
+             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+           </div> {% endcomment %}
+         </div>
+       </div>
+     </div>
+      
+      </div>
+
+    </div>
+  </div>
+
+
+  <div class="container mt-4 " style="overflow-x:scroll;margin-left: 60px;" >
+
+
+
+    <table id="search-results">
+      <tr>
+        <th>Sr No.</th>
+        <th>Mentee Image</th>
+        <th>Mentee Name</th>
+        <!-- <th>Mentee ID</th> -->
+        <th>Mentee City</th>
+        <th>Mentee State</th>
+        <!-- <th>View Review</th> -->
+        <th>View Booking</th>
+        <th>View Spends</th>
+        <th>View</th>
+        <th>Block</th>
+        <th>Edit</th>
+        <th>Delete</th>
+      </tr>
+
+      {% for i,n in sid %}
+
+      <tr>
+
+
+
+        <td> {{n}} </td>
+        <td ><img src="{{i.image.url}}" style="height: 50px; width: 50px;border-radius: 50%;"></td>
+        <td>{{i.name}}</td>
+        <!-- <td class="mentor-id"><a>78956423</a></td> -->
+        <td>{{i.cit}}</td>
+        <td >{{i.sta}}</td>
+
+        <td><a href="{% url 'view_booking' i.id %}"><i class="fa-regular fa-calendar" style="color: black;"></i></a>
+        </td>
+        <td><i class="fa-regular"><b>&#8377;</b></i></td>
+
+        <td ><a href="{% url 'view_form' i.id %}" style="color: black;"><i class="far fa-eye"></i></a></td>
+
+
+        <td >
+          <a href="{% url 'toggle_block_profile1' i.id %}"
+             class="{% if i.blocked %}blocked{% else %}not-blocked{% endif %}"
+             onclick="return confirmBlockUnblock('{% if i.blocked %}unblock{% else %}block{% endif %}')">
+              <i class="fa-solid fa-ban"></i> {% if i.blocked %}{% else %}{% endif %}
+          </a>
+      </td>
+        
+   
+
+
+        <td>
+          <a class="dropdown-item" href="{% url 'edit_mentee_form' i.id %}" style="color: rgb(31, 73, 243);"><i
+              class="fa fa-edit"></i></a>
+        </td>
+
+
+
+        <td ><a style="color: black;" class="delete-link" data-url="{% url 'delete_mentee_data' i.id %}"><i
+              class="fa-sharp fa-solid fa-trash"></i></a></td>
+
+
+      </tr>
+      {% endfor %}
+
+
+    </table>
+  </div>
+  {% endif %}
+  </div>
+  <br>
+  <br>
+
+
+  {% if sid.has_other_pages %}
+  <nav aria-label="...">
+    <ul class="pagination" style="margin-left: 800px;">
+      {% if sid.has_previous %}
+      <!-- <li class="page-item">
+          <a class="page-link" href="?page=1" tabindex="-1">First</a>
+        </li> -->
+      <li class="page-item">
+        <a class="page-link" href="?page={{sid.previous_page_number}}" tabindex="-1">Previous</a>
+      </li>
+      {% endif %}
+      {% for i in sid.paginator.page_range %}
+      {% if sid.number == i %}
+      <li class="page-item active">
+        <span class="page-link">{{ i }}</span>
+      </li>
+      {% else %}
+      <li class="page-item">
+        <a class="page-link" href="?page={{ i }}">{{ i }}</a>
+      </li>
+      {% endif %}
+      {% endfor %}
+      {% if sid.has_next %}
+      <li class="page-item">
+        <a class="page-link" href="?page={{sid.next_page_number}}">Next</a>
+      </li>
+      <!-- <li class="page-item">
+          <a class="page-link" href="?page={{sid.paginator.num_pages}}">Last</a>
+        </li> -->
+      {% endif %}
+    </ul>
+  </nav>
+  {% endif %}
+
+
+
+<!-- DASHBOARD SLIDER -->
+<script>
+    const hamburger = document.getElementById("hamburger");
+    const menu = document.getElementById("menuBox");
+
+    const body = document.body;
+
+    // Function to open the menu and change body background color
+    function openMenu() {
+      menu.classList.add("show");
+      body.style.backgroundColor = "grey";
+    }
+
+    // Function to close the menu and reset body background color
+    function closeMenu() {
+      menu.classList.remove("show");
+      body.style.backgroundColor = ""; // Reset the background color to its original state
+    }
+
+    // Toggle menu and change body background color when hamburger is clicked
+
+
+    // Toggle menu when hamburger is clicked
+    hamburger.addEventListener("click", (event) => {
+      menu.classList.toggle("show");
+
+      event.stopPropagation(); // Prevent body click event from firing immediately
+    });
+
+    // Hide menu when the body is clicked (except for the menu)
+    document.documentElement.addEventListener("click", (event) => {
+      if (menu.classList.contains("show") && event.target !== hamburger && !menu.contains(event.target)) {
+        menu.classList.remove("show");
+
+
+      }
+    });
+
+
+  </script>
+
+
+<!-- DELETE PRFILE ASKING MSG -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      var deleteLinks = document.querySelectorAll('.delete-link');
+      deleteLinks.forEach(function (link) {
+        link.addEventListener('click', function (event) {
+          event.preventDefault(); // Prevent the default link behavior
+          var deleteUrl = this.getAttribute('data-url');
+
+          Swal.fire({
+            title: 'Are you sure?',
+            text: 'You are about to delete this item.',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Yes, delete it!',
+            cancelButtonText: 'Cancel',
+            allowOutsideClick:false
+          }).then((result) => {
+            if (result.isConfirmed) {
+              // If the user confirms the deletion, navigate to the dynamic URL
+              window.location = deleteUrl;
+            }
+          });
+        });
+      });
+    });
+  </script>
+
+
+
+<!--LIVE SEARCH  -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+    $(document).ready(function () {
+      $("#search-input").on("input", function () {
+        var query = $(this).val();
+
+        $.ajax({
+          type: "GET",
+          url: "{% url 'state_city_search' %}",
+          data: { query: query },
+          success: function (data) {
+            var tableBody = $("#search-results tbody");
+            tableBody.empty(); // Clear previous search results
+
+            if (data.length === 0) {
+              // Hide the search-results-div and show the no-results message
+              $("#search-results-div").hide();
+              $("#no-results-message").show();
+              $(".pagination").hide();
+              tableBody.append('<tr><td colspan="5"><img src="static/assets/img/avatars/search.jpg" width="50px" height="auto" /> No data found.</td></tr>');
+            } else {
+              // Show the search-results-div and hide the no-results message
+              $("#search-results-div").show();
+              $("#no-results-message").hide();
+              $(".pagination").show();
+              data.forEach(function (item) {
+                var rowNumber = item.row_number;
+                var imageHTML = item.image_url ?
+                  '<img src="' + item.image_url + '" width="50px" height="auto" />' :
+                  '<img src="/pa  th/to/default-image.png" width="50px" height="auto" />';
+                var newRow = $("<tr>").append(
+                  $("<td>").html('<strong>' + rowNumber + '</strong>'),
+
+                  $("<td>").html('<div class="circular-image">' + imageHTML + '</div>'),
+
+                  // $("<td>").text(item.id),
+                  $("<td>").html('<strong>' + item.name + '</strong>'),
+
+                  $("<td>").html('<strong>' + item.cit + '</strong>'),
+
+                  $("<td>").html('<strong>' + item.sta + '</strong>'),
+
+                  $("<td>").html('<a href="' + item.view_url + '"><i class="fa-solid fa-eye" style="color: rgb(2, 80, 20);"></i> </a>'),
+
+                  $("<td>").html('<a href="' + item.block_url + '"><i class="fa-solid fa-ban" style="color: rgb(2, 80, 20);"></i> </a>'),
+
+                  $("<td>").html('<a href="' + item.edit_url + '"><i class="fa fa-edit"></i></a>'),
+
+                  $("<td>").html('<a href="' + item.delete_url + '"><i class="fa-sharp fa-solid fa-trash"></i> </a>')
+                );
+
+                tableBody.append(newRow);
+              });
+            }
+          }
+        });
+      });
+    });
+  </script>
+
+
+
+<!-- MESSAGES -->
+  <script>
+    {% for i in messages %}
+    swal.fire("{{i}}");
+    {% endfor %}
+  </script>
+
+
+
+<!-- BLOCK PROFILE MSG SHOW POP-UP-->
+<script>
+  function confirmBlockUnblock(action) {
+      var confirmMessage = "Are you sure you want to " + action + " this mentee?";
+      return confirm(confirmMessage);
+  }
+</script>
+
+
+
+<!-- BLOCKED UNBLOCK PROFILE -->
+  <script>
+   document.addEventListener('DOMContentLoaded', function () {
+      var toggleLinks = document.querySelectorAll('.toggle-link');
+
+      toggleLinks.forEach(function (link) {
+        link.addEventListener('click', function (event) {
+          event.preventDefault();
+
+          // Get the URL from the link's href attribute
+          var toggleUrl = link.getAttribute('href');
+
+          // Send an AJAX request to toggle the block status
+          fetch(toggleUrl, {
+            method: 'POST', // Or 'GET' or 'PUT' or 'DELETE'
+            headers: {
+              'X-Requested-With': 'XMLHttpRequest', // Required for Django AJAX requests
+              'X-CSRFToken': getCookie('csrftoken'), // Include CSRF token
+            },
+          })
+            .then(response => response.json())
+            .then(data => {
+              if (data.status === 'blocked') {
+                link.classList.remove('not-blocked');
+                link.classList.add('blocked');
+                link.innerHTML = '<i class="fa-solid fa-ban"></i> Unblock';
+              } else {
+                link.classList.remove('blocked');
+                link.classList.add('not-blocked');
+                link.innerHTML = '<i class="fa-solid fa-ban"></i> Block';
+              }
+            })
+            .catch(error => console.error('Error:', error));
+        });
+      });
+
+      // Function to get the CSRF token for the request
+      function getCookie(name) {
+        var value = '; ' + document.cookie;
+        var parts = value.split('; ' + name + '=');
+        if (parts.length === 2) return parts.pop().split(';').shift();
+      }
+    });
+
+
+
+
+  </script>
+
+<!-- BLOCKED PROFILE DISABLE UNDISABLE  -->
+  <!-- <script>
+  const blockedProfiles = document.querySelectorAll('.blocked-profile');
+    blockedProfiles.forEach(profile => {
+      const overlay = document.createElement('div');
+      overlay.className = 'block-overlay';
+      profile.appendChild(overlay);
+    });
+
+
+
+  </script> -->
+
+ 
+
+
+
+</body>
+
+</html>
+
+
+
+
+

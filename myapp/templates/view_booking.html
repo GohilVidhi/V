@@ -1,0 +1,248 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+    crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+      box-sizing: border-box;
+    }
+
+    .nav {
+      margin-bottom: 3px;
+    }
+
+    .tab-1 {
+      box-shadow: 0px 0px 5px 0px #888888;
+      margin-left: 75px;
+      color: black !important;
+      padding: 10px 175px;
+    }
+
+    .tab-2 {
+      box-shadow: 1px 0px 5px 0px #888888;
+      color: black !important;
+      padding: 10px 175px;
+    }
+
+    .active {
+      background-color: rgb(251, 205, 67) !important;
+    }
+
+    .active1 {
+      background-color: white !important;
+    }
+
+    .upcoming-main {
+      background-color: white;
+      display: flex;
+      height: 250px;
+      justify-content: space-between;
+    }
+
+    .history-main {
+      display: flex;
+      height: 250px;
+      justify-content: space-between;
+    }
+
+    .start-date {
+      display: flex;
+      align-items: center;
+      width: 40%;
+      height: 30px;
+      box-shadow: 1px 0px 5px 0px #888888;
+      margin-left: 20px;
+      margin-top: 10px;
+      border-radius: 5px;
+      background-color: white;
+    }
+
+    .start-date p {
+      margin-left: 150px;
+      margin-top: 15px;
+    }
+
+    .start-date .datevalue {
+      margin-left: 10px;
+      border: none;
+      outline: none;
+    }
+
+    .end-date {
+      display: flex;
+      align-items: center;
+      width: 40%;
+      height: 30px;
+      box-shadow: 1px 0px 5px 0px #888888;
+      margin-right: 20px;
+      margin-top: 10px;
+      background-color: white;
+      border-radius: 5px;
+    }
+
+    .end-date p {
+      margin-left: 150px;
+      margin-top: 15px;
+    }
+
+    .end-date .datevalue {
+      margin-left: 15px;
+      border: none;
+      outline: none;
+    }
+
+    #pills-home {
+      background-color: white !important;
+      height: 93vh;
+    }
+
+    #pills-profile {
+      background-color: white !important;
+      height: 93vh;
+    }
+
+    .schedule img {
+      margin-left: 30%;
+    }
+
+    .no-appointment {
+      background-color: white;
+      height: 110px;
+      width: 30%;
+      margin: auto;
+      font-weight: 200;
+      align-items: center;
+      text-align: center;
+      font-size: 10px;
+    }
+  </style>
+</head>
+</head>
+
+<body>
+  <ul class="nav nav-pills" id="pills-tab" role="tablist">
+    <li class="nav-item" role="presentation">
+      <button class="tab-1 nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home"
+        type="button" role="tab" aria-controls="pills-home" aria-selected="true">
+        Upcoming
+      </button>
+    </li>
+    <li class="nav-item" role="presentation">
+      <button class="tab-2 nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile"
+        type="button" role="tab" aria-controls="pills-profile" aria-selected="false">
+        History
+      </button>
+    </li>
+  </ul>
+  <div class="tab-show tab-content" id="pills-tabContent">
+    <div class="tab-pane fade show active1 active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+
+
+      <div class="upcoming-main">
+        <div class="start-date">
+          <p>Start Date</p>
+          <input type="date" name="start-date" id="start-date-display" class="datevalue"
+            placeholder="Select a start date" />
+        </div>
+        <div class="end-date">
+          <p>End Date</p>
+          <input type="date" name="end-date" id="end-date-display" class="datevalue" placeholder="Select an end date" />
+        </div>
+      </div>
+
+
+      <div class="schedule">
+        <div class="no-appointment">
+          <h4>There are no upcoming appointments scheduled.</h4>
+        </div>
+      </div>
+    </div>
+
+    <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+
+      <div style="margin: 9px; margin-top: 0">
+        <div style="
+            box-shadow: 0 3px 10px rgb(0 0 0 / 0.1);
+            border-radius: 7px;
+            padding-bottom: 9px;
+            padding-top: 9px;
+          ">
+          <div style="display: flex; gap: 25px">
+            <div>
+              <p style="
+                  height: 60px;
+                  width: 60px;
+                  border-radius: 50%;
+                  border: 2px solid black;
+                  margin-left: 45px;
+                  margin-top: 15px;
+                  background-image: url('{{ sid.image.url }}'); 
+                  background-size: cover;
+  background-position: center;
+                 
+                "></p>
+
+              <!-- <img src="{{ sid.image.url }}" /> -->
+
+              <p style="margin-left: 20px">{{sid.headline}}</p>
+            </div>
+
+            <div>
+              <h5>{{sid.name}}</h5>
+              <div style="margin-top: -10px; font-size: 12px">
+                <i class="fa-solid fa-star" style="color: rgb(214, 211, 211)"></i>
+                <i class="fa-solid fa-star" style="color: rgb(214, 211, 211)"></i>
+                <i class="fa-solid fa-star" style="color: rgb(214, 211, 211)"></i>
+                <i class="fa-solid fa-star" style="color: rgb(214, 211, 211)"></i>
+                <i class="fa-solid fa-star" style="color: rgb(214, 211, 211)"></i>
+              </div>
+
+              <div>
+                <p>{{sid.title}}</p>
+                <p style="margin-top: -15px">{{sid.ex_education}} of total experience</p>
+              </div>
+
+              <div style="margin-top: -13px">
+                <i class="fa-solid fa-location-dot" style="font-size: 11px"></i><span
+                  style="margin-left: 6px">{{sid.cit}}, {{sid.sta}}</span><br />
+                <i class="fa-solid fa-calendar" style="font-size: 11px; margin-top: 8px"></i><span
+                  style="margin-left: 6px; font-size: 13px">Mon,25 Sep</span>
+
+                <i class="fa-solid fa-clock" style="font-size: 13px; margin-top: 8px; margin-left: 15px"></i><span
+                  style="margin-left: 6px; font-size: 13px">03:00 PM</span><br />
+
+                <i class="fas fa-folder" style="font-size: 11px; margin-top: 8px"></i><span
+                  style="margin-left: 6px; font-size: 13px">Topic for test</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="no-appointment">
+        <h4>There are no history appointments scheduled.</h4>
+      </div>
+
+    </div>
+    <!-- <div class="no-appointment">
+          <h4>There are no history appointments scheduled.</h4>
+        </div> -->
+  </div>
+  </div>
+</body>
+
+</html>

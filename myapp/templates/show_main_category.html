@@ -1,0 +1,399 @@
+{% extends "index.html" %}
+{% load static %}
+{% block content %}
+<!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script> -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<style>
+    .circular-image img {
+        /* border-radius: 50%; */
+        width: 50px; /* Set the width of the container */
+        height: 50px; /* Set the height of the container to create a square shape */
+        border-radius: 50%; /* Make the container circular */
+        overflow: hidden;
+    }
+</style>
+
+<style>
+    .round-image {
+  width: 50px; /* Set the width of the container */
+  height: 50px; /* Set the height of the container to create a square shape */
+  border-radius: 50%; /* Make the container circular */
+  overflow: hidden; /* Hide the overflow to ensure the image is clipped to the circle */
+}
+
+.round-image img {
+  width: 100%; /* Make the image fill the circular container */
+  height: 100%; /* Make the image fill the circular container */
+  object-fit: cover; /* Ensure the image covers the container */
+}
+
+  .container {
+    position: relative;
+}
+
+.input-wrapper {
+    position: relative;
+}
+
+#cross {
+    position: absolute;
+    top: 50%;
+    right: 8px; /* Adjust as needed */
+    transform: translateY(-50%);
+}  
+</style>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<!-- Content wrapper -->
+<div class="content-wrapper">
+    <!-- Content -->
+        
+    <div class="container-xxl flex-grow-1 container-p-y">
+        <!-- <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light"></span>Show Main _category</h4> -->
+        <h4 class="fw-bold py-3 mb-3" style="font-size: 26px;"><span class="text-muted fw-light"></span>Show Category</h4>
+        <!-- <div class="search_input" id="search_input_box">
+            <div class="container ">
+                <form class="d-flex justify-content-between search-inner" action="/main_searchview" method="get">
+                    <input type="text" class="form-control" id="search_input" placeholder="Search Here" name="srch">
+                    <button type="submit" class="btn"></button>
+                    <span class="ti-close" id="close_search" title="Close Search"></span>
+                </form>
+            </div>
+        </div>  -->
+        <div class="container position-relative">
+            <div class="input-wrapper">
+                <input type="text" id="search-input" class="form-control" placeholder="Type to search...">
+                <i id="cross" class="fa-solid fa-x position-absolute end-5 top-50 translate-middle-y"></i>
+            </div>
+        </div>
+        <!-- <div id="search-results"></div> -->
+
+        <hr class="my-5" />
+
+        <!-- Contextual Classes -->
+       {% if mid1 < 1 %}
+       <img style="margin-left: 250px;" src="{% static 'assets/img/avatars/tb.jpg' %}" alt class="w-px-500 h-auto rounded-circle" />
+       <br>
+       <div class="d-inline-flex " style="margin-left: 400px;">
+        <a href="{% url 'add_main_category' %}" class="btn btn-success cart-btn-transform m-3" data-abc="true">Add Sub Category</a>
+        </div>
+        </div>
+       {% else %}
+       <p id="no-results-message" style="display: none;">
+       
+        <img style="margin-left: 250px;" src="{% static 'assets/img/avatars/search.jpg' %}"class="w-px-400 h-auto rounded-circle" width="100px" height="auto" />
+    </p>
+       <!-- <p style="color: rgb(72, 36, 148);">{% for msg in messages %}{{msg}}{% endfor %}</p> -->
+        <div class="card" id="search-results-div">
+            <div class="up-down" style="display:flex; justify-content:space-between; width: 100%;background-color: aqua;">
+                <div><h5 class="card-header" style="width:540% ;">Show Main Category</h5></div>
+                <div style="margin-top:10px;margin-right: 25px;"><button style="border-radius:50px;padding: 0 10px;"><a class="dropdown-item" style="text-decoration: none;" href="{% url 'add_main_category' %}"><i class="fa-solid fa-plus "></i> Add</a></button></div>
+            </div>
+            
+            <div class="table-responsive text-nowrap">
+                <table class="table" id="search-results">
+                    <thead>
+                        <tr>
+                            <th><b style="font-size: 15px;">No</b></th>
+                            <th  ><b style="font-size: 15px;">M_Category</b></th>
+                            <th  ><b style="font-size: 15px;">Image</b></th>
+                            <th style="margin-left: 200px;"><b style="font-size: 15px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Edit</b></th>
+                            <th class="Delete me-3" style="margin-left: 20px;"><b style="font-size: 15px;">         Delete</b></th>                            
+
+                        </tr>
+                    </thead>
+                    <tbody class="table-border-bottom-0">
+                        {% for i,n in mid %}
+                        <tr class="table-default" data-row-number="{{ forloop.counter }}">
+                            <td><strong>{{n}}</strong></td>
+                            <td><i class="fab  me-3"></i> <strong>{{i.name}}</strong></td>
+                            
+                            <td>
+                                <div class="round-image">
+                                <img width="50px" height="10%" src="{{i.image.url}}" />
+                                </div>
+                            </td>
+                            <!-- 
+                                <td>
+                                <div class="round-image">
+                                    <a href="{{ i.image.url }}" download>
+                                        <img width="50px" height="10%" src="{{ i.image.url }}" alt="Download Image">
+                                    </a>
+                                </div>
+                            </td>
+                             -->
+                            <!-- <td>
+                                <a class="dropdown-item" href="{% url 'edit_main_category' i.id %}"><i
+                                        class="bx bx-edit-alt me-1"></i> Edit</a>
+                            </td> -->
+                            <td>
+ 
+                                <a  style="color: red;text-decoration: none;" href="{% url 'edit_main_category' i.id %}"  id="edit-link">
+                                    <i class="fa fa-edit" ></i><b style="color: red;"> Edit</b>
+                                  </a>
+                              </td>
+                            <td>
+                                <!-- <a class="dropdown-item" href="{% url 'delete_main_category' i.id %}" ><i
+                                        class="bx bx-trash me-1" >Delete</i></a> -->
+                                        <!-- <a class="dropdown-item" href="{% url 'delete_main_category' i.id %}" onclick="confirmDelete(event)">
+                                            <i class="bx bx-trash me-1">Delete</i>
+                                        </a> -->
+                                        <a href="#" style="text-decoration: none;" class="delete-link" data-url="{% url 'delete_main_category' i.id %}"><i class="fa fa-trash" style="color: red;"  > </i><b style="color: red;"> Delete</b> </a>
+                                            
+            </div>
+      
+        </div>
+        </td>
+        </tr>
+        {% endfor %}
+
+        </tbody>
+        </table>
+        
+    </div>
+   
+</div>
+
+</div>
+{% endif %}
+{% if mid1 > show_page %}
+<nav aria-label="..." id="no-results-message" style="margin-left: -280px;">
+                        
+    <ul class="pagination" style="margin-left: 900px;">
+        {% if mid.has_previous %}
+      <!-- <li class="page-item ">
+        <a class="page-link" id="firstid" href="?page=1" tabindex="-1">First</a>
+      </li> -->
+      <li class="page-item ">
+        <a class="page-link" href="?page={{mid.previous_page_number}}" tabindex="-1">Previous</a>
+      </li>
+      
+      {% endif %}
+      {% for i in mid.paginator.page_range %}
+      {% if i == 3 and p1 >= i %}
+      <li class="page-item">
+          <span class="page-link ">...</span>
+      </li>
+      
+  {% elif i >= 3  and i <= p1 %}
+      {# Skip numbers #}
+  {% else %}
+      <li class="page-item {% if mid.number == i %}active{% endif %}">
+          <a class="page-link" href="?page={{ i }}">{{ i }}</a>
+      </li>
+  {% endif %}
+      {% endfor %}
+      {% if mid.has_next %}
+      <li class="page-item">
+        <a class="page-link" href="?page={{mid.next_page_number}}">Next</a>
+      </li>
+      {% endif %}
+    </ul>
+  </nav>
+  
+  {% endif %}
+<!--/ Contextual Classes -->
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+
+
+
+<!-- / Content -->
+<!-- <script>
+    function confirmDelete(event) {
+        event.preventDefault(); // Prevent the default link behavior
+
+        Swal.fire({
+            title: 'Are you sure?',
+            text: 'You are about to delete this item.',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Yes, delete it!',
+            cancelButtonText: 'Cancel',
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // If the user confirms the deletion, proceed to the delete action
+                window.location = event.target.href;
+            }
+        });
+    }
+</script> -->
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var deleteLinks = document.querySelectorAll('.delete-link');
+        deleteLinks.forEach(function(link) {
+            link.addEventListener('click', function(event) {
+                event.preventDefault(); // Prevent the default link behavior
+                var deleteUrl = this.getAttribute('data-url');
+                
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: 'You are about to delete this item.',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonText: 'Yes, delete it!',
+                    cancelButtonText: 'Cancel',
+                    allowOutsideClick: false,
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        // Swal.fire(
+                        //     'Deleted!',
+                        //     'Your file has been deleted.',
+                        //     'success'
+                        //     )
+                        // setTimeout(displaySuccessMessage, 30000);                        // If the user confirms the deletion, navigate to the dynamic URL
+                        window.location = deleteUrl;
+                    }
+                });
+            });
+        });
+    });
+
+    // Add this JavaScript code after your HTML or in a separate JavaScript file.
+
+// document.addEventListener("DOMContentLoaded", function() {
+//   const editLink = document.getElementById("edit-link");
+  
+//   // Attach a click event handler to the "Edit" link.
+//   editLink.addEventListener("click", function(event) {
+//     event.preventDefault(); // Prevent the default link behavior (e.g., following the link).
+
+//     Swal.fire({
+//       title: 'Do you want to save the changes?',
+//       showDenyButton: true,
+//       showCancelButton: true,
+//       confirmButtonText: 'Save',
+//       denyButtonText: `Don't save`,
+//     }).then((result) => {
+//       if (result.isConfirmed) {
+//         Swal.fire('Saved!', '', 'success');
+//         // Here, you can add code to redirect to the edit page.
+//         // For example: window.location.href = editLink.href;
+//       } else if (result.isDenied) {
+//         Swal.fire('Changes are not saved', '', 'info');
+//         // Here, you can choose to do nothing or handle it in another way.
+//       }
+//     });
+//   });
+// });
+
+</script>
+
+<script>
+    {% for i in messages %}
+    swal.fire("{{i}}");
+    {% endfor %}
+</script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#search-input").on("input", function () {
+            var query = $(this).val();
+
+            $.ajax({
+                type: "GET",
+                url: "{% url 'main_searchview' %}",
+                data: { query: query },
+                success: function (data) {
+                    var tableBody = $("#search-results tbody");
+                    tableBody.empty(); // Clear previous search results
+
+                    if (data.length === 0) {
+                        // Hide the search-results-div and show the no-results message
+                        $("#search-results-div").hide();
+                        $("#no-results-message").show();
+                        $(".pagination").hide();
+                        tableBody.append('<tr><td colspan="5"><img src="static/assets/img/avatars/search.jpg" width="50px" height="auto" /> No data found.</td></tr>');
+                    } else {
+                        // Show the search-results-div and hide the no-results message
+                        $("#search-results-div").show();
+                        $("#no-results-message").hide();
+                        $(".pagination").show();
+                        data.forEach(function (item) {
+                            var rowNumber = item.row_number;
+                            var imageHTML = item.image_url ? 
+                                '<img src="' + item.image_url + '" width="50px" height="auto" />' :
+                                '<img src="/path/to/default-image.png" width="50px" height="auto" />';
+                            var newRow = $("<tr>").append(
+                                $("<td style='height: 50px;'>").html('<strong>' + rowNumber + '</strong>'),
+                                // $("<td>").text(item.id),
+                                $("<td>").html('<strong>' + item.name + '</strong>'),
+                                $("<td>").html('<div class="circular-image">' + imageHTML + '</div>'),
+                                // $("<td>").html('<a href="' + item.edit_url + '"><i class="fa fa-edit"  style="color: red;"></i> Edit</a>'),
+                                $("<td>").html('<a style="text-decoration: none;" href="' + item.edit_url + '"><i class="fa fa-edit" style="color: red;"></i> <b style="color: red;">Edit</b></a>'),
+                                $("<td>").html('<a style="text-decoration: none;" href="' + item.delete_url + '"><i class="fa fa-trash"style="color: red;"></i> <b style="color: red;">Delete</b></a>'),
+                                // $("<td>").html('<a href="' + item.delete_url + '"><i class="fa fa-trash"></i> Delete</a>')
+                                // $("<td>").html('<a href="' + item.delete_url + '"><i class="fa fa-trash"style="color: red;"></i> <b style="color: red;">Delete</b></a>')
+                            );
+                            tableBody.append(newRow);
+                        });
+                    }
+                }
+            });
+        });
+    });
+</script>
+
+<script>
+    $(document).ready(function () {
+        // Add an event listener to the clear icon
+        $("#cross").on("click", function () {
+            // Clear the input field
+            $("#search-input").val('');
+
+            // Trigger the input event to initiate a new search with an empty query
+            $("#search-input").trigger('input');
+        });
+
+        $("#search-input").on("input", function () {
+            var query = $(this).val();
+
+            $.ajax({
+                type: "GET",
+                url: "{% url 'main_searchview' %}",
+                data: { query: query },
+                success: function (data) {
+                    var tableBody = $("#search-results tbody");
+                    tableBody.empty(); // Clear previous search results
+
+                    if (data.length === 0) {
+                        // Hide the search-results-div and show the no-results message
+                        $("#search-results-div").hide();
+                        $("#no-results-message").show();
+                        $(".pagination").hide();
+                        tableBody.append('<tr><td colspan="5"><img src="static/assets/img/avatars/search.jpg" width="50px" height="auto" /> No data found.</td></tr>');
+                    } else  {
+                        // Show the search-results-div and hide the no-results message
+                        $("#search-results-div").show();
+                        $("#no-results-message").hide();
+                        $(".pagination").show();
+                        data.forEach(function (item) {
+                            var rowNumber = item.row_number;
+                            var imageHTML = item.image_url ? 
+                                '<img src="' + item.image_url + '" width="50px" height="auto" />' :
+                                '<img src="/path/to/default-image.png" width="50px" height="auto" />';
+                            var newRow = $("<tr>").append(
+                                $("<td style='height: 50px;'>").html('<strong>' + rowNumber + '</strong>'),
+                                // $("<td>").text(item.id),
+                                $("<td>").html('<strong>' + item.name + '</strong>'),
+                                $("<td>").html('<div class="circular-image">' + imageHTML + '</div>'),
+                                // $("<td>").html('<a href="' + item.edit_url + '"><i class="fa fa-edit"  style="color: red;"></i> Edit</a>'),
+                                $("<td>").html('<a style="text-decoration: none;" href="' + item.edit_url + '"><i class="fa fa-edit" style="color: red;"></i> <b style="color: red;">Edit</b></a>'),
+                                $("<td>").html('<a style="text-decoration: none;" href="' + item.delete_url + '"><i class="fa fa-trash"style="color: red;"></i> <b style="color: red;">Delete</b></a>'),
+                                // $("<td>").html('<a href="' + item.delete_url + '"><i class="fa fa-trash"></i> Delete</a>')
+                                // $("<td>").html('<a href="' + item.delete_url + '"><i class="fa fa-trash"style="color: red;"></i> <b style="color: red;">Delete</b></a>')
+                            );
+                            tableBody.append(newRow);
+                        });
+                    }   
+                }
+            });
+        });
+    });
+</script>
+
+{% endblock %}
+

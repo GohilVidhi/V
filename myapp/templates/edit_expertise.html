@@ -1,0 +1,144 @@
+{% extends "index.html" %}
+{% load static %}
+{% block content %}
+
+          <!-- Content wrapper -->
+          <div class="content-wrapper">
+            <!-- Content -->
+
+            <div class="container-xxl flex-grow-1 container-p-y">
+              <!-- <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light"></span> Edit Expertise</h4> -->
+              <h4 class="fw-bold py-3 mb-3" style="font-size: 26px;"><span class="text-muted fw-light"></span>Edit Expertise</h4>   
+
+              <!-- Basic Layout & Basic with Icons -->
+              <div class="row">
+                <!-- Basic Layout -->
+                <div class="col-xxl">
+                  <div class="card mb-4">
+                    <!-- <div class="card-header d-flex align-items-center justify-content-between">
+                      <h5 class="mb-0">Expertise</h5>
+                      <small class="text-muted float-end">Add Expertise</small>
+                    </div> -->
+                    <div class="card-body">
+                      
+                        <form method="post" action="{% url 'edit_expertise' eid.id %}">
+                          {% csrf_token %}
+                        
+                      <div class="row mb-3">
+                        <!-- <label class="col-sm-2 col-form-label" for="basic-default-name">Main Category</label> -->
+                        <label class="col-sm-2 " for="basic-default-name" style="font-size: 15px;"> Category Name</label>
+                        <div class="col-sm-10" >
+                      <select id="main_category" name="main_category" class="col-sm-12" style="height:40px;border-radius:5px">
+                        {% for category in mid %}
+                            <option value="{{ category.id }}"  {% if eid.mcategory.id == category.id %}selected{% endif %}>{{ category.name }}</option>
+                        {% endfor %}
+                    </select>
+                    <p style="font-size: 20px;color: red;">{{msg}}</p>
+                  </div>
+                </div>  
+                  
+                    <div class="row mb-3">
+                      <!-- <label class="col-sm-2 col-form-label" for="basic-default-name">Sub Category</label>-->
+                                                <label class="col-sm-2 " for="basic-default-name" style="font-size: 15px;">Sub Category Name</label> 
+                      <div class="col-sm-10" >
+                    <select id="sub_category" name="sub_category" class="col-sm-12" style="height:40px;border-radius:5px">
+                      {% for category in sid %} 
+                      <option value="{{category.id}}" {% if eid.scategory.id == category.id %}selected{% endif %}>{{category.name}}</option>
+                      {% endfor %} 
+                    </select>
+                    <p style="font-size: 20px;color: red;">{{msg1}}</p>
+                  </div>
+                </div> 
+                  
+                      <div class="row mb-3">
+                        <!-- <label class="col-sm-2 col-form-label" for="{{ form.name.id_for_label }}">Name</label> -->
+                        <label class="col-sm-2 " for="basic-default-name" style="font-size: 15px;"> Expertise Name</label>
+                      
+                        <div class="col-sm-10">
+                          <input type="text" class="form-control" id="basic-default-name" name="name" value="{{eid.name}}" placeholder="Enter Your Name" />
+                          <p style="font-size: 20px;color: red;">{{msg2}}</p>
+                        </div>
+                      </div>
+                      <div class="row justify-content-end">
+                        <div class="col-sm-10">
+                          <button type="submit" class="btn btn-primary">Send</button>
+                        </div>
+                      </div>
+                      </form>
+                  </div>
+                  </div>
+                </div>
+                <!-- Basic with Icons -->
+                
+              </div>
+            </div>
+            <!-- / Content -->
+            <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+            <script>
+                $("#id_mcategory").change(function () {
+                    const url = $("#personForm").attr("data-cities-url");  // get the url of the `load_cities` view
+                    const countryId = $(this).val();  // get the selected country ID from the HTML input
+            
+                    $.ajax({                       // initialize an AJAX request
+                        url: url,                    // set the url of the request (= /persons/ajax/load-cities/ )
+                        data: {
+                            'country_id': countryId       // add the country id to the GET parameters
+                        },
+                        success: function (data) {   // `data` is the return of the `load_cities` view function
+                            $("#id_scategory").html(data);  // replace the contents of the city input with the data that came from the server
+                            /*
+            
+                            let html_data = '<option value="">---------</option>';
+                            data.forEach(function (city) {
+                                html_data += `<option value="${city.id}">${city.name}</option>`
+                            });
+                            console.log(html_data);
+                            $("#id_city").html(html_data);
+            
+                            */
+                        }
+                    });
+            
+                });
+            </script>
+
+<script>
+  $(document).ready(function() {
+      $("#main_category").on('change', function() {
+          var mainCategoryId = $(this).val();
+          var subCategorySelect = $("#sub_category");
+          subCategorySelect.empty(); // Clear existing options
+  
+          if (mainCategoryId) {
+              $.ajax({
+                  url: '/get_subcategories/',
+                  data: {'main_category_id': mainCategoryId},
+                  dataType: 'json',
+                  success: function(data) {
+                      if (data.length > 0) {
+                          $.each(data, function(index, subCategory) {
+                              subCategorySelect.append(new Option(subCategory.name, subCategory.id));
+                          });
+                      } else {
+                          subCategorySelect.append('<option value="">No sub-categories available</option>');
+                      }
+                  },
+                  error: function() {
+                      console.log("Error fetching sub-categories");
+                  }
+              });
+          }
+      });
+  });
+  </script>
+{% endblock %} 
+       
+"""
+main_category image setup
+main_category edit image field
+sub_category image setup
+sub_category edit image field
+pagination
+search function
+expertise start
+"""

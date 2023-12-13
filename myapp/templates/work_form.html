@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+
+  <body>
+    <style>
+      body {
+        background-color: white;
+      }
+
+      .form {
+        position: relative;
+      }
+
+      .textbox {
+        border: 1px solid gray;
+        border-radius: 5px;
+        outline: none;
+        background: none;
+        padding: 10px;
+        color: white;
+      }
+
+      .formlabel {
+        position: absolute;
+        top: 1.4rem;
+        /* Adjusted initial position */
+        left: 1.4rem;
+        cursor: text;
+        transition: top 200ms ease-in, left 200ms ease-in,
+          font-size 200ms ease-in;
+      }
+      .textbox:focus + .formlabel,
+      .textbox:not(:placeholder-shown) + .formlabel {
+        top: -0.3rem;
+        left: 0.5rem;
+        font-size: 15px;
+        background-color: white;
+      }
+    </style>
+<form action="{% url 'mentee_form' %}" method="POST">
+    {% csrf_token %}
+    <h3 style="text-align: center">Enter Company Details</h3>
+    <div style="width: 300px; margin-left: auto; margin-right: auto">
+      <div class="form">
+        <input
+          type="text"
+          class="textbox"
+          style="height: 30px; width: 95%; color: black"
+        />
+        <label class="formlabel"> Company name </label><br />
+      </div>
+
+      <div class="form">
+        <input
+          type="text"
+          class="textbox"
+          style="height: 30px; width: 95%; color: black"
+        />
+        <label class="formlabel"> Title </label><br />
+      </div>
+
+      <div class="form">
+        <input
+          type="text"
+          class="textbox"
+          style="height: 30px; width: 95%; color: black"
+        />
+        <label class="formlabel"> Current Role </label><br />
+      </div>
+
+      <div style="display: flex; gap: 19px">
+        <div>
+          <select
+            style="
+              height: 60px;
+              border-radius: 4px;
+              padding: 0px 55px 0px 55pxpx;
+              border: 1px solid gray;
+              width: 145px;
+              padding-left: 9px;
+            "
+          >
+            <option>Start Month</option>
+            <option>Start Month</option>
+            <option>Start Month</option>
+            <option>Start Month</option>
+            <option>Start Month</option>
+            <option>Start Month</option>
+          </select>
+        </div>
+        <div>
+          <div>
+            <select
+              style="
+                height: 60px;
+                border-radius: 4px;
+                padding: 0px 55px 0px 55pxpx;
+                border: 1px solid gray;
+                width: 145px;
+                padding-left: 9px;
+              "
+            >
+              <option>Start Year</option>
+              <option>Start Year</option>
+              <option>Start Year</option>
+              <option>Start Year</option>
+              <option>Start Year</option>
+              <option>Start Year</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div style="display: flex; gap: 19px; margin-top: 20px">
+        <div>
+          <select
+            style="
+              height: 60px;
+              border-radius: 4px;
+              padding: 0px 55px 0px 55pxpx;
+              border: 1px solid gray;
+              width: 145px;
+              padding-left: 9px;
+            "
+          >
+            <option>End Month</option>
+            <option>End Month</option>
+            <option>End Month</option>
+            <option>End Month</option>
+            <option>End Month</option>
+            <option>End Month</option>
+          </select>
+        </div>
+        <div>
+          <div>
+            <select
+              style="
+                height: 60px;
+                border-radius: 4px;
+                padding: 0px 55px 0px 55pxpx;
+                border: 1px solid gray;
+                width: 145px;
+                padding-left: 9px;
+              "
+            >
+              <option>End Year</option>
+              <option>End Year</option>
+              <option>End Year</option>
+              <option>End Year</option>
+              <option>End Year</option>
+              <option>End Year</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <input
+        type="checkbox"
+        id="check1"
+        name="check1"
+        style="margin-top: 20px; margin-left: 15px"
+      /><label
+        for="check1"
+        style="margin-left: 15px; font-weight: 600; cursor: pointer"
+        >Present</label
+      >
+
+      <div style="display: flex; margin-left: 179px; gap: 25px">
+        <div>
+          <button
+            style="
+              border: none;
+              outline: none;
+              background-color: transparent;
+              color: green;
+              font-weight: 700;
+              cursor: pointer;
+            "
+          >
+            Cancel
+          </button>
+        </div>
+
+        <div>
+          <button
+            style="
+              border: none;
+              outline: none;
+              background-color: transparent;
+              color: green;
+              font-weight: 700;
+              cursor: pointer;
+            "
+          >
+            Save
+          </button>
+        </div>
+      </div>
+    </div>
+</form>
+  </body>
+</html>

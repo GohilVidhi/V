@@ -1,0 +1,196 @@
+*{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+
+#menuBox {
+  /* display: none; */
+    height: 100%;
+    width: 350px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: white;
+    overflow-x: hidden;
+    padding-top: 16px;
+  }
+  
+  #menuBox a {
+    padding: 6px 8px 6px 16px;
+    text-decoration: none;
+    font-size: 20px;
+    color: #818181;
+    display: block;
+  }
+ 
+  
+  #menuBox a:hover {
+    
+    color: black;
+  }
+  .Nav ul li {
+    height: 75px;
+    width: 275px;
+    
+    text-align: center;
+    list-style: none;
+    margin-top: 45px;
+   padding-top: 15px;
+    font-size: 60px;
+    font-weight: 900;
+
+  }
+  .Nav ul li:hover {
+    
+    background-color:yellow;
+   
+
+  }
+     .menu {
+            display: block;
+            transform: translateX(-100%);
+            transition: transform 0.3s ease-in-out;
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 80%; /* Adjust the width as needed */
+            background: #fff;
+            z-index: 1;
+            overflow: auto; /* Enable scrolling if the content exceeds the menu height */
+        }
+
+        .menu.show {
+            transform: translateX(0);
+        }
+
+        .overlay {
+        
+  
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Adjust the alpha value for the desired level of transparency */
+    z-index: 999; /* Ensure the overlay is on top of everything */
+  }
+
+
+        
+
+        .menu.show + .overlay {
+            display: block;
+        }
+
+  .ham.show {
+    height: 80vh;
+    width: 20vh;
+    background-color: aqua;
+  }
+.dashboard{
+   background-color: rgb(243, 210, 23);
+   display: flex;
+   justify-content: center;
+   height: 75px;
+   border-radius: 5px;
+}
+.dash-head{
+  /* border: 1px solid black; */
+  
+  width: 20%;
+}
+.dash-head1{
+  /* border: 1px solid black; */
+  width: 80%;
+}
+.fa-bars{
+  margin-left: 45px;
+  margin-top: 25px;
+}
+
+.search{
+  
+    border: 2px solid rgb(250, 217, 5);
+    padding: 0 5px;
+    margin-top: 50px;
+    margin-bottom: 20px;
+    border-radius: 50px;
+}
+.fa-search{
+    margin-top: 18px;
+}
+
+.btn{
+    border-radius: 50px;
+    background-color:  rgb(240, 236, 236);
+    color: black;
+    border: none;
+}
+
+.button{
+    display: flex;
+    column-gap: 25px;
+}
+
+.btn1{
+        padding: 7px 20px;
+        border-radius: 50px;
+        background-color: aqua;
+        color: black;
+        border: 1px solid black;
+    
+}
+
+.btnall{
+    display: flex;
+    justify-content: space-between;
+}
+
+table{
+    
+   border-spacing: 0;
+    width: 100%;
+    border: 1px solid #ddd;
+  }
+
+  th,td{
+    padding: 10px 0;
+    
+    text-align: center;
+  }
+  th{
+    background-color: rgb(240, 239, 239);
+    padding: 0 50px;
+  }
+
+  .img{
+    border: 1px solid black;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    background-color: blueviolet;
+  }
+  .mentor-id{
+    color: rgb(30, 164, 241);
+    font-weight: 600;
+  }
+ .fa-star{
+    color: rgb(236, 218, 21);
+ }
+
+ .fa-ban{
+    color: green;
+ }
+
+ .blocked {
+  color: red;
+}
+
+.not-blocked {
+  color: green;
+}
+

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.6/dist/sweetalert2.min.css">
+</head>
+<body>
+  <main class="modal-body">
+    <button id="openModalButton">Open Pop-up</button>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.6/dist/sweetalert2.all.min.js"></script>
+  <script>
+    // JavaScript to display the SweetAlert pop-up
+    const openModalButton = document.getElementById("openModalButton");
+
+    openModalButton.addEventListener("click", () => {
+      Swal.fire({
+        title: 'Popup Title',
+        html: `
+          <p>{{uid.id1}}</p>
+          <p>{{uid.menter_name}}</p>
+          <p>{{uid.mentee_name}}</p>
+          <p>{{uid.order_date}}</p>
+        `,
+        showCloseButton: true,
+        showConfirmButton: false,
+      });
+    });
+  </script>
+</body>
+</html>

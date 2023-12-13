@@ -1,0 +1,886 @@
+{% extends "index.html" %}
+{% load static %}
+{% block content %}
+
+<!-- Content wrapper -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<style>
+    @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap");
+*,
+::after,
+::before {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  font-family: "Roboto", sans-serif;
+  font-size: 1rem;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  padding: 0;
+}
+
+.main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.375rem;
+  border-width: 1px;
+  border-color: transparent;
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+  transition-property: all;
+  transition-duration: 200ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  height: 2.25rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  font-size: 1rem;
+  line-height: 1.5rem;
+  cursor: pointer;
+}
+
+.btn-primary {
+  --tw-bg-opacity: 1;
+  background-color: rgb(109 40 217/var(--tw-bg-opacity));
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255/var(--tw-text-opacity));
+  --tw-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --tw-shadow-colored: 0 1px 2px 0 var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+
+.btn-primary:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(91 33 182/var(--tw-bg-opacity));
+}
+
+.btn-secpndary {
+  --tw-border-opacity: 1;
+  border-color: rgb(209 213 219/var(--tw-border-opacity));
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 255 255/var(--tw-bg-opacity));
+  --tw-text-opacity: 1;
+  color: rgb(31 41 55/var(--tw-text-opacity));
+  --tw-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --tw-shadow-colored: 0 1px 2px 0 var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+
+.btn-secondary:hover {
+  --tw-border-opacity: 1;
+  border-color: rgb(156 163 175/var(--tw-border-opacity));
+  --tw-bg-opacity: 1;
+  background-color: rgb(249 250 251/var(--tw-bg-opacity));
+}
+
+.modal-header {
+  display: flex;
+  padding: 0 1.5rem;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.modal-title {
+  font-weight: 700;
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+}
+
+.modal-body {
+  position: relative;
+  flex: 1 1 auto;
+  padding: 0 1.5rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.modal-footer {
+  display: flex;
+  flex-shrink: 0;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 1.5rem;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 1rem;
+}
+.custom-size {
+    font-size: 10px;
+    width: 10px;
+    margin-left: 300px;
+    /* Add other styles as needed */
+}
+
+</style>
+<div class="content-wrapper">
+    <!-- Content -->
+        
+    <div class="container-xxl flex-grow-1 container-p-y">
+        <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light"></span> Upcoming Appointment</h4>
+         
+        <!-- <div class="search_input" id="search_input_box">
+            <div class="container ">
+                <form class="d-flex justify-content-between search-inner" action="/topic_searchview" method="get">
+                    <input type="text" class="form-control" id="search_input" placeholder="Search Here" name="srch">
+                    <button type="submit" class="btn"></button>
+                    <span class="ti-close" id="close_search" title="Close Search"></span>
+                </form>
+            </div>
+        </div>   -->
+        <div class="container position-relative">
+          <div class="input-wrapper">
+              <input type="text" id="search-input" class="form-control" placeholder="Type to search...">
+              <i id="cross" class="fa-solid fa-x position-absolute end-5 top-50 translate-middle-y"></i>
+          </div>
+      </div> 
+
+        <hr class="my-5" />
+        {% if uid1 > 0 %}
+        <form method="post" style="margin-bottom: 10px;" id="search-results-form">
+          {% csrf_token %}
+          
+          <label for="from_date">From:</label>
+          <input type="datetime-local" id="from_date" name="from_date" required>
+          
+          <label for="to_date">To:</label>
+          <input type="datetime-local" id="to_date" name="to_date" required>
+      </form>
+      
+      {% endif %}
+        <!-- Contextual Classes -->
+       {% if uid1 < 1 %}
+       <img style="margin-left: 250px;" src="{% static 'assets/img/avatars/tb.jpg' %}" alt class="w-px-500 h-auto rounded-circle" />
+       <br>
+       <!-- <div class="d-inline-flex " style="margin-left: 400px;">
+        <a href="{% url 'add_topic' %}" class="btn btn-success cart-btn-transform m-3" data-abc="true">Add Sub Category</a>
+        </div> -->
+        </div>
+        {% elif u_count < 1 %}
+        <img style="margin-left: 250px;" src="{% static 'assets/img/avatars/tb.jpg' %}" alt class="w-px-500 h-auto rounded-circle" />
+        <br>
+        <!-- <div class="d-inline-flex " style="margin-left: 400px;">
+         <a href="{% url 'add_topic' %}" class="btn btn-success cart-btn-transform m-3" data-abc="true">Add Sub Category</a>
+         </div> -->
+         </div>
+       {% else %}
+       <p id="no-results-message" style="display: none;">
+       
+        <img style="margin-left: 250px;" src="{% static 'assets/img/avatars/search.jpg' %}"class="w-px-400 h-auto rounded-circle" width="100pxpx" height="auto" />
+    </p>
+        <div class="card" id="search-results-div">
+        
+            <div class="up-down" style="display:flex; justify-content:space-between; width: 100%;background-color: aqua;">
+                <div><h5 class="card-header" style="width:540% ;">Upcoming Appointment</h5></div>
+                <!-- <div style="margin-top:10px;margin-right: 25px;"><button style="border-radius:50px;padding: 0 10px;"><a class="dropdown-item" href="{% url 'add_topic' %}"><i class="fa-solid fa-plus "></i> Add </a></button></div> -->
+            </div>
+            <div class="table-responsive text-nowrap">
+              
+                <table class="table" id="search-results">
+                    <thead>
+                        <tr>
+                            <th><b style="font-size: 15px;">No</b></th>
+                            <th class="Name " style="margin: 150px;"><b style="font-size: 15px;">Id</b></th>
+                            <th class="Name " style="margin: 150px;"><b style="font-size: 15px;">Menter_Name</b></th>
+                            <th class="Name " style="margin: 150px;"><b style="font-size: 15px;">Mentee_Name</b></th>
+                            <th class="Delete me-3" style="margin-left: 20px;"><b style="font-size: 15px;">Date</b></th>
+                            <th class="Name " style="margin: 150px;"><b style="font-size: 15px;">View</b></th>                            
+
+                        </tr>
+                    </thead>
+                    <tbody class="table-border-bottom-0" id="your-table-id">
+                        {% for i,n in uid %}
+                        <tr class="table-default">
+                            <td><strong>{{ n }}</strong></td>
+                            <td><i></i> <strong>{{i.id1}}</strong></td>
+                            <td><i></i> <strong>{{i.menter_name}}</strong></td>
+                            <td><i></i> <strong>{{i.mentee_name}}</strong></td>
+                            <td><strong>{{ i.order_date|date:"d-m-Y" }} </strong><strong class="time" >{{ i.order_date|time:"H:i"}}</strong></td>
+
+                            <td><a href="#editEmployeeModal-{{i.id}}" class="edit"
+                                data-toggle="modal"><i class="fa fa-eye" aria-hidden="true"></i></a></td>
+                            
+                        
+                            
+            </div>
+      
+        </div>
+        </td>
+        </tr>
+        {% endfor %}
+
+        </tbody>
+        </table>
+        
+    </div>
+         
+</div>
+</div>
+{% for i,n in uid %}
+                  <div id="editEmployeeModal-{{i.id}}" class="modal fade" style="padding:20px; " data-backdrop="static" data-keyboard="false" >
+                    <div class="modal-dialog" style="top:35vh; width: 350px; " >
+                      <div class="modal-content" >
+                          <div class="modal-body" >
+                            <p></p> 
+                            <p><strong>appointment : {{i.id1}}</strong></p>
+                            <p><strong>menter_name :{{i.menter_name}}</strong></p>
+                            <p><strong>mentee_name  : {{i.mentee_name}}</strong></p>
+                            <p><strong>{{ i.order_date|date:"d-m-Y" }} </strong><strong class="time1" >{{ i.order_date|time:"H:i"}}</strong></td></p>
+                            
+                          </div>
+                          <button type="button" class="btn btn-primary custom-size" data-dismiss="modal">OK</button>
+                
+                          
+                      </div>
+                    </div>
+                  </div>
+                  {% endfor %} 
+{% endif %}
+{% if uid1 > show_page %}
+<nav aria-label="...">
+                        
+    <ul class="pagination" style="margin-left: 900px;">
+        {% if uid.has_previous %}
+      <!-- <li class="page-item ">
+        <a class="page-link" id="firsuid" href="?page=1" tabindex="-1">First</a>
+      </li> -->
+      <li class="page-item ">
+        <a class="page-link" href="?page={{uid.previous_page_number}}" tabindex="-1">Previous</a>
+      </li>
+      {% endif %}
+      {% for i in uid.paginator.page_range %}
+      {% if i == 3 and p1 >= i %}
+      <li class="page-item " >
+          <span class="page-link">...</span>
+      </li>
+  {% elif i >= 3  and i <= p1 %}
+      {# Skip numbers #}
+  {% else %}
+      <li class="page-item {% if uid.number == i %}active{% endif %}">
+          <a class="page-link" href="?page={{ i }}">{{ i }}</a>
+      </li>
+  {% endif %}
+      {% endfor %}
+      {% if uid.has_next %}
+      <li class="page-item">
+        <a class="page-link" href="?page={{uid.next_page_number}}">Next</a>
+      </li>
+      {% endif %}
+    </ul>
+  </nav>
+ {% endif %} 
+<!-- / Content -->
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var deleteLinks = document.querySelectorAll('.delete-link');
+        deleteLinks.forEach(function(link) {
+            link.addEventListener('click', function(event) {
+                event.preventDefault(); // Prevent the default link behavior
+                var deleteUrl = this.getAttribute('data-url');
+                
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: 'You are about to delete this item.',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonText: 'Yes, delete it!',
+                    cancelButtonText: 'Cancel',
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        // If the user confirms the deletion, navigate to the dynamic URL
+                        window.location = deleteUrl;
+                    }
+                });
+            });
+        });
+    });
+</script>
+<script>
+    {% for i in messages %}
+    swal.fire("{{i}}");
+    {% endfor %}
+</script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#search-input").on("input", function () {
+            var query = $(this).val();
+
+            $.ajax({
+                type: "GET",
+                url: "{% url 'upcoming_searchview' %}",
+                data: { query: query },
+                success: function (data) {
+                    var tableBody = $("#search-results tbody");
+                    tableBody.empty(); // Clear previous search results
+
+                    if (data.length === 0) {
+                        // Hide the search-results-div and show the no-results message
+                        $("#search-results-div").hide();
+                        $("#search-results-div1").hide();
+                        $("#no-results-message").show();
+                        $("#search-results-form").hide();
+
+                        $(".pagination").hide();
+                        tableBody.append('<tr><td colspan="5"><img src="static/assets/img/avatars/search.jpg" width="50px" height="auto" /> No data found.</td></tr>');
+                    } else {
+                        // Show the search-results-div and hide the no-results message
+                        $("#search-results-div").show();
+                        $("#search-results-div1").show();
+                        $("#no-results-message").hide();
+                        $("#search-results-form").show();
+                        $(".pagination").show();
+                        data.forEach(function (item) {
+                            var rowNumber = item.row_number;
+                            var inputDate = new Date(item.order_date);
+
+                            var formattedDate = ('0' + (inputDate.getDate() )).slice(-2) + '-' +
+                              ('0' + (inputDate.getMonth() + 1)).slice(-2) + '-' +
+                              ('0' + inputDate.getFullYear()).slice(-4) + ' ' +
+                              ('0' + inputDate.getHours()).slice(-2) + ':' +
+                              ('0' + inputDate.getMinutes()).slice(-2) ;
+                            var imageHTML = item.image_url ? 
+                                '<img src="' + item.image_url + '" width="50px" height="auto" />' :
+                                '<img src="/path/to/default-image.png" width="50px" height="auto" />';
+                            var newRow = $("<tr>").append(
+                                $("<td>").html('<strong>' + rowNumber + '</strong>'),
+                                $("<td>").html('<strong>' + item.id1 + '</strong>'),  
+                            
+
+// Format the date as 'YYYY-MM-DD HH:mm:ss'
+                            
+
+                                $("<td>").html('<strong>' + item.menter_name + '</strong>'),  
+                                $("<td>").html('<strong>' + item.mentee_name + '</strong>'),  
+                                // $("<td>").html('<strong class="time">' + item.order_date + '</strong>'), 
+                                  $("<td>").html('<strong class="time">' + formattedDate + '</strong>'),
+                                      $("<td>").html('<a href="#editEmployeeModal-' + item.id + '" class="edit" data-toggle="modal"><i class="fa fa-eye" aria-hidden="true"></i></a>')
+
+                            );
+                            tableBody.append(newRow);
+                        });
+                    }
+                }
+            });
+        });
+    });
+</script>
+
+<script>
+  $(document).ready(function () {
+      // Add an event listener to the clear icon
+      $("#cross").on("click", function () {
+          // Clear the input field
+          $("#search-input").val('');
+
+          // Trigger the input event to initiate a new search with an empty query
+          $("#search-input").trigger('input');
+      });
+
+      $("#search-input").on("input", function () {
+          var query = $(this).val();
+
+          $.ajax({
+                type: "GET",
+                url: "{% url 'upcoming_searchview' %}",
+                data: { query: query },
+                success: function (data) {
+                    var tableBody = $("#search-results tbody");
+                    tableBody.empty(); // Clear previous search results
+
+                    if (data.length === 0) {
+                        // Hide the search-results-div and show the no-results message
+                        $("#search-results-div").hide();
+                        $("#search-results-div1").hide();
+                        $("#no-results-message").show();
+                        $("#search-results-form").hide();
+
+                        $(".pagination").hide();
+                        tableBody.append('<tr><td colspan="5"><img src="static/assets/img/avatars/search.jpg" width="50px" height="auto" /> No data found.</td></tr>');
+                    } else {
+                        // Show the search-results-div and hide the no-results message
+                        $("#search-results-div").show();
+                        $("#search-results-div1").show();
+                        $("#no-results-message").hide();
+                        $("#search-results-form").show();
+                        $(".pagination").show();
+                        data.forEach(function (item) {
+                            var rowNumber = item.row_number;
+                            var inputDate = new Date(item.order_date);
+
+                            var formattedDate = ('0' + (inputDate.getDate() )).slice(-2) + '-' +
+                              ('0' + (inputDate.getMonth() + 1)).slice(-2) + '-' +
+                              ('0' + inputDate.getFullYear()).slice(-4) + ' ' +
+                              ('0' + inputDate.getHours()).slice(-2) + ':' +
+                              ('0' + inputDate.getMinutes()).slice(-2) ;
+                            var imageHTML = item.image_url ? 
+                                '<img src="' + item.image_url + '" width="50px" height="auto" />' :
+                                '<img src="/path/to/default-image.png" width="50px" height="auto" />';
+                            var newRow = $("<tr>").append(
+                                $("<td>").html('<strong>' + rowNumber + '</strong>'),
+                                $("<td>").html('<strong>' + item.id1 + '</strong>'),  
+                            
+
+// Format the date as 'YYYY-MM-DD HH:mm:ss'
+                            
+
+                                $("<td>").html('<strong>' + item.menter_name + '</strong>'),  
+                                $("<td>").html('<strong>' + item.mentee_name + '</strong>'),  
+                                // $("<td>").html('<strong class="time">' + item.order_date + '</strong>'), 
+                                  $("<td>").html('<strong class="time">' + formattedDate + '</strong>'),
+                                      $("<td>").html('<a href="#editEmployeeModal-' + item.id + '" class="edit" data-toggle="modal"><i class="fa fa-eye" aria-hidden="true"></i></a>')
+
+                            );
+                            tableBody.append(newRow);
+                        });
+                    }
+                }
+            });
+      });
+  });
+</script>
+
+
+
+<script>
+    class ModalComponent extends HTMLElement {
+  constructor() {
+    super();
+    this.render();
+  }
+
+  get component() {
+    return this;
+  }
+
+  static get observedAttributes() {
+    return ["open"];
+  }
+
+  modal() {
+    return this.shadowRoot?.querySelector(".modal");
+  }
+
+  // Open the modal
+
+  open() {
+    this.setAttribute("open", "");
+    this.style.display = "flex";
+    this.setAttribute("aria-hidden", `${!this.isOpen}`);
+    document.body.classList.add("modal-open");
+    setTimeout(() => {
+      this.modal()?.classList.add("show");
+    }, 100);
+  }
+
+  // Close the modal
+
+  close() {
+    this.removeAttribute("open");
+    this.modal()?.classList.remove("show");
+    this.setAttribute("aria-hidden", `${!this.isOpen}`);
+    document.body.classList.remove("modal-open");
+    setTimeout(() => {
+      this.style.display = "none";
+    }, 200);
+  }
+
+  // Check if the modal is open
+
+  get isOpen() {
+    return this.hasAttribute("open");
+  }
+
+  // trigger the modal
+
+  toggle() {
+    if (this.isOpen) {
+      this.close();
+    } else {
+      this.open();
+    }
+  }
+
+  //
+  // Open modal on click toggle button
+
+  connectedCallback() {
+    const toggleButtons = document.querySelectorAll('[data-toggle="modal"]');
+    toggleButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        this.open();
+      });
+    });
+
+    const dismissButtons = document.querySelectorAll('[data-dismiss="modal"]');
+    dismissButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        this.close();
+      });
+    });
+
+    this.addEventListener("click", (event) => {
+      if (event.target === this) {
+        this.close();
+      }
+    });
+  }
+
+  //
+  // Get placement of the modal
+
+  get placement() {
+    return this.getAttribute("data-placement") ?? "top-center";
+  }
+
+  static get styles() {
+    return `
+    <style>
+      .modal-open {
+        overflow: hidden;
+      }
+
+      .modal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 9999;
+        width: 100vw;
+        height: 100dvh;
+        background-color: rgba(0, 0, 0, .5);
+        display: flex;
+        flex-direction: column;
+        padding: 1.5rem;
+      }
+
+      .modal-backdrop {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: -1;
+        width: 100%;
+        height: 100%;
+      }
+
+      .modal-content {
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        background-color: white;
+        width: 100%;
+        margin: 0;
+        border-radius: .5rem;
+        transform: scale(1.1);
+        transition: visibility .25s ease-out, opacity .25s ease-out, transform .25s ease-out;
+        padding: 1.5rem 0;
+      }
+      @media (min-width: 576px) {
+        .modal-content {
+          max-width: 32rem;
+          margin: 4rem 0;
+        }
+      }
+      .modal.fade .modal-content {
+        opacity: 0;
+        visibility: hidden;
+        transform: scale(1.1);
+      }
+      .modal.show .modal-content{
+        opacity: 1;
+        visibility: visible;
+        transform: scale(1);
+      }
+
+      .modal.modal-top-center {
+        align-items: center;
+        justify-content: flex-start;
+      }
+      .modal.modal-top-start {
+        align-items: flex-start;
+        justify-content: flex-start;
+      }
+      .modal.modal-top-end {
+        align-items: flex-end;
+        justify-content: flex-start;
+      }
+      .modal.modal-center {
+        align-items: center;
+        justify-content: center;
+      }
+      .modal.modal-center-start {
+        align-items: flex-start;
+        justify-content: center;
+      }
+      .modal.modal-center-end {
+        align-items: flex-end;
+        justify-content: center;
+      }
+      .modal.modal-bottom-center {
+        align-items: center;
+        justify-content: flex-end;
+      }
+      .modal.modal-bottom-start {
+        align-items: flex-start;
+        justify-content: flex-end;
+      }
+      .modal.modal-bottom-end {
+        align-items: flex-end;
+        justify-content: flex-end;
+      }
+      
+      
+
+      </style>
+      `;
+  }
+
+  render() {
+    const shadowRoot = this.attachShadow({ mode: "open" });
+    this.style.display = "none";
+    this.setAttribute("role", "dialog");
+
+    shadowRoot.innerHTML = `
+      ${ModalComponent.styles}
+      <div class='modal fade modal-${this.placement}'>
+        <div class='modal-backdrop'></div>
+        <article class='modal-content' aria-labelledby='modal-title' aria-describedby='modal-body'>
+          <slot></slot>
+        </article>
+      </div>
+      `;
+  }
+}
+
+customElements.define("modal-component", ModalComponent);
+
+</script>
+<script>
+  // Input time in the format "HH:mm"
+  var inputTime = document.getElementById("time");
+  var timeValue = inputTime.textContent;
+    console.log(timeValue);
+  // Split the input time into hours and minutes
+  var timeParts = timeValue.split(":");
+  var hours = parseInt(timeParts[0]);
+  var minutes = parseInt(timeParts[1]);
+
+  // Add 5.5 hours
+  hours += 5;
+  minutes += 30;
+
+  // Adjust hours and minutes if necessary
+  if (minutes >= 60) {
+      hours += Math.floor(minutes / 60);
+      minutes %= 60;
+  }
+  if (hours >= 24) {
+      hours %= 24;
+  }
+
+  // Format the adjusted time
+  var adjustedTime = (hours < 10 ? "0" : "") + hours + ":" + (minutes < 10 ? "0" : "") + minutes;
+
+  // Display the adjusted time in the HTML element
+  document.getElementById("time").textContent = adjustedTime;
+</script>
+<script>
+  // Input time in the format "HH:mm"
+  var inputTimeElements = document.getElementsByClassName("time");
+  console.log(inputTimeElements.length)
+  for (var i = 0; i < inputTimeElements.length; i++) {
+      var inputTime = inputTimeElements[i];
+      var timeValue = inputTime.textContent;
+       console.log(timeValue)
+
+      // Ensure that timeValue is not null or undefined
+      if (timeValue !== null && timeValue !== undefined) {
+          // Split the input time into hours and minutes
+          var timeParts = timeValue.split(":");
+          var hours = parseInt(timeParts[0]);
+          var minutes = parseInt(timeParts[1]);
+
+          // Add 5.5 hours
+          hours += 5;
+          minutes += 30;
+
+          // Adjust hours and minutes if necessary
+          if (minutes >= 60) {
+              hours += Math.floor(minutes / 60);
+              minutes %= 60;
+          }
+          if (hours >= 24) {
+              hours %= 24;
+          }
+
+          // Format the adjusted time
+          var adjustedTime = (hours < 10 ? "0" : "") + hours + ":" + (minutes < 10 ? "0" : "") + minutes;
+
+          // Log the adjusted time to the console
+          console.log("Adjusted Time for element " + i + ": " + adjustedTime);
+          inputTime.textContent = adjustedTime;
+          document.getElementsByClassName("time",i).textContent = adjustedTime;
+
+
+      }
+  }
+  
+  
+ 
+</script>
+<script>
+  // Input time in the format "HH:mm"
+  var inputTimeElements = document.getElementsByClassName("time1");
+  console.log(inputTimeElements.length)
+  for (var i = 0; i < inputTimeElements.length; i++) {
+      var inputTime = inputTimeElements[i];
+      var timeValue = inputTime.textContent;
+       console.log(timeValue)
+
+      // Ensure that timeValue is not null or undefined
+      if (timeValue !== null && timeValue !== undefined) {
+          // Split the input time into hours and minutes
+          var timeParts = timeValue.split(":");
+          var hours = parseInt(timeParts[0]);
+          var minutes = parseInt(timeParts[1]);
+
+          // Add 5.5 hours
+          hours += 5;
+          minutes += 30;
+
+          // Adjust hours and minutes if necessary
+          if (minutes >= 60) {
+              hours += Math.floor(minutes / 60);
+              minutes %= 60;
+          }
+          if (hours >= 24) {
+              hours %= 24;
+          }
+
+          // Format the adjusted time
+          var adjustedTime = (hours < 10 ? "0" : "") + hours + ":" + (minutes < 10 ? "0" : "") + minutes;
+
+          // Log the adjusted time to the console
+          console.log("Adjusted Time for element " + i + ": " + adjustedTime);
+          inputTime.textContent = adjustedTime;
+          document.getElementsByClassName("time1",i).textContent = adjustedTime;
+
+
+      }
+  }
+  
+  
+ 
+</script>
+<script>
+$(document).ready(function () {
+  $('.open-modal').on('click', function (event) {
+    event.preventDefault();
+
+    // Get the modal ID from the data attribute
+    var modalId = $(this).data('modal-id');
+    console.log("ok",modalId)
+    // Open the corresponding modal
+    $('#editEmployeeModal-' + modalId).modal('show');
+  });
+});
+</script>
+<script>
+  $(document).ready(function () {
+      // Handle change events on datetime-local inputs
+      $('#from_date, #to_date').change(function () {
+          // Submit the form
+          $('#search-results-form').submit();
+      });
+  
+      // Handle form submission
+      $('#search-results-form').submit(function (e) {
+          e.preventDefault(); // Prevent the default form submission
+  
+          var formData = $(this).serialize(); // Serialize the form data
+  
+          $.ajax({
+              type: 'POST',
+              url: '{% url "upcoming_filter" %}', // Replace with your actual URL
+              data: formData,
+              success: function (data) {
+                var tableBody = $("#search-results tbody");
+                    tableBody.empty(); // Clear previous search results
+
+                    if (data.length === 0) {
+                        // Hide the search-results-div and show the no-results message
+                        $("#search-results-div").hide();
+                        $("#search-results-div1").hide();
+                        $("#no-results-message").show();
+                        $("#search-results-form").hide();
+                        $(".pagination").hide();
+                        tableBody.append('<tr><td colspan="5"><img src="static/assets/img/avatars/search.jpg" width="50px" height="auto" /> No data found.</td></tr>');
+                    } else {
+                        // Show the search-results-div and hide the no-results message
+                        $("#search-results-div").show();
+                        $("#search-results-div1").show();
+                        $("#no-results-message").hide();
+                        $("#search-results-form").show();
+                        $(".pagination").show();
+                        data.forEach(function (item) {
+                            var rowNumber = item.row_number;
+                            var inputDate = new Date(item.order_date);
+
+                            var formattedDate = ('0' + (inputDate.getDate() )).slice(-2) + '-' +
+                              ('0' + (inputDate.getMonth() + 1)).slice(-2) + '-' +
+                              ('0' + inputDate.getFullYear()).slice(-4) + ' ' +
+                              ('0' + inputDate.getHours()).slice(-2) + ':' +
+                              ('0' + inputDate.getMinutes()).slice(-2) ;
+                            var imageHTML = item.image_url ? 
+                                '<img src="' + item.image_url + '" width="50px" height="auto" />' :
+                                '<img src="/path/to/default-image.png" width="50px" height="auto" />';
+                            var newRow = $("<tr>").append(
+                                $("<td>").html('<strong>' + rowNumber + '</strong>'),
+                                $("<td>").html('<strong>' + item.id1 + '</strong>'),  
+                            
+
+// Format the date as 'YYYY-MM-DD HH:mm:ss'
+                            
+
+                                $("<td>").html('<strong>' + item.menter_name + '</strong>'),  
+                                $("<td>").html('<strong>' + item.mentee_name + '</strong>'),  
+                                // $("<td>").html('<strong class="time">' + item.order_date + '</strong>'), 
+                                  $("<td>").html('<strong class="time">' + formattedDate + '</strong>'),
+                                      $("<td>").html('<a href="#editEmployeeModal-' + item.id + '" class="edit" data-toggle="modal"><i class="fa fa-eye" aria-hidden="true"></i></a>')
+
+                            );
+                            tableBody.append(newRow);
+                        });
+                    }
+                  }
+          });
+      });
+  });
+  </script>
+  
+  
+{% endblock %}
+

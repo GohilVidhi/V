@@ -1,0 +1,94 @@
+{% extends "index.html" %}
+{% load static %}
+{% block content %}
+<style>
+  .round-image {
+width: 50px; /* Set the width of the container */
+height: 50px; /* Set the height of the container to create a square shape */
+border-radius: 50%; /* Make the container circular */
+overflow: hidden; /* Hide the overflow to ensure the image is clipped to the circle */
+}
+
+.round-image img {
+width: 100%; /* Make the image fill the circular container */
+height: 100%; /* Make the image fill the circular container */
+object-fit: cover; /* Ensure the image covers the container */
+}
+</style>
+          <!-- Content wrapper -->
+          <div class="content-wrapper">
+            <!-- Content -->
+
+            <div class="container-xxl flex-grow-1 container-p-y">
+              <h4 class="fw-bold py-3 mb-3" style="font-size: 26px;"><span class="text-muted fw-light"></span>Edit Sub Category</h4>
+
+              <!-- Basic Layout & Basic with Icons -->
+              <div class="row">
+                <!-- Basic Layout -->
+                <div class="col-xxl">
+                  <div class="card mb-4">
+                   
+                    <div class="card-body">
+                      <form action="{% url 'edit_sub_category' sid.id %}" method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="row mb-3">
+                          <label class="col-sm-2 " for="basic-default-name" style="font-size: 15px;"> Category Name</label>
+                          <div class="col-sm-10">
+                              <select name="m_cate" id="m_cate" class="col-sm-12" style="height:40px;border-radius:5px">
+                                
+                                <!-- <option selected>======{{mid.name}}=======</option>   -->
+                                {% for i in mid %}
+                                  <!-- <option value="{{m}}">{{i.name}}</option> -->
+                                  <option value="{{i.id}}" {% if sid.mcategory.id == i.id %}selected{% endif %}>{{ i.name}}</option>
+                                  {% endfor %}
+                                </select>
+                      </div>
+                    </div>   
+                        <div class="row mb-3">
+                          <label class="col-sm-2 " for="basic-default-name" style="font-size: 15px;">Sub Category Name</label>
+                          <div class="col-sm-10">
+                            <input type="text" value="{{sid.name}}" class="form-control" id="basic-default-name" name="name" placeholder="John Doe" />
+                            <p style="font-size: 20px;color: red;">{{msg}}</p>
+                          </div>
+                        </div>
+                        <div class="row mb-3">
+                          <label class="col-sm-2 " for="basic-default-name" style="font-size: 15px;">Sub Category Image</label>
+                          <div class="col-sm-10">
+                            <input type="file" class="form-control"  id="basic-default-name" name="img1" placeholder="Image" />
+                            <p style="font-size: 20px;color: red;">{{msg1}}</p>
+                            <!-- <a href="{{sid.image.url}}" download>{{sid.image.name}}</a> -->
+                            <!-- {% if sid.image %}
+                        <img src="{{ sid.image.url }}" style="margin-left:170px; " alt="Image Preview" width="60px" />
+                         {% endif %} -->
+                         <br>  
+                            <div class="round-image">
+                              <img width="50px" height="10%" src="{{sid.image.url}}" />
+                              </div>
+                          </div>
+                         
+                        </div>
+                        
+                      
+                        
+                       
+                        <div class="row justify-content-end">
+                          <div class="col-sm-10">
+                            <button type="submit" class="btn btn-primary">Send</button>
+                          </div>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+                <!-- Basic with Icons -->
+                
+              </div>
+            </div>
+            <!-- / Content -->
+            <script>
+              {% for i in messages %}
+              swal.fire("{{i}}");
+              {% endfor %}
+          </script>
+           
+{% endblock %}        

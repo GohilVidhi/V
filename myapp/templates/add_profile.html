@@ -1,0 +1,4829 @@
+{% load static %}
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+
+  <!-- Bootstrap link -->
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+    crossorigin="anonymous"></script>
+  <!-- font awesome cdn link -->
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!-- css part -->
+
+  <style>
+    * {
+      box-sizing: border-box;
+      padding: 0;
+      margin: 0;
+    }
+
+    .head-main {
+      box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px,
+        rgba(0, 0, 0, 0.23) 0px 6px 6px;
+      padding: 10px;
+      display: flex;
+      background-color: #fedc1d;
+    }
+
+    .head-main-arrow {
+      margin-left: 10px;
+      padding: 2px;
+    }
+
+    .head-main-name {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      gap: 25px;
+    }
+
+    .head-main-h3-div {
+      padding: 2px;
+    }
+
+    .head-main-h3 {
+      display: inline;
+      margin-left: 25px;
+      font-size: 16px;
+      color: rgb(255, 255, 255);
+    }
+
+    .head-main-home {
+      padding: 2px;
+      margin-right: 5px;
+    }
+
+    .fa-solid {
+      color: rgb(250, 245, 245);
+    }
+
+    .fa-solid a {
+      text-decoration: none;
+      color: white;
+    }
+
+    .profiles-images-div {
+      height: 200px;
+      width: 95%;
+      margin: auto;
+      margin-top: 50px;
+
+    }
+
+    .profiles-images {
+      position: relative;
+      height: 175px;
+      width: 175px;
+      margin: 10px 0 0 20px;
+    }
+
+    .image-upload-circle {
+      object-fit: cover;
+      height: 170px;
+      width: 170px;
+      margin: 10px 0 0 1px;
+      border-radius: 50%;
+      box-shadow: 0 0 0 5px #ddd;
+    }
+
+    .fa-image {
+      position: absolute;
+
+      padding: 20px 10px;
+      border-radius: 50%;
+      top: 230px;
+      left: 207px;
+      color: black;
+      background-color: #fedc1d;
+    }
+
+    .custom-file input[type="file"] {
+      display: none;
+    }
+
+    .custom-file label {
+      cursor: pointer;
+    }
+
+    .input {
+      cursor: pointer;
+      padding: 10px;
+      margin-top: 15px;
+      box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px,
+        rgba(0, 0, 0, 0.13) 0px 6px 0px;
+    }
+
+    .input1 {
+      padding: 10px;
+      cursor: pointer;
+      margin: 15px 0 27px 0;
+      box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px,
+        rgba(0, 0, 0, 0.13) 0px 6px 0px;
+    }
+
+    .counter-no {
+      margin: auto;
+      width: 98%;
+
+      display: block;
+      display: flex;
+      justify-content: end;
+      font-size: 12px;
+      margin-top: -20px;
+      margin-bottom: -15px;
+
+    }
+
+    .counter-no1 {
+      margin: auto;
+      width: 98%;
+
+      display: block;
+      display: flex;
+      justify-content: end;
+      font-size: 12px;
+      margin-top: -20px;
+      margin-bottom: -20px;
+
+    }
+
+    .counter-no2 {
+      margin: auto;
+      width: 98%;
+
+      display: block;
+      display: flex;
+      justify-content: end;
+      font-size: 12px;
+      margin-top: -20px;
+      margin-bottom: -20px;
+
+    }
+
+    .country {
+      cursor: pointer;
+      width: 100%;
+      box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px,
+        rgba(0, 0, 0, 0.13) 0px 6px 0px;
+    }
+
+    .state {
+      cursor: pointer;
+      width: 100%;
+      box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px,
+        rgba(0, 0, 0, 0.13) 0px 6px 0px;
+    }
+
+    .city {
+      cursor: pointer;
+      margin-top: 17px;
+      box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px,
+        rgba(0, 0, 0, 0.13) 0px 6px 0px;
+    }
+
+    .select_option {
+      gap: 10px;
+      margin-top: 25px;
+      display: flex;
+    }
+
+    .history {
+
+      margin-top: 10px;
+      padding-top: 15px;
+      height: 210px;
+      border: none;
+      border-radius: 0;
+    }
+
+    .fa-plus {
+      display: block;
+      cursor: pointer;
+      color: black;
+      display: flex;
+      justify-content: center;
+
+    }
+
+    .history1 {
+
+      text-align: center;
+    }
+
+    .history3 {
+
+      text-align: center;
+    }
+
+    .history2 {
+
+
+      height: 200px;
+      border: none;
+      border-radius: 0;
+    }
+
+    .work {
+
+      overflow-y: scroll;
+      display: none;
+      border-radius: 0;
+      height: 150px;
+    }
+
+    .education {
+
+      overflow-y: scroll;
+      display: none;
+      border-radius: 0;
+      height: 150px;
+    }
+
+    .topic {
+      border: 1px solid black;
+      border-radius: 0;
+      min-height: 50px;
+      height: auto;
+    }
+
+    .addmore {
+      height: 30px;
+
+      display: flex;
+      align-items: center;
+      justify-content: end;
+
+    }
+
+    .addmore1 {
+      display: flex;
+      border-radius: 50%;
+      font-size: small;
+      width: 20px;
+      height: 20px;
+      color: #ddd;
+      background-color: rgb(10, 142, 236);
+      align-items: center;
+    }
+
+    .addmore2 {
+      border-radius: 50px;
+      height: 20px;
+      font-size: 12px;
+      padding: 0 5px;
+      font-weight: 700;
+
+
+    }
+
+    .topic-detail {
+
+
+      font-size: 18px;
+
+      text-align: center;
+    }
+
+    .select_option1 {
+      width: 100%;
+      display: flex;
+      gap: 10px;
+      margin-top: 25px;
+    }
+
+    .price {
+
+      width: 100%;
+      border-radius: 10px;
+
+    }
+
+    .duration {
+      width: 100%;
+      border-radius: 10px;
+
+    }
+
+    .input2 {
+      padding: 25px 10px;
+      width: 100%;
+      margin: auto;
+      margin-top: 15px;
+      box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px,
+        rgba(0, 0, 0, 0.13) 0px 6px 0px;
+      border-radius: 10px;
+      margin-bottom: 25px;
+
+    }
+
+    .counter-no2 {
+      margin: auto;
+      width: 98%;
+
+      display: block;
+      display: flex;
+      justify-content: end;
+      font-size: 12px;
+      margin-top: 5px;
+      margin-bottom: -20px;
+    }
+
+    .counter-no3 {
+      margin: auto;
+      width: 100%;
+      border-radius: 10px;
+      padding: 25px 10px;
+
+
+    }
+
+    .btn-submit {
+      padding: 5px 20px;
+      background-color: #fedc1d;
+      border-radius: 5px;
+      border: none;
+      font-weight: 600;
+    }
+
+    .btn-submit a {
+      text-decoration: none;
+      color: black;
+    }
+
+    .btn-cancel {
+      padding: 5px 20px;
+      background-color: #ddd;
+      border-radius: 5px;
+      border: none;
+      font-weight: 600;
+
+    }
+
+    .btn-cancel a {
+
+      text-decoration: none;
+      color: black;
+    }
+
+    .topic-cover {
+
+
+
+      height: 90px;
+      margin-top: 10px;
+
+    }
+
+    .ul-topic {
+      padding-top: 0.1rem;
+      padding-left: 0.5rem;
+      gap: 15px;
+      display: grid;
+      grid-template-columns: max-content max-content max-content max-content max-content max-content max-content;
+    }
+
+    .ul-topic li {
+      list-style-type: none;
+      cursor: pointer;
+
+    }
+
+    .ul-topic-1 {
+      gap: 15px;
+      margin-top: -15px;
+      padding-left: 0.5rem;
+      display: grid;
+      grid-template-columns: max-content max-content max-content max-content max-content max-content max-content;
+    }
+
+    .ul-topic-1 li {
+      list-style-type: none;
+      cursor: pointer;
+
+    }
+
+    .default-span {
+      background-color: white;
+      font-weight: 600;
+      font-size: small;
+      border-radius: 50px;
+      margin: 5px 5px;
+      padding: 5px 15px;
+      border: 1px solid #ddd;
+    }
+
+
+
+
+
+    .popup {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.2);
+      z-index: 1;
+    }
+
+    .popup .topic-form-display {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: #fff;
+      padding: 20px;
+    }
+
+    .popup {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.2);
+      z-index: 1;
+    }
+
+    .popup-open {
+      overflow: hidden;
+    }
+
+
+    .popup .addtohistory {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: #fff;
+      padding: 20px;
+    }
+
+    .popup1 {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.2);
+      z-index: 1;
+    }
+
+    .popup1 .addtoeducation {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: #fff;
+      padding: 20px;
+    }
+
+    .lang {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.2);
+    }
+
+    .lang .select-languages {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: #fff;
+
+    }
+
+    .checkbox1 {
+      justify-content: left;
+      display: flex;
+      gap: 25px;
+      align-items: center;
+      padding-left: 45px;
+
+    }
+
+    .checkbox1 {
+      font-size: 16px;
+      margin-top: 5px;
+
+    }
+
+    .textbox {
+      width: 25px;
+      height: 25px;
+      margin-bottom: 5px;
+
+    }
+
+    .textbox4 {
+      font-size: 20px;
+      margin-left: 5px;
+      margin-right: 75px;
+      padding-left: 60px;
+      margin-bottom: 2px;
+
+    }
+
+    .display-lang {
+      border: none;
+      border-radius: 10px;
+      width: 100%;
+    }
+
+    .lang {
+      height: 100%;
+      display: none;
+      z-index: 1;
+    }
+
+
+
+
+
+    .span1 {
+
+      font-weight: 600;
+      font-size: 16px;
+      margin-left: 10px;
+      padding: 0 10px !important;
+      border-radius: 50px !important;
+
+      transform: translate(50%, 50%) !important;
+      background-color: #fedc1d !important;
+    }
+
+    .span2 {
+      font-weight: 600;
+      font-size: 16px;
+      margin-left: 10px;
+      padding: 0 10px !important;
+      border-radius: 50px !important;
+
+      transform: translate(50%, 50%) !important;
+      background-color: #fedc1d !important;
+    }
+
+    .form-control:focus {
+      box-shadow: none !important;
+
+    }
+
+
+    .addmoreitem {
+
+      display: flex;
+      justify-content: end;
+
+      gap: 5px;
+      align-items: center;
+    }
+
+    .addmoreitems {
+      border: 1px solid rgb(67, 177, 250);
+      margin-top: 2px;
+      border-radius: 50%;
+      padding: 5px 5px;
+      background-color: rgb(67, 177, 250);
+      color: white;
+      font-weight: 200;
+    }
+
+    .span-add {
+
+      font-weight: 900;
+      border-radius: 50px;
+      font-size: small;
+    }
+
+    .fa-ellipsis {
+      cursor: pointer;
+      color: #fedc1d;
+      display: flex;
+      justify-content: end;
+
+      width: 95%;
+    }
+
+    .fa-circle-minus {
+      color: red;
+      display: flex;
+      justify-content: end;
+      cursor: pointer;
+      width: 95%;
+    }
+
+    .fa-ellip {
+      padding-bottom: 25px;
+      padding-top: 25px;
+    }
+
+    .price-duration {
+      width: 100%;
+
+
+      display: flex;
+      padding-bottom: 15px;
+      gap: 20px;
+    }
+
+    .save-cancel-btn {
+
+      cursor: pointer;
+      width: 100%;
+
+      margin-top: 30px;
+      margin-bottom: 20px;
+
+    }
+
+    .save-cancel-btn1 {
+
+      cursor: pointer;
+      width: 100%;
+
+      margin-top: 50px;
+      margin-bottom: 20px;
+
+    }
+
+    .save-page {
+      font-size: large;
+      color: #fedc1d;
+      font-weight: 600;
+      margin-left: 15px;
+    }
+
+    .cancel-page {
+      font-size: large;
+      color: #fedc1d;
+      font-weight: 600;
+      margin-left: 15px;
+    }
+
+    .edit-page {
+      font-size: large;
+      color: #fedc1d;
+      font-weight: 600;
+      margin-left: 15px;
+    }
+
+    .delete-page {
+      font-size: large;
+      color: red;
+      font-weight: 600;
+      margin-left: 15px;
+    }
+
+
+    @media only screen and (max-width: 1440px) {
+      .fa-image {
+        position: absolute;
+        padding: 20px 10px;
+        border-radius: 50%;
+        top: 225px;
+        left: 225px;
+        color: black;
+        background-color: #fedc1d;
+      }
+
+      .topic-cover {
+
+
+
+        height: 110px;
+
+
+      }
+
+      .ul-topic {
+        margin: 1px 0 25px 0;
+
+        gap: 5px;
+        display: grid;
+        grid-template-columns: max-content max-content max-content max-content max-content max-content max-content;
+      }
+
+      .ul-topic-1 {
+        gap: 5px;
+        display: grid;
+        grid-template-columns: max-content max-content max-content max-content max-content;
+      }
+
+
+      .default-span {
+        text-align: center;
+        font-weight: 400;
+        font-size: 18px;
+        border-radius: 50px;
+        margin: 3px 5px;
+        padding: 2px 15px;
+        border: 1px solid #ddd;
+      }
+    }
+
+    @media only screen and (max-width: 1280px) {
+      .fa-image {
+        position: absolute;
+        padding: 20px 10px;
+        border-radius: 50%;
+        top: 225px;
+        left: 220px;
+        color: black;
+        background-color: #fedc1d;
+      }
+
+      .topic-cover {
+
+
+
+        height: 100px;
+
+
+      }
+
+      .ul-topic {
+        margin: 1px 0 25px 0;
+
+        gap: 5px;
+        display: grid;
+        grid-template-columns: max-content max-content max-content max-content max-content max-content max-content;
+      }
+
+      .ul-topic-1 {
+        gap: 5px;
+        display: grid;
+        grid-template-columns: max-content max-content max-content max-content max-content;
+      }
+
+
+      .default-span {
+        text-align: center;
+        font-weight: 400;
+        font-size: 18px;
+        border-radius: 50px;
+        margin: 3px 5px;
+        padding: 2px 5px;
+        border: 1px solid #ddd;
+      }
+    }
+
+    @media only screen and (max-width: 1024px) {
+      .fa-image {
+        position: absolute;
+        padding: 20px 10px;
+        border-radius: 50%;
+        top: 225px;
+        left: 210px;
+        color: black;
+        background-color: #fedc1d;
+      }
+
+      .topic-cover {
+
+
+
+        height: 100px;
+
+
+      }
+
+      .ul-topic {
+        margin: 1px 0 20px 0;
+
+        gap: 5px;
+        display: grid;
+        grid-template-columns: max-content max-content max-content max-content max-content max-content max-content;
+      }
+
+      .ul-topic-1 {
+        gap: 5px;
+        display: grid;
+        grid-template-columns: max-content max-content max-content max-content max-content;
+      }
+
+
+      .default-span {
+        text-align: center;
+        font-weight: 400;
+        font-size: 16px;
+        border-radius: 50px;
+        margin: 3px 1px;
+        padding: 2px 1px;
+        border: 1px solid #ddd;
+      }
+    }
+
+    @media only screen and (max-width: 912px) {
+      .fa-image {
+        position: absolute;
+        padding: 20px 10px;
+        border-radius: 50%;
+        top: 225px;
+        left: 205px;
+        color: black;
+        background-color: #fedc1d;
+      }
+
+      .topic-cover {
+
+
+
+        height: 200px;
+
+
+      }
+
+      .ul-topic {
+        margin: 1px 0 25px 0;
+
+        gap: 5px;
+        display: grid;
+        grid-template-columns: max-content max-content max-content;
+      }
+
+      .ul-topic-1 {
+        gap: 5px;
+        display: grid;
+        grid-template-columns: max-content max-content max-content;
+      }
+
+
+      .default-span {
+        text-align: center;
+        font-weight: 400;
+        font-size: 20px;
+        border-radius: 50px;
+        margin: 3px 15px;
+        padding: 2px 10px;
+        border: 1px solid #ddd;
+      }
+    }
+
+    @media only screen and (max-width: 820px) {
+      .fa-image {
+        position: absolute;
+        padding: 20px 10px;
+        border-radius: 50%;
+        top: 225px;
+        left: 200px;
+        color: black;
+        background-color: #fedc1d;
+      }
+
+      .topic-cover {
+
+
+
+        height: 190px;
+
+
+      }
+
+      .ul-topic {
+        margin: 1px 0 25px 0;
+
+        gap: 5px;
+        display: grid;
+        grid-template-columns: max-content max-content max-content;
+      }
+
+      .ul-topic-1 {
+        gap: 5px;
+        display: grid;
+        grid-template-columns: max-content max-content max-content;
+      }
+
+
+      .default-span {
+        text-align: center;
+        font-weight: 400;
+        font-size: 18px;
+        border-radius: 50px;
+        margin: 3px 10px;
+        padding: 2px 5px;
+        border: 1px solid #ddd;
+      }
+    }
+
+    @media only screen and (max-width: 540px) {
+      .fa-image {
+        position: absolute;
+        padding: 20px 10px;
+        border-radius: 50%;
+        top: 225px;
+        left: 190px;
+        color: black;
+        background-color: #fedc1d;
+      }
+
+      .topic-cover {
+
+
+
+        height: 190px;
+
+
+      }
+
+      .ul-topic {
+        margin: 1px 0 25px 0;
+
+        gap: 5px;
+        display: grid;
+        grid-template-columns: max-content max-content max-content;
+      }
+
+      .ul-topic-1 {
+        gap: 5px;
+        display: grid;
+        grid-template-columns: max-content max-content max-content;
+      }
+
+
+      .default-span {
+        text-align: center;
+        font-weight: 400;
+        font-size: 14px;
+        border-radius: 50px;
+        margin: 3px 1px;
+        padding: 2px 5px;
+        border: 1px solid #ddd;
+      }
+    }
+
+    @media only screen and (max-width: 430px) {
+      .fa-image {
+        position: absolute;
+        padding: 20px 10px;
+        border-radius: 50%;
+        top: 225px;
+        left: 185px;
+        color: black;
+        background-color: #fedc1d;
+      }
+
+      .topic-cover {
+
+
+
+        height: 210px;
+
+
+      }
+
+      .ul-topic {
+        margin: 1px 0 20px 0;
+
+        gap: 5px;
+        display: grid;
+        grid-template-columns: max-content max-content;
+      }
+
+      .ul-topic-1 {
+        gap: 5px;
+        display: grid;
+        grid-template-columns: max-content max-content;
+      }
+
+
+      .default-span {
+        text-align: center;
+        font-weight: 400;
+        font-size: 16px;
+        border-radius: 50px;
+        margin: 2px 5px;
+        padding: 1px 3px;
+        border: 1px solid #ddd;
+      }
+    }
+
+    @media only screen and (max-width: 390px) {
+
+
+
+      .fa-image {
+        position: absolute;
+        padding: 20px 10px;
+        border-radius: 50%;
+        top: 225px;
+        left: 185px;
+        color: black;
+        background-color: #fedc1d;
+      }
+
+      .topic-cover {
+
+
+
+        height: 200px;
+
+
+      }
+
+      .ul-topic {
+        margin: 1px 0 20px 0;
+
+        gap: 5px;
+        display: grid;
+        grid-template-columns: max-content max-content;
+      }
+
+      .ul-topic-1 {
+        gap: 5px;
+        display: grid;
+        grid-template-columns: max-content max-content;
+      }
+
+      .default-span {
+        text-align: center;
+        font-weight: 400;
+        font-size: 14px;
+        border-radius: 50px;
+        margin: 2px 2px;
+        padding: 1px 1px;
+        border: 1px solid #ddd;
+      }
+
+      .duration {
+        font-size: 14px;
+
+      }
+
+      .price {
+        font-size: 14px;
+
+      }
+    }
+
+    @media only screen and (max-width: 320px) {
+      .company-style-form {
+        width: 250px !important;
+      }
+
+      .company-style-h3 {
+        font-size: 22px !important;
+        margin-bottom: 7px !important;
+      }
+
+      .start-month-div select {
+        height: 50px !important;
+        border-radius: 4px !important;
+        padding: 0 0 0 2px !important;
+        border: 1px solid gray;
+        width: 112px !important;
+        font-size: 12px;
+      }
+
+      .start-year-div select {
+        height: 50px !important;
+        border-radius: 4px !important;
+        padding: 0 0 0 2px !important;
+        border: 1px solid gray;
+        width: 112px !important;
+        font-size: 12px;
+      }
+
+      .start-month-gap {
+        gap: 15px !important;
+      }
+
+      .end-month-div select {
+        height: 50px !important;
+        border-radius: 4px !important;
+        padding: 0 0 0 2px !important;
+        border: 1px solid gray;
+        width: 112px !important;
+        font-size: 12px;
+      }
+
+      .end-year-div select {
+        height: 50px !important;
+        border-radius: 4px !important;
+        padding: 0 0 0 2px !important;
+        border: 1px solid gray;
+        width: 112px !important;
+        font-size: 12px;
+      }
+
+      .end-month-gap {
+        gap: 15px !important;
+      }
+
+      .save-can-div {
+        margin-left: 130px !important;
+        margin-top: 5px;
+      }
+
+      .institute-style-form {
+        width: 250px !important;
+      }
+
+      .institute-style-h3 {
+        font-size: 22px !important;
+        margin-bottom: 7px !important;
+      }
+
+      .start-month-div1 select {
+        height: 50px !important;
+        border-radius: 4px !important;
+        padding: 0 0 0 2px !important;
+        border: 1px solid gray;
+        width: 112px !important;
+        font-size: 12px;
+      }
+
+      .start-year-div1 select {
+        height: 50px !important;
+        border-radius: 4px !important;
+        padding: 0 0 0 2px !important;
+        border: 1px solid gray;
+        width: 112px !important;
+        font-size: 12px;
+      }
+
+      .start-month-gap1 {
+        gap: 15px !important;
+      }
+
+      .end-month-div1 select {
+        height: 50px !important;
+        border-radius: 4px !important;
+        padding: 0 0 0 2px !important;
+        border: 1px solid gray;
+        width: 112px !important;
+        font-size: 12px;
+      }
+
+      .end-year-div1 select {
+        height: 50px !important;
+        border-radius: 4px !important;
+        padding: 0 0 0 2px !important;
+        border: 1px solid gray;
+        width: 112px !important;
+        font-size: 12px;
+      }
+
+      .end-month-gap1 {
+        gap: 15px !important;
+      }
+
+      .save-can-div1 {
+        margin-left: 130px !important;
+        margin-top: 5px;
+      }
+
+      .lang-div {
+        width: 350px !important;
+      }
+
+      .select-languages {
+        width: 275px !important;
+        height: 600px !important;
+      }
+
+      .textbox {
+        height: 20px;
+        width: 25px;
+        font-size: 8px !important;
+        margin-bottom: 0 !important;
+
+      }
+
+      .checkbox1 {
+        font-size: 14px !important;
+        margin-top: 0 !important;
+
+      }
+
+      .select-experience {
+        height: 600px !important;
+        margin-top: 50px !important;
+        width: 250px !important;
+      }
+
+      .select-experience1 {
+        margin-top: 10px !important;
+        width: 300px !important;
+      }
+
+      .textbox4 {
+        font-size: 16px !important;
+      }
+
+      .select-experience-h3 {
+        font-size: 18px !important;
+      }
+
+      .fa-image {
+        position: absolute;
+        padding: 20px 10px;
+        border-radius: 50%;
+        top: 225px;
+        left: 185px;
+        color: black;
+        background-color: #fedc1d;
+      }
+
+      .topic-cover {
+
+
+
+        height: 200px;
+
+
+      }
+
+      .ul-topic {
+        margin: 1px 0 20px 0;
+
+        gap: 5px;
+        display: grid;
+        grid-template-columns: max-content max-content;
+      }
+
+      .ul-topic-1 {
+        gap: 5px;
+        display: grid;
+        grid-template-columns: max-content max-content;
+      }
+
+      .default-span {
+        text-align: center;
+        font-weight: 400;
+        font-size: 13px;
+        border-radius: 50px;
+        margin: 2px 0;
+        padding: 1px 1px;
+        border: 1px solid #ddd;
+      }
+
+      .duration {
+        font-size: 13px;
+
+      }
+
+      .price {
+        font-size: 13px;
+
+      }
+
+
+    }
+
+    @media only screen and (max-width: 285px) {
+      .company-style-form {
+        width: 200px !important;
+      }
+
+      .company-style-h3 {
+        font-size: 18px !important;
+        margin-bottom: 5px !important;
+      }
+
+      .start-month-div select {
+        height: 50px !important;
+        border-radius: 4px !important;
+        padding: 0 0 0 2px !important;
+        border: 1px solid gray;
+        width: 90px !important;
+        font-size: 12px;
+      }
+
+      .start-year-div select {
+        height: 50px !important;
+        border-radius: 4px !important;
+        padding: 0 0 0 2px !important;
+        border: 1px solid gray;
+        width: 90px !important;
+        font-size: 12px;
+      }
+
+      .start-month-gap {
+        gap: 12px !important;
+      }
+
+      .end-month-div select {
+        height: 50px !important;
+        border-radius: 4px !important;
+        padding: 0 0 0 2px !important;
+        border: 1px solid gray;
+        width: 90px !important;
+        font-size: 12px;
+      }
+
+      .end-year-div select {
+        height: 50px !important;
+        border-radius: 4px !important;
+        padding: 0 0 0 2px !important;
+        border: 1px solid gray;
+        width: 90px !important;
+        font-size: 12px;
+      }
+
+      .end-month-gap {
+        gap: 12px !important;
+      }
+
+      .save-can-div {
+        margin-left: 90px !important;
+        margin-top: 5px;
+      }
+
+      .institute-style-form {
+        width: 200px !important;
+      }
+
+      .institute-style-h3 {
+        font-size: 18px !important;
+        margin-bottom: 5px !important;
+      }
+
+      .start-month-div1 select {
+        height: 50px !important;
+        border-radius: 4px !important;
+        padding: 0 0 0 2px !important;
+        border: 1px solid gray;
+        width: 90px !important;
+        font-size: 12px;
+      }
+
+      .start-year-div1 select {
+        height: 50px !important;
+        border-radius: 4px !important;
+        padding: 0 0 0 2px !important;
+        border: 1px solid gray;
+        width: 90px !important;
+        font-size: 12px;
+      }
+
+      .start-month-gap1 {
+        gap: 12px !important;
+      }
+
+      .end-month-div1 select {
+        height: 50px !important;
+        border-radius: 4px !important;
+        padding: 0 0 0 2px !important;
+        border: 1px solid gray;
+        width: 90px !important;
+        font-size: 12px;
+      }
+
+      .end-year-div1 select {
+        height: 50px !important;
+        border-radius: 4px !important;
+        padding: 0 0 0 2px !important;
+        border: 1px solid gray;
+        width: 90px !important;
+        font-size: 12px;
+      }
+
+      .end-month-gap1 {
+        gap: 12px !important;
+      }
+
+      .save-can-div1 {
+        margin-left: 90px !important;
+        margin-top: 5px;
+      }
+
+      .lang-div {
+        width: 225px !important;
+      }
+
+      .select-languages {
+        width: 250px !important;
+        height: 600px !important;
+      }
+
+      .textbox {
+
+        height: 20px;
+        width: 25px;
+        font-size: 8px !important;
+        margin-bottom: 0 !important;
+
+      }
+
+      .checkbox1 {
+
+        font-size: 14px !important;
+        margin-top: 0 !important;
+
+      }
+
+      .lang-div-ok-cancel {
+        margin-left: 50px;
+      }
+
+      .select-experience {
+        height: 600px !important;
+        margin-top: 10px !important;
+        width: 250px !important;
+      }
+
+      .select-experience1 {
+        margin-top: 10px !important;
+        width: 300px !important;
+      }
+
+      .textbox4 {
+        font-size: 16px !important;
+      }
+
+      .select-experience-h3 {
+        font-size: 18px !important;
+      }
+
+      .fa-image {
+        position: absolute;
+        padding: 20px 10px;
+        border-radius: 50%;
+        top: 225px;
+        left: 180px;
+        color: black;
+        background-color: #fedc1d;
+      }
+
+      .topic-cover {
+
+
+
+        height: 175px;
+
+
+      }
+
+      .ul-topic {
+        margin: 1px 0 20px 0;
+
+        gap: 5px;
+        display: grid;
+        grid-template-columns: max-content max-content;
+      }
+
+      .ul-topic-1 {
+        gap: 5px;
+        display: grid;
+        grid-template-columns: max-content max-content;
+      }
+
+      .default-span {
+        text-align: center;
+        font-weight: 400;
+        font-size: 11px;
+        border-radius: 50px;
+        margin: 2px 1px;
+        padding: 1px 1px;
+        border: 1px solid #ddd;
+      }
+
+      .duration {
+        font-size: 11px;
+
+      }
+
+      .price {
+        font-size: 11px;
+
+      }
+    }
+
+
+
+    .was-validated .form-control:invalid:focus {
+      border: 1px solid skyblue !important;
+      
+
+      background: none !important;
+
+    }
+    .was-validated .form-control:invalid {
+      border: none !important;
+      
+
+      background: none !important;
+
+    }
+
+    .was-validated .form-control:valid {
+      border: none !important;
+
+      background: none !important;
+
+    }
+    .was-validated .form-control:valid:focus {
+      border: 1px solid skyblue !important;
+
+      background: none !important;
+
+    }
+    
+
+    /* Your CSS styles here */
+    .form.checkbox5.textbox4 {
+      cursor: pointer;
+    }
+
+    .form.checkbox5.textbox4:hover,
+    .form.checkbox5.textbox4.selected {
+      background-color: #eee;
+      /* Adjust the background color on hover or when selected */
+    }
+
+    select:required:invalid {
+      color: #706f6f;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="head-main container-fluid">
+    <div class="head-main-arrow"><a href=""><i class="fa-solid fa-arrow-left fa-lg"></i></a>
+
+    </div>
+    <div class="head-main-name">
+      <div class="head-main-h3-div">
+        <h3 class="head-main-h3">Add Mentor</h3>
+      </div>
+      <div class="head-main-home">
+        <a href=""><i class="fa-solid fa-house fa-lg"></i></a>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-main">
+    <form class="form-action needs-validation" id="myForm" style="width: 92%; margin: auto" action="{% url 'add_profile' %}" method="post" enctype="multipart/form-data" novalidate>
+      {% csrf_token %}
+      <div class="Main-form">
+        <div class="profiles-images-div  w-100">
+          <div class="profiles-images">
+            <img src="{% static 'assets\img\backgrounds\profile.png' %}" alt="" id="upload-img"
+              class="image-upload-circle" />
+          </div>
+          <div class="custom-file ">
+            <label for="fileupload"><i class="fa-solid fa-image fa-lg"></i></label>
+            <input type="file" name="IMG" id="fileupload" />
+          </div>
+        </div>
+
+        <input type="text" class="form-control input"  name="name" id="validationCustom03" placeholder="Your Name" required>
+        <div class="invalid-feedback">
+          Please enter your name.
+        </div>
+        <input type="text" class="form-control input"  name="email" id="validationCustomUsername" placeholder="Your Email"
+          aria-describedby="inputGroupPrepend" required>
+        <div class="invalid-feedback">
+          Please enter your email.
+        </div>
+
+
+        <select name="m_id" class="form-select input form-control" id="validationCustom04" required>
+          <option selected disabled value="">Select Category</option>
+          {% for i in mid %}
+          <option value="{{i.id}}">{{i.name}}</option>
+          {% endfor %}
+        </select>
+
+        <div class="invalid-feedback">
+          Please select category
+        </div>
+
+         <select name="s_id" class="form-select input form-control" id="validationCustom01" required>
+              <option selected disabled value="">Select Sub Category</option>
+              {% for i in sid %}
+              <option value="{{i.id}}">{{i.name}}</option>
+              {% endfor %}
+            </select>
+        <div class="invalid-feedback">
+          Please select sub category
+        </div>
+
+        <select name="e_id" class="form-select input form-control" id="validationCustom02" required>
+          <option selected disabled value="">Select Expert</option>
+           
+          {% for i in eid %}
+          <option value="{{i.id}}">{{i.name}}</option>
+          {% endfor %}
+
+        </select>
+
+        <div class="invalid-feedback">
+          Please select expert
+        </div>
+
+
+
+
+
+
+
+
+
+        <textarea name="headline" style="height: 50px;padding:5px 0  0 45px; padding-left:10px;" class="form-control input1"
+          id="validationTextarea" placeholder="Your HeadLine" oninput="updateCounter(this)" maxlength="25"
+          required></textarea>
+        <span class="counter-no" id="counter">0/25</span>
+        <div class="invalid-feedback " style="margin-top: -20px;">
+          Please enter your headline
+        </div>
+
+        <textarea   name="about_you" style="height: 80px;padding:10px 0  0 45px; padding-left:10px;cursor:pointer"
+          class="form-control input2" id="validationTextarea1" placeholder="About You" oninput="updateCounter1(this)"
+          maxlength="500" required></textarea>
+        <span class="counter-no1" id="counter1">0/500</span>
+        <div class="invalid-feedback " style="margin-top: -20px;">
+          Please write about yourself
+        </div>
+
+        <div class="select_option">
+
+          <div style="width: 50%;">
+            <select class="form-select country  form-control" aria-label="Default select example"
+              onchange="loadStates()" id="validationCustom04" required>
+              <option selected disabled value="">Country</option>
+
+            </select>
+            <div class="invalid-feedback">
+              Please select country
+            </div>
+          </div>
+
+          <div style="width: 50%;">
+            <select class="form-select state form-control" aria-label="Default select example" onchange="loadCities()"
+              id="validationCustom04" required>
+              <option selected disabled value="">State</option>
+            </select>
+            <div class="invalid-feedback">
+              Please select state
+            </div>
+          </div>
+        </div>
+        <select class="form-select city form-control" aria-label="Default select example" id="validationCustom04"
+          required>
+          <option selected disabled value="">City</option>
+        </select>
+        <div class="invalid-feedback" id="feedback-1">
+          Please select city
+        </div>
+
+
+
+        <input type="hidden"  name="cou"   id="selectedCountry"  readonly>
+        <input type="hidden" name="sta" id="selectedState" readonly>
+        <input type="hidden" name="cit" id="selectedCity" readonly>
+  
+
+
+
+
+
+        <input class="form-control lang-input " id="validationCustom09"
+          style="width: 100%;;height:57px;top:25px;z-index:-1;position:relative;border:none"
+          placeholder="Select Languages"  />
+
+
+        <div style="background-color: white;width:100%;border:none;height:auto;margin:auto;border-radius:10px; box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px,
+      rgba(0, 0, 0, 0.13) 0px 7px 0px;margin-top:-31px" class="form-control input" id="showPopupButton3">
+          <div class="form-select" style="border:none;border-radius:10px;margin:0;width:auto;height:20px"
+            aria-label="Default select example">
+            Select Languages
+
+
+
+          </div>
+
+
+          <div type="text" class="display-lang form-control"
+            style="border: none;border-radius:10px;margin:0;width:100%;height:auto;padding-left:5px;" id="name1"
+            formcontrol></div>
+
+
+        </div>
+        <div class="invalid-feedback" id="feedback-2">
+          Please select Languages
+        </div>
+
+
+
+
+        <input style="width: 100%;" type="hidden" id="lang-input" name="lunguages" readonly />
+
+        <div id="popupform3" class="lang form-control">
+
+
+          <div class="select-languages"
+            style="width:25%;margin-top:-75px;padding-bottom: 15px;background-color:white;width: 300px; margin-left: auto; margin-right: auto">
+            <h3 class="selec-lang" style="text-align: center;margin-bottom:25px;padding-top:15px">Select Languages</h3>
+            <div class="lang-div" style="width: 350px; margin-left: auto; margin-right: auto">
+              <div class="form checkbox1" style="font-weight: 600;">
+                <input type="checkbox" class="textbox" style="color: black;cursor:pointer" />
+                English
+              </div>
+
+              <div class="form checkbox1" style="font-weight: 600;">
+                <input type="checkbox" class="textbox" style="color: black;cursor:pointer" />
+                Hindi
+              </div>
+
+              <div class="form checkbox1" style="font-weight: 600;">
+                <input type="checkbox" class="textbox" style="color: black;cursor:pointer" />
+                Bengali
+              </div>
+              <div class="form checkbox1" style="font-weight: 600;">
+                <input type="checkbox" class="textbox" style="color: black;cursor:pointer" />
+                Telugu
+              </div>
+
+              <div class="form checkbox1" style="font-weight: 600;">
+                <input type="checkbox" class="textbox" style="color: black;cursor:pointer" />
+                Marathi
+              </div>
+
+              <div class="form checkbox1" style="font-weight: 600;">
+                <input type="checkbox" class="textbox" style="color: black;cursor:pointer" />
+                Tamil
+              </div>
+              <div class="form checkbox1" style="font-weight: 600;">
+                <input type="checkbox" class="textbox" style="color: black;cursor:pointer" />
+                Gujarati
+              </div>
+
+              <div class="form checkbox1" style="font-weight: 600;">
+                <input type="checkbox" class="textbox" style="color: black;cursor:pointer" />
+                Urdu
+              </div>
+
+              <div class="form checkbox1" style="font-weight: 600;">
+                <input type="checkbox" class="textbox" style="color: black;cursor:pointer" />
+                Kannada
+              </div>
+              <div class="form checkbox1" style="font-weight: 600;">
+                <input type="checkbox" class="textbox" style="color: black;cursor:pointer" />
+                Odia
+              </div>
+
+              <div class="form checkbox1" style="font-weight: 600;">
+                <input type="checkbox" class="textbox" style="color: black;cursor:pointer" />
+                Punjabi
+              </div>
+
+
+
+
+              <div class="lang-div-ok-cancel"
+                style="display: flex;justify-content: flex-end; gap: 30px;width:70%;margin-top:20px; ">
+                <div>
+                  <button id="lang-cancel" type="button" style="
+                        border: none;
+                        outline: none;
+                        background-color: transparent;
+                        color: #fedc1d;
+                        font-weight: 700;
+                        font-size:20px;
+                        cursor: pointer;
+                      " class="cancel-langs">
+                    Cancel
+                  </button>
+                </div>
+
+                <div>
+                  <button style="
+                      font-size:20px;
+                        border: none;
+                        outline: none;
+                        background-color: transparent;
+                        color: #fedc1d;
+                        font-weight: 700;
+                        cursor: pointer;
+                      " id="ok-lang">
+                    Ok
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <hr>
+
+
+        <h5>Links</h5>
+
+        <input name="links1" value="Link (Optional)" style="width: 100%;border:1px solid rgb(218, 215, 215);border-radius:7px" type="text" class=" input"
+          id="name3" placeholder="Enter Linkedin Link (Optional)" />
+
+
+
+        <input  name="links2" value="Link (Optional)" style="width: 100%;border:1px solid rgb(218, 215, 215);border-radius:7px" type="text" class=" input"
+          id="name4" placeholder="Enter Website Link (Optional)" />
+
+        <hr>
+
+        <h5>Experience And Education</h5>
+
+        <input  class="form-control exp-input " id="validationCustom07"
+          style="width: 100%;;height:57px;top:5px;z-index:-1;position:relative;border:none" />
+
+        <div class="form-select input" id="experience1"
+          style="border: none;border-radius:10px;margin-top:-50px;width:100%;height:50px;"
+          aria-label="Default select example">Years of Experience</div>
+        <div class="invalid-feedback" id="exp-error">
+          Please select experience
+        </div>
+
+
+
+        <input style="width: 100%;" type="hidden" name="ex_education" id="exper1" readonly />
+
+        <div id="popupform4" class="lang form-control">
+
+
+          <div class="select-experience"
+            style="height:500px;overflow-y:auto;overflow-x:hidden;padding-bottom: 15px;background-color:white;width: 300px; margin-left: auto; margin-right: auto;margin-top:75px ">
+            <h3 class="select-experience-h3"
+              style="margin-bottom:25px;padding-top:15px;font-size:22px;text-align:center">Select Years of Experience
+            </h3>
+            <div class="select-experience1" style="width: 350px; margin-left: auto; margin-right: auto;height:auto">
+
+
+              <div class="form checkbox5 textbox4" style="color: black">
+
+                0 Years
+              </div><br>
+              <div class="form checkbox5 textbox4" style="color: black">
+
+                1 Years
+              </div><br>
+
+              <div class="form checkbox5 textbox4" style="color: black">
+
+                2 Years
+              </div><br>
+
+              <div class="form checkbox5 textbox4" style="color: black">
+
+                3 Years
+              </div><br>
+              <div class="form checkbox5 textbox4" style="color: black">
+
+                4 Years
+              </div><br>
+
+              <div class="form checkbox5 textbox4" style="color: black">
+
+                5 Years
+              </div><br>
+
+              <div class="form checkbox5 textbox4" style="color: black">
+
+                6 Years
+              </div><br>
+              <div class="form checkbox5 textbox4" style="color: black">
+
+                7 Years
+              </div><br>
+
+              <div class="form checkbox5 textbox4" style="color: black">
+
+                8 Years
+              </div><br>
+
+              <div class="form checkbox5 textbox4" style="color: black">
+
+                9 Years
+              </div><br />
+
+              <div class="form checkbox5 textbox4" style="color: black">
+
+                10 Years
+              </div><br>
+
+              <div class="form checkbox5 textbox4" style="color: black">
+
+                11 Years
+              </div><br>
+              <div class="form checkbox5 textbox4" style="color: black">
+
+                12 Years
+              </div><br>
+
+              <div class="form checkbox5 textbox4" style="color: black">
+
+                13 Years
+              </div><br>
+
+              <div class="form checkbox5 textbox4" style="color: black">
+
+                14 Years
+              </div><br>
+              <div class="form checkbox5 textbox4" style="color: black">
+
+                15 Years
+              </div><br>
+
+              <div class="form checkbox5 textbox4" style="color: black">
+
+                16 Years
+              </div><br>
+
+              <div class="form checkbox5 textbox4" style="color: black">
+
+                17 Years
+              </div><br>
+              <div class="form checkbox5 textbox4" style="color: black">
+
+                18 Years
+              </div><br>
+
+
+
+              <div class="form checkbox5 textbox4" style="color: black">
+
+                19 Years
+              </div><br />
+
+              <div class="form checkbox5 textbox4" style="color: black">
+
+                20 Years
+              </div><br>
+
+
+              <div class="form checkbox5 textbox4" style="color: black">
+
+                21 Years
+              </div><br>
+              <div class="form checkbox5 textbox4" style="color: black">
+
+                22 Years
+              </div><br>
+
+              <div class="form checkbox5 textbox4" style="color: black">
+
+                23 Years
+              </div><br>
+
+              <div class="form checkbox5 textbox4" style="color: black">
+
+                24 Years
+              </div><br>
+              <div class="form checkbox5 textbox4" style="color: black">
+
+                25 Years
+              </div><br>
+
+              <div class="form checkbox5 textbox4" style="color: black">
+
+                26 Years
+              </div><br>
+
+              <div class="form checkbox5 textbox4" style="color: black">
+
+                27 Years
+              </div><br>
+              <div class="form checkbox5 textbox4" style="color: black">
+
+                28 Years
+              </div><br>
+
+
+
+              <div class="form checkbox5 textbox4" style="color: black">
+
+                29 Years
+              </div><br />
+
+              <div class="form checkbox5 textbox4" style="color: black">
+
+                30 Years
+              </div><br>
+
+              <div class="form checkbox5 textbox4" style="color: black">
+
+                31 Years
+              </div>
+
+
+              <div style="display: flex;justify-content: flex-end; gap: 30px;width:70%;margin-top:20px; ">
+                <div>
+                  <button id="exper-cancel" type="button" style="
+                      border: none;
+                      outline: none;
+                      background-color: transparent;
+                      color: #fedc1d;
+                      font-weight: 700;
+                      font-size:20px;
+                      cursor: pointer;
+                    " class="cancel-langs1">
+                    Cancel
+                  </button>
+                </div>
+
+                <div>
+                  <button style="
+                    font-size:20px;
+                      border: none;
+                      outline: none;
+                      background-color: transparent;
+                      color: #fedc1d;
+                      font-weight: 700;
+                      cursor: pointer;
+                    " id="ok-exper">
+                    Ok
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="form-control history">
+          <p class="history1">Add Work history</p>
+          <i class="fa-solid fa-plus" style="margin:auto;width:15px;" id="showPopupButton"></i>
+
+
+          <div id="popupForm" class="popup">
+
+
+
+            <div class="addtohistory" action="" method="POST">
+              <h3 class="company-style-h3" style="font-size:27px;margin-bottom:5px">Enter Company Details</h3>
+              <div class="company-style-form" style="width: 300px; margin-left: auto; margin-right: auto">
+                <div class="form">
+                  <input type="text" id="company-name-text" class="textbox1" name="Company name"
+                    style="height: 40px; width: 95%; color: black" placeholder="Company name" />
+
+                </div><span id="enter-comp-name"
+                  style="color: red;font-size:16px;opacity:0.7;font-weight:600;visibility:hidden;">
+                  Please enter company name
+                </span>
+
+
+
+
+                <div class="form">
+                  <input type="text" id="company-title-text" class="textbox1" name="Title1"
+                    style="height: 40px; width: 95%; color: black" placeholder="Title" />
+                  <br />
+                </div><span id="enter-comp-title"
+                  style="color: red;font-size:16px;opacity:0.7;font-weight:600;visibility:hidden;">
+                  Please enter title
+                </span>
+
+                <div class="form">
+                  <input type="text" id="company-role-text" class="textbox1" name="Current Role"
+                    style="height: 40px; width: 95%; color: black" placeholder="Current Role " />
+
+                </div><span id="enter-comp-role"
+                  style="color: red;font-size:16px;opacity:0.7;font-weight:600;visibility:hidden;">
+                  Please enter current role
+                </span>
+
+                <div class="start-month-gap" style="display: flex; ">
+                  <div class="start-month-div">
+                    <select id="startMonth" style="
+                        height: 60px;
+                        border-radius: 4px;
+                        padding: 0px 55px 0px 55pxpx;
+                        border: 1px solid gray;
+                        width: 135px;
+                        padding-left: 9px;
+                      ">
+                      <option value="" selected>Start Month</option>
+                      <option>January</option>
+                      <option>February</option>
+                      <option>March</option>
+                      <option>April</option>
+                      <option>May</option>
+                      <option>June</option>
+                      <option>July</option>
+                      <option>August</option>
+                      <option>September</option>
+                      <option>October</option>
+                      <option>November</option>
+                      <option>December</option>
+                    </select>
+                    <span id="enter-start-month"
+                      style="text-align:center;color: red;font-size:12px;opacity:0.7;font-weight:600;visibility:hidden;">
+                      Please enter start month
+                    </span>
+                  </div>
+
+                  <div class="start-year-div">
+                    <select style="
+                          height: 60px;
+                          border-radius: 4px;
+                          padding: 0px 55px 0px 55pxpx;
+                          border: 1px solid gray;
+                          width: 132px;
+                          padding-left: 9px;
+                        " id="currentYearSelect" onchange="updateSelectedYears()">
+                      <option value="" selected>Start Year</option>
+                      <option>2000</option>
+                      <option>2001</option>
+                      <option>2002</option>
+                      <option>2003</option>
+                      <option>2004</option>
+                      <option>2005</option>
+                      <option>2006</option>
+                      <option>2007</option>
+                      <option>2008</option>
+                      <option>2009</option>
+                      <option>2010</option>
+                      <option>2011</option>
+                      <option>2012</option>
+                      <option>2013</option>
+                      <option>2014</option>
+                      <option>2015</option>
+                      <option>2016</option>
+                      <option>2017</option>
+                      <option>2018</option>
+                      <option>2019</option>
+                      <option>2020</option>
+                      <option>2021</option>
+                      <option>2022</option>
+                      <option>2023</option>
+
+                    </select>
+                    <span id="enter-start-year"
+                      style="margin-left:5px;color: red;font-size:12px;opacity:0.7;font-weight:600;visibility:hidden;">
+                      Please enter start year
+                    </span>
+                  </div>
+
+                </div>
+
+                <div class="end-month-gap" style="display: flex; ">
+                  <div class="end-month-div">
+                    <select name="endMonth" id="startMonth1" style="
+                        height: 60px;
+                        border-radius: 4px;
+                        padding: 0px 55px 0px 55pxpx;
+                        border: 1px solid gray;
+                        width: 132px;
+                        padding-left: 9px;
+                      ">
+                      <option value="" selected>End Month</option>
+                      <option>January</option>
+                      <option>February</option>
+                      <option>March</option>
+                      <option>April</option>
+                      <option>May</option>
+                      <option>June</option>
+                      <option>July</option>
+                      <option>August</option>
+                      <option>September</option>
+                      <option>October</option>
+                      <option>November</option>
+                      <option>December</option>
+                    </select>
+                    <span id="enter-end-month"
+                      style="color: red;font-size:12px;opacity:0.7;font-weight:600;visibility:hidden;">
+                      Please enter end month
+                    </span>
+                  </div>
+
+                  <div class="end-year-div">
+                    <select name="endYear" style="
+                          height: 60px;
+                          border-radius: 4px;
+                          padding: 0px 55px 0px 55pxpx;
+                          border: 1px solid gray;
+                          width: 132px;
+                          padding-left: 9px;
+                        " id="selectedYearSelect">
+                      <option value="" selected>End Year</option>
+                      <option>2000</option>
+                      <option>2001</option>
+                      <option>2002</option>
+                      <option>2003</option>
+                      <option>2004</option>
+                      <option>2005</option>
+                      <option>2006</option>
+                      <option>2007</option>
+                      <option>2008</option>
+                      <option>2009</option>
+                      <option>2010</option>
+                      <option>2011</option>
+                      <option>2012</option>
+                      <option>2013</option>
+                      <option>2014</option>
+                      <option>2015</option>
+                      <option>2016</option>
+                      <option>2017</option>
+                      <option>2018</option>
+                      <option>2019</option>
+                      <option>2020</option>
+                      <option>2021</option>
+                      <option>2022</option>
+                      <option>2023</option>
+                      <option>2024</option>
+                      <option>2025</option>
+                      <option>2026</option>
+
+                    </select>
+                    <span id="enter-end-year"
+                      style="margin-left:5px;color: red;font-size:12px;opacity:0.7;font-weight:600;visibility:hidden;">
+                      Please enter end year
+                    </span>
+                  </div>
+
+                </div>
+
+                <input type="checkbox" id="check1" name="check1" style="margin-top: 20px; margin-left: 15px" /><label
+                  for="check1" style="margin-left: 15px; font-weight: 600; cursor: pointer">Present</label>
+
+                <div class="save-can-div" style="display: flex; margin-left: 179px; gap: 25px">
+                  <div>
+                    <button id="cancel-form" type="button" style="
+                        border: none;
+                        outline: none;
+                        background-color: transparent;
+                        color: green;
+                        font-weight: 700;
+                        cursor: pointer;
+                      " class="cancel-form">
+                      Cancel
+                    </button>
+                  </div>
+
+                  <div>
+                    <button class="cancel-form" style="
+                        border: none;
+                        outline: none;
+                        background-color: transparent;
+                        color: green;
+                        font-weight: 700;
+                        cursor: pointer;
+                      " id="save-form">
+                      Save
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+          </div>
+
+          <p class="not-work-details" id="not-work" style="display: block;text-align:center;margin-top:50px">No work
+            added yet</p>
+
+          <div type="text" class="form-control work" id="name5">
+
+            <div id="showhistorydetails">
+
+
+            </div>
+
+
+          </div>
+        </div>
+        <textarea  style="width: 100%;display: none;" name="add_work" id="showhis" readonly></textarea>
+
+        <hr>
+        <div class="form-control history2">
+          <p class="history3">Add Education history</p>
+          <i class="fa-solid fa-plus" style="margin:auto;width:15px;" id="showPopupButton2"></i>
+
+          <div id="popupForm1" class="popup1">
+
+
+
+            <div class="addtoeducation " action="" method="POST">
+              <h3 class="institute-style-h3" style="font-size:27px;margin-bottom:5px">Enter Education Details</h3>
+              <div class="institute-style-form" style="width: 300px; margin-left: auto; margin-right: auto">
+                <div class="form">
+                  <input type="text" class="textbox2" id="institute-name-text" name="Institute name"
+                    style="height: 40px; width: 95%; color: black" placeholder="Institute name" />
+
+                </div><span id="enter-insti-name"
+                  style="color: red;font-size:16px;opacity:0.7;font-weight:600;visibility:hidden;">
+                  Please enter institute name
+                </span>
+
+                <div class="form">
+                  <input type="text" class="textbox2" id="institute-degree-text" name="Title2"
+                    style="height: 40px; width: 95%; color: black" placeholder="Degree" />
+
+                </div><span id="enter-insti-degree"
+                  style="color: red;font-size:16px;opacity:0.7;font-weight:600;visibility:hidden;">
+                  Please enter institute degree
+                </span>
+
+
+                <div class="form">
+                  <input type="text" class="textbox2" id="institute-field-text" name="Current Role1"
+                    style="height: 40px; width: 95%; color: black" placeholder="Field of Study" />
+
+                </div><span id="enter-insti-field"
+                  style="color: red;font-size:16px;opacity:0.7;font-weight:600;visibility:hidden;">
+                  Please enter institute field
+                </span>
+
+                <div class="start-month-gap1" style="display: flex;">
+                  <div class="start-month-div1">
+                    <select id="startMonth2" style="
+                          height: 60px;
+                          border-radius: 4px;
+                          padding: 0px 55px 0px 55pxpx;
+                          border: 1px solid gray;
+                          width: 132px;
+                          padding-left: 9px;
+                        ">
+                      <option value="" selected>Start Month</option>
+                      <option>January</option>
+                      <option>February</option>
+                      <option>March</option>
+                      <option>April</option>
+                      <option>May</option>
+                      <option>June</option>
+                      <option>July</option>
+                      <option>August</option>
+                      <option>September</option>
+                      <option>October</option>
+                      <option>November</option>
+                      <option>December</option>
+                    </select>
+                    <span id="enter-start-month1"
+                      style="text-align:center;color: red;font-size:12px;opacity:0.7;font-weight:600;visibility:hidden;">
+                      Please enter start month
+                    </span>
+                  </div>
+                  <div class="start-year-div1">
+
+                    <select style="
+                            height: 60px;
+                            border-radius: 4px;
+                            padding: 0px 55px 0px 55pxpx;
+                            border: 1px solid gray;
+                            width: 132px;
+                            padding-left: 9px;
+                          " id="currentYearSelect1" onchange="updateSelectedYears1()">
+                      <option value="" selected>Start Year</option>
+                      <option>2000</option>
+                      <option>2001</option>
+                      <option>2002</option>
+                      <option>2003</option>
+                      <option>2004</option>
+                      <option>2005</option>
+                      <option>2006</option>
+                      <option>2007</option>
+                      <option>2008</option>
+                      <option>2009</option>
+                      <option>2010</option>
+                      <option>2011</option>
+                      <option>2012</option>
+                      <option>2013</option>
+                      <option>2014</option>
+                      <option>2015</option>
+                      <option>2016</option>
+                      <option>2017</option>
+                      <option>2018</option>
+                      <option>2019</option>
+                      <option>2020</option>
+                      <option>2021</option>
+                      <option>2022</option>
+                      <option>2023</option>
+
+                    </select>
+                    <span id="enter-start-year1"
+                      style="text-align:center;color: red;font-size:12px;opacity:0.7;font-weight:600;visibility:hidden;">
+                      Please enter start year
+                    </span>
+                  </div>
+                </div>
+
+                <div class="end-month-gap1" style="display: flex;">
+                  <div class="end-month-div1">
+                    <select name="endMonth-1" id="startMonth3" style="
+                          height: 60px;
+                          border-radius: 4px;
+                          padding: 0px 55px 0px 55pxpx;
+                          border: 1px solid gray;
+                          width: 132px;
+                          padding-left: 9px;
+                        ">
+                      <option value="" selected>End Month</option>
+                      <option>January</option>
+                      <option>February</option>
+                      <option>March</option>
+                      <option>April</option>
+                      <option>May</option>
+                      <option>June</option>
+                      <option>July</option>
+                      <option>August</option>
+                      <option>September</option>
+                      <option>October</option>
+                      <option>November</option>
+                      <option>December</option>
+                    </select>
+                    <span id="enter-end-month1"
+                      style="text-align:center;color: red;font-size:12px;opacity:0.7;font-weight:600;visibility:hidden;">
+                      Please enter end month
+                    </span>
+                  </div>
+                  <div class="end-year-div1">
+
+                    <select name="endYear-1" style="
+                            height: 60px;
+                            border-radius: 4px;
+                            padding: 0px 55px 0px 55pxpx;
+                            border: 1px solid gray;
+                            width: 132px;
+                            padding-left: 9px;
+                          " id="selectedYearSelect1">
+                      <option value="" selected>End Year</option>
+                      <option>2000</option>
+                      <option>2001</option>
+                      <option>2002</option>
+                      <option>2003</option>
+                      <option>2004</option>
+                      <option>2005</option>
+                      <option>2006</option>
+                      <option>2007</option>
+                      <option>2008</option>
+                      <option>2009</option>
+                      <option>2010</option>
+                      <option>2011</option>
+                      <option>2012</option>
+                      <option>2013</option>
+                      <option>2014</option>
+                      <option>2015</option>
+                      <option>2016</option>
+                      <option>2017</option>
+                      <option>2018</option>
+                      <option>2019</option>
+                      <option>2020</option>
+                      <option>2021</option>
+                      <option>2022</option>
+                      <option>2023</option>
+                      <option>2024</option>
+                      <option>2025</option>
+                      <option>2026</option>
+                    </select>
+                    <span id="enter-end-year1"
+                      style="text-align:center;color: red;font-size:12px;opacity:0.7;font-weight:600;visibility:hidden;">
+                      Please enter end year
+                    </span>
+
+                  </div>
+                </div>
+
+                <input type="checkbox" id="check2" name="check2" style=" margin-left: 15px" /><label for="check2"
+                  style="margin-left: 15px; font-weight: 600; cursor: pointer">Present</label>
+
+                <div class="save-can-div1" style="display: flex; margin-left: 179px; gap: 25px">
+                  <div>
+                    <button id="cancel-form1" type="button" style="
+                          border: none;
+                          outline: none;
+                          background-color: transparent;
+                          color: green;
+                          font-weight: 700;
+                          cursor: pointer;
+                        " class="cancel-form">
+                      Cancel
+                    </button>
+                  </div>
+
+                  <div>
+                    <button style="
+                          border: none;
+                          outline: none;
+                          background-color: transparent;
+                          color: green;
+                          font-weight: 700;
+                          cursor: pointer;
+                        " id="save-form1">
+                      Save
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <p class="not-education-details" id="not-education" style="display: block;text-align:center;margin-top:50px">
+            No education added yet</p>
+
+
+          <div type="text" class="form-control education" id="name6">
+
+
+
+            <div id="showhistorydetails1">
+
+
+            </div>
+
+          </div>
+        </div>
+        <textarea type="hidden" style="width: 100%;display: none;" name="add_education" id="showhis1" readonly></textarea>
+
+        <hr>
+        <h5 style="margin-left: 15px;">Topics</h5>
+        <div class="addmoretopicadded" id="addmoretopicadded1"><span></span></div>
+        <div class="topic-cover" id="topic-covers">
+          <ul class="ul-topic">
+            <li class="default-span">Career Development</li>
+            <li class="default-span">Professional Development</li>
+            <li class="default-span">Resume Building</li>
+            <li class="default-span">Interview Preparation</li>
+            <li class="default-span">Skill Development</li>
+            <li class="default-span">Industry Knowledge</li>
+
+          </ul>
+
+          <ul class="ul-topic-1">
+            <li class="default-span">feedback & improvement</li>
+            <li class="default-span">Confidence Building</li>
+            <li class="default-span">Leadership & Management</li>
+            <li class="default-span">Topic for Test</li>
+            <li class="default-span">Technical Evaluation</li>
+          </ul>
+        </div>
+        <div class="addmoreitem">
+
+          <i class="fa-solid fa-plus addmoreitems" id="adding-more-topic-cover" aria-="true"></i>
+          <span class="span-add">Add More</span>
+        </div>
+
+        <div id="popupForm-topic" class="popup">
+
+
+
+          <div class="topic-form-display" action="">
+            <h3 style=" font-size:20px;margin-bottom: 20px;">Enter Topics Details</h3>
+            <div style="width: 300px; margin-left: auto; margin-right: auto;">
+              <div class="form">
+                <input type="text" id="topic-company-name" class="textbox3 form-control " name="topics"
+                  style="height: 50px; width: 100%; color: black" placeholder="Company name" />
+                <span id="to-co-na" style="color: red;font-size:16px;opacity:0.7;font-weight:600;display:none;">
+                  Please enter company topic
+                </span>
+              </div>
+
+
+
+              <select name="price" id="Topic-price-1" style="
+                      height: 50px;
+                    margin-top: 15px;
+                    " class="form-control  form-select">
+                <option selected>Price</option>
+                <option>6000</option>
+                <option>5000</option>
+                <option>1000</option>
+                <option>500</option>
+                <option>100</option>
+
+              </select>
+              <span id="to-pri" style="color: red;font-size:16px;opacity:0.7;font-weight:600;display:none;">
+                Please enter price
+              </span>
+
+
+
+
+              <select name="durations" id="Topic-duration-1" class="form-control  form-select" name="endYear"
+                style="
+                       
+                       margin-top: 15px;height:50px
+                      " id="selectedYearSelect">
+                <option selected    >Duration</option>
+                <option>6000</option>
+                <option>5000</option>
+                <option>1000</option>
+                <option>500</option>
+                <option>100</option>
+
+              </select>
+              <span id="to-dur" style="color: red;font-size:16px;opacity:0.7;font-weight:600;display:none;">
+                Please enter duration
+              </span>
+
+
+
+              <textarea name="topics_durations" style="height: 100px;padding:10px 0  0 45px; padding-left:10px;margin-top:20px" type="text"
+                class="form-control " id="valTextarea3" oninput="updateCounter3(this)" maxlength="300"
+                placeholder="Description"></textarea>
+              <span id="to-des" style="color: red;font-size:16px;opacity:0.7;font-weight:600;display:none;">
+                Please enter description
+              </span>
+              <span class="counter-no" id="counter3" style="margin-bottom: 30px;margin-top:5px">0/300</span>
+
+
+
+              <div style="display: flex; margin-left: 179px; gap: 25px">
+                <div>
+                  <button id="Topic-cancel-form" type="button" style="
+                      border: none;
+                      outline: none;
+                      background-color: transparent;
+                      color: #fedc1d;
+                      font-weight: 700;
+                      cursor: pointer;
+                    " class="topic-cancel-form1">
+                    Cancel
+                  </button>
+                </div>
+
+                <div>
+                  <button class="Topic-save-form" type="button" style="
+                      border: none;
+                      outline: none;
+                      background-color: transparent;
+                      color: #fedc1d;
+                      font-weight: 700;
+                      cursor: pointer;
+                    " id="topic-save-form1">
+                    Save
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+
+        <hr>
+
+        <p class="topic-detail">Topic Detail</p>
+        <input style="width: 100%;display:none" type="text" name="topics" id="top1" readonly/>
+
+
+        <div class="price-duration" id="price-duration1">
+
+          <div style="width: 50%;">
+            <select class="form-select input form-control price" id="validationCustom05"
+              aria-label="Default select example" name="price" required>
+              <option value="">select</option>
+              
+              {% for i,n in topic_price %}
+              <option value="{{i}}">{{i}}</option>
+              {% endfor %}
+              
+            </select>
+            <div class="invalid-feedback">
+              Please select price
+            </div>
+          </div>
+
+          <div style="width: 50%;">
+            <select class="form-select input form-control duration"  name="durations" id="validationCustom06"
+              aria-label="Default select example" required>
+              <option value="">select</option>
+              {% for i,n in topic_durations %}
+              <option value="{{i}}">{{i}}</option>
+              {% endfor %}
+            </select>
+            <div class="invalid-feedback">
+              Please select duration
+            </div>
+
+          </div>
+        </div>
+
+
+
+
+        <textarea name="topics_durations" class="form-control input counter-no3"
+          style="height:auto;padding:10px; padding-left:10px;max-height:85px;cursor:pointer" class="form-control input2"
+          id="validationTextarea2" oninput="updateCounter2(this)" maxlength="300" placeholder="Enter Topic Description"
+          required></textarea>
+        <span class="counter-no2" id="counter2">0/300</span>
+
+        <div class="invalid-feedback " style="margin-top: -20px;">
+          Please enter topic description
+        </div>
+
+
+        <div class="save-cancel-btn">
+          <span class="save-page" id="save-page1">Save</span>
+          <span class="cancel-page" id="cancel-page2">Cancel</span>
+        </div>
+        <div class="save-cancel-btn1" style="display: none;">
+          <span class="edit-page">Edit</span>
+          <span class="cancel-page" id="cancel-page3">Cancel</span>
+          <span class="delete-page">Delete</span>
+        </div>
+
+        <div class="buttons" style="padding-bottom:5px;margin-bottom:15px;display:flex;justify-content:center;gap:10px">
+          <button class="btn-submit" type="submit">Submit</button>
+          <button class="btn-cancel" type="reset">Cancel</button>
+        </div>
+
+    </form>
+
+  </div>
+
+
+
+
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+    crossorigin="anonymous"></script>
+
+
+
+
+  <!-- validation script -->
+  <script>
+    (function () {
+      'use strict'
+
+      // Fetch all the forms we want to apply custom Bootstrap validation styles to
+      var forms = document.querySelectorAll('.needs-validation')
+
+      // Loop over them and prevent submission
+      Array.prototype.slice.call(forms)
+        .forEach(function (form) {
+          form.addEventListener('submit', function (event) {
+            if (!form.checkValidity()) {
+              event.preventDefault()
+              event.stopPropagation()
+            }
+
+            form.classList.add('was-validated')
+          }, false)
+        })
+    })()
+  </script>
+
+
+
+  <!-- console script -->
+
+  <script>
+    let con = document.getElementsByTagName('textarea')
+
+    console.log(con)
+  </script>
+
+
+
+
+
+
+
+
+  <!-- country , state and city script -->
+
+  <script>
+
+
+    // images profile script
+
+    $(function () {
+      $("#fileupload").change(function (event) {
+        let x = URL.createObjectURL(event.target.files[0]);
+        $("#upload-img").attr("src", x);
+        console.log(event);
+      });
+    });
+
+    // input maxlength show script
+
+    function updateCounter(validationTextarea) {
+      // Get the current input value and its length
+      let inputValue = validationTextarea.value;
+      let inputLength = inputValue.length;
+
+      // Define the maximum character limit
+      let maxCharacters = 25;
+
+      // Truncate the input if it exceeds the character limit
+      if (inputValue.length >= maxCharacters) {
+        validationTextarea.value = inputValue.slice(0, maxCharacters);
+        inputValue = validationTextarea.value;
+      }
+
+      // Update the counter text
+      document.getElementById('counter').textContent = inputLength + '/' + maxCharacters;
+    }
+
+    function updateCounter1(validationTextarea1) {
+      // Get the current input value and its length
+      let inputValue = validationTextarea1.value;
+      let inputLength = inputValue.length;
+
+      // Define the maximum character limit
+      let maxCharacters = 500;
+
+      // Truncate the input if it exceeds the character limit
+      if (inputValue.length >= maxCharacters) {
+        validationTextarea1.value = inputValue.slice(0, maxCharacters);
+        inputValue = validationTextarea1.value;
+      }
+
+      // Update the counter text
+      document.getElementById('counter1').textContent = inputLength + '/' + maxCharacters;
+    }
+
+    function updateCounter2(validationTextarea2) {
+      // Get the current input value and its length
+      let inputValue = validationTextarea2.value;
+      let inputLength = inputValue.length;
+
+      // Define the maximum character limit
+      let maxCharacters = 300;
+
+      // Truncate the input if it exceeds the character limit
+      if (inputValue.length >= maxCharacters) {
+        validationTextarea2.value = inputValue.slice(0, maxCharacters);
+        inputValue = validationTextarea2.value;
+      }
+
+      // Update the counter text
+      document.getElementById('counter2').textContent = inputLength + '/' + maxCharacters;
+    }
+    function updateCounter3(valTextarea3) {
+      // Get the current input value and its length
+      let inputValue = valTextarea3.value;
+      let inputLength = inputValue.length;
+
+      // Define the maximum character limit
+      let maxCharacters = 300;
+
+      // Truncate the input if it exceeds the character limit
+      if (inputValue.length >= maxCharacters) {
+        valTextarea3.value = inputValue.slice(0, maxCharacters);
+        inputValue = valTextarea3.value;
+      }
+
+      // Update the counter text
+      document.getElementById('counter3').textContent = inputLength + '/' + maxCharacters;
+    }
+
+
+
+    // country, state and city script
+
+    var config = {
+      cUrl: "https://api.countrystatecity.in/v1/countries",
+      ckey: "NHhvOEcyWk50N2Vna3VFTE00bFp3MjFKR0ZEOUhkZlg4RTk1MlJlaA==",
+    };
+
+    var countrySelect = document.querySelector(".country");
+    var stateSelect = document.querySelector(".state");
+    var citySelect = document.querySelector(".city");
+
+    var selectedCountryInput = document.getElementById("selectedCountry");
+    var selectedStateInput = document.getElementById("selectedState");
+    var selectedCityInput = document.getElementById("selectedCity");
+
+    function loadCountries() {
+      let apiEndPoint = config.cUrl;
+
+      fetch(apiEndPoint, { headers: { "X-CSCAPI-KEY": config.ckey } })
+        .then((response) => response.json())
+        .then((data) => {
+          data.forEach((country) => {
+            const option = document.createElement("option");
+            option.value = country.iso2;
+            option.textContent = country.name;
+            countrySelect.appendChild(option);
+          });
+        })
+        .catch((error) => console.error("Error loading countries:", error));
+
+      stateSelect.disabled = true;
+      citySelect.disabled = true;
+      stateSelect.style.pointerEvents = "none";
+      citySelect.style.pointerEvents = "none";
+    }
+
+    function loadStates() {
+      stateSelect.disabled = false;
+      citySelect.disabled = true;
+      stateSelect.style.pointerEvents = "auto";
+      citySelect.style.pointerEvents = "none";
+
+      const selectedCountryCode = countrySelect.value;
+      // console.log(selectedCountryCode);
+      stateSelect.innerHTML = '<option value="">Select State</option>'; // Exiting state clear thase
+      citySelect.innerHTML = '<option value="">Select City</option>'; // exiting city clear thase
+
+      fetch(`${config.cUrl}/${selectedCountryCode}/states`, {
+        headers: { "X-CSCAPI-KEY": config.ckey },
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          // console.log(data);
+
+          data.forEach((state) => {
+            const option = document.createElement("option");
+            option.value = state.iso2;
+            option.textContent = state.name;
+            stateSelect.appendChild(option);
+          });
+        })
+        .catch((error) => console.error("Error loading countries:", error));
+      selectedCountryInput.value = countrySelect.options[countrySelect.selectedIndex].text;
+      selectedStateInput.value = "";
+      selectedCityInput.value = "";
+    }
+
+
+
+    function loadCities() {
+
+      citySelect.disabled = false;
+
+      citySelect.style.pointerEvents = "auto";
+
+      const selectedCountryCode = countrySelect.value;
+      const selectedStateCode = stateSelect.value;
+
+
+
+      citySelect.innerHTML = '<option value="">Select City</option>'; // exiting city clear thase
+
+      fetch(
+        `${config.cUrl}/${selectedCountryCode}/states/${selectedStateCode}/cities/`, {
+        headers: { "X-CSCAPI-KEY": config.ckey },
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          // console.log(data);
+
+          data.forEach((city) => {
+            const option = document.createElement("option");
+            option.value = city.iso2;
+            option.textContent = city.name;
+            citySelect.appendChild(option);
+          });
+        })
+        .catch((error) => console.error("Error loading countries:", error));
+      selectedCountryInput.value = countrySelect.options[countrySelect.selectedIndex].text;
+      selectedStateInput.value = stateSelect.options[stateSelect.selectedIndex].text;
+      selectedCityInput.value = ""
+
+
+      citySelect.addEventListener("change", function () {
+        selectedCityInput.value = citySelect.options[citySelect.selectedIndex].text;
+      });
+    }
+
+
+
+
+    window.onload = loadCountries;
+
+
+
+
+
+
+
+
+
+
+
+    // add work history 
+    const showPopupButton = document.getElementById("showPopupButton");
+    const popupForm = document.getElementById("popupForm");
+    const closeButton = document.getElementById("cancel-form");
+    const body = document.body;
+
+
+    showPopupButton.addEventListener("click", function (event) {
+      // Prevent the default behavior (page refresh)
+      popupForm.style.display = "block";
+      body.classList.add("popup-open");
+    });
+
+    closeButton.addEventListener("click", function () {
+      popupForm.style.display = "none";
+      body.classList.remove("popup-open");
+    });
+
+
+
+
+    const showPopupButton2 = document.getElementById("showPopupButton2");
+    const popupForm2 = document.getElementById("popupForm1");
+    const closeButton2 = document.getElementById("cancel-form1");
+
+
+    showPopupButton2.addEventListener("click", function (event) {
+      // Prevent the default behavior (page refresh)
+      popupForm2.style.display = "block";
+      body.classList.add("popup-open");
+    });
+
+    closeButton2.addEventListener("click", function () {
+      popupForm2.style.display = "none";
+      body.classList.remove("popup-open");
+    });
+
+
+
+
+
+
+
+
+
+
+
+    //  jquery link
+
+  </script>
+
+
+
+
+
+  <!-- default-span script -->
+
+
+  <script>
+  
+    document.addEventListener("DOMContentLoaded", function () {
+      const popupForm = document.getElementById("popupForm-topic");
+      const companyNameInput = document.getElementById("topic-company-name");
+      const priceSelect = document.getElementById("Topic-price-1");
+      const durationSelect = document.getElementById("Topic-duration-1");
+      const descriptionTextarea = document.getElementById("valTextarea3");
+      const saveButton = document.getElementById("topic-save-form1");
+      const cancelButton = document.getElementById("Topic-cancel-form");
+      const cancelButton1 = document.getElementById("cancel-page2");
+      const cancelButton2 = document.getElementById("cancel-page3");
+      const addmoreTopicAdded = document.querySelector(".addmoretopicadded");
+      const inputField2 = document.getElementById("validationTextarea2");
+      const priceDuration2 = document.getElementById("validationCustom05");
+      const priceDuration3 = document.getElementById("validationCustom06");
+      const saveCancelBtn = document.querySelector(".save-cancel-btn");
+      const saveCancelBtn1 = document.querySelector(".save-cancel-btn1");
+      const defaultSpans = document.querySelectorAll('.default-span');
+      const topicDetail = document.querySelector('.topic-detail');
+  
+  
+      const savedFormData = [];
+      let currentCompanyIndex = -1;
+  
+  
+  
+      const editButton = saveCancelBtn1.querySelector(".edit-page");
+      const deleteButton = saveCancelBtn1.querySelector(".delete-page");
+  
+      const saveButton1 = document.getElementById("save-page1");  // Added this line
+  
+      saveButton1.addEventListener("click", () => {  // Added this block
+        const companyName = topicDetail.textContent;
+        const price = priceDuration2.value;
+        const duration = priceDuration3.value;
+        const description = inputField2.value;
+      
+        confirm('Are you sure to save it?')
+        
+  
+        if (companyName !== "Topic Detail" && price !== "Select Price" && duration !== "Select Duration" && description) {
+          createNewSpan(companyName, price, duration, description);
+  
+          // Reset form fields after saving
+  
+          replaceButtonsWithSave();
+        } else if (companyName === "Topic Detail") {
+          priceDuration2.value = "";
+          priceDuration3.value = "";
+          inputField2.value = "";
+          topicDetail.textContent = "Topic Detail";
+          document.getElementById('counter2').textContent = '0/300';
+          replaceButtonsWithSave();
+        }
+       
+      });
+  
+      
+    
+  
+      editButton.addEventListener("click", () => {
+        if (currentCompanyIndex !== -1) {
+          savedFormData[currentCompanyIndex].price = priceDuration2.value;
+          savedFormData[currentCompanyIndex].duration = priceDuration3.value;
+          savedFormData[currentCompanyIndex].description = inputField2.value;
+          confirm('Are you sure to save the edit?');
+          
+  
+          replaceButtonsWithSave();
+          document.getElementById("top1").value = entry;
+          // Empty the values
+          priceDuration2.value = "";
+          priceDuration3.value = "";
+          inputField2.value = "";
+        }
+      });
+  
+      // ... (your existing code)
+  
+  
+      // ... (your existing code)
+  
+      deleteButton.addEventListener("click", () => {
+        if (currentCompanyIndex !== -1) {
+          // Delete the corresponding entry from addmoreTopicAdded
+          addmoreTopicAdded.removeChild(savedFormData[currentCompanyIndex].element);
+      
+          // Update top1 value when a span is deleted
+          const deletedCompanyName = savedFormData[currentCompanyIndex].companyName;
+          if (document.getElementById("top1").value === deletedCompanyName) {
+            // Clear top1 value if it matches the deleted company name
+            document.getElementById("top1").value = "";
+          }
+      
+          savedFormData.splice(currentCompanyIndex, 1);
+          replaceButtonsWithSave();
+      
+          priceDuration2.value = "";
+          priceDuration3.value = "";
+          inputField2.value = "";
+          currentCompanyIndex = -1;
+        }
+      });
+      
+      // Add this function to delete the corresponding entry from top1
+    
+      
+  
+  
+  
+  
+  
+      
+    
+      const updateTop1Value = (value) => {
+        document.getElementById("top1").value = value;
+      };
+      
+      const createNewSpan = (companyName, price, duration, description, counterValue) => {
+        if (companyName !== "Topic Detail") {
+          let existingSpan = null;
+      
+          // Check if the span already exists
+          savedFormData.forEach((data, index) => {
+            if (data.companyName === companyName) {
+              existingSpan = data.element;
+              currentCompanyIndex = index;
+            }
+          });
+      
+          if (existingSpan) {
+            // Update existing span
+            existingSpan.textContent = companyName;
+          } else {
+            // Create a new span
+            const newSpan = document.createElement("span");
+            newSpan.textContent = companyName;
+            newSpan.style = "border-radius:50px;padding:2px 7px;background-color:#fedc1d;margin-left:10px;cursor:pointer";
+      
+            const id = `span-${savedFormData.length}`;
+            newSpan.id = id;
+      
+            const savedData = { id, companyName, price, duration, description, counterValue, element: newSpan };
+      
+            newSpan.addEventListener("click", () => {
+              currentCompanyIndex = savedFormData.findIndex(data => data.id === id);
+              if (currentCompanyIndex !== -1) {
+                topicDetail.textContent = savedData.companyName; // Update topicDetail with companyName
+                priceDuration2.value = savedData.price;
+                priceDuration3.value = savedData.duration;
+                inputField2.value = savedData.description;
+                document.getElementById('counter2').textContent = savedData.counterValue;
+                replaceButtonsWithEditDelete();
+                
+                // Update top1 when an existing span is clicked
+                updateTop1Value(savedData.companyName);
+              }
+            });
+      
+            addmoreTopicAdded.appendChild(newSpan);
+            savedFormData.push(savedData);
+      
+            // Update top1 when a new span is created
+            updateTop1Value(savedData.companyName);
+          }
+        }
+      };
+      
+  
+      cancelButton1.addEventListener("click", handleCancelClick);
+  
+      function handleCancelClick() {
+        clearFormFields();
+        replaceButtonsWithSave();
+  
+      }
+  
+      function clearFormFields() {
+        priceDuration2.value = "";
+        priceDuration3.value = "";
+        inputField2.value = "";
+        topicDetail.textContent = "Topic Detail";
+        document.getElementById('counter2').textContent = '0/300';
+      }
+  
+      cancelButton2.addEventListener("click", handleCancelClick);
+  
+      function handleCancelClick() {
+        clearFormFields();
+        replaceButtonsWithEditDelete();
+  
+      }
+  
+     // ... (your existing code)
+  
+  defaultSpans.forEach(span => {
+  span.addEventListener('click', () => {
+      topicDetail.textContent = span.textContent;
+      priceDuration2.value = "";
+      priceDuration3.value = "";
+      inputField2.value = "";
+      document.getElementById('counter2').textContent = '0/300'; // Reset the counter value
+      replaceButtonsWithSave();
+  
+      const savedData = savedFormData.find(data => data.companyName === span.textContent);
+      if (savedData) {
+          priceDuration2.value = savedData.price;
+          priceDuration3.value = savedData.duration;
+          inputField2.value = savedData.description;
+  
+          document.getElementById('counter2').textContent = savedData.counterValue;
+          replaceButtonsWithEditDelete();
+  
+          // Update top1 when a default span is clicked
+         
+      }
+  });
+  });
+  
+  
+  // ... (your existing code)
+  
+  
+     
+      const savePopupData = () => {
+        const companyName = companyNameInput.value;
+        const price = priceSelect.value;
+        const duration = durationSelect.value;
+        const description = descriptionTextarea.value;
+        
+        // Concatenate the new value with the existing values
+       
+        const counterValue = document.getElementById('counter2').textContent;
+      
+        document.getElementById("topic-company-name").addEventListener("input", function () {
+          document.getElementById("to-co-na").style.display = 'none';
+        });
+        document.getElementById("Topic-price-1").addEventListener("input", function () {
+          document.getElementById("to-pri").style.display = 'none';
+        });
+        document.getElementById("Topic-duration-1").addEventListener("input", function () {
+          document.getElementById("to-dur").style.display = 'none';
+        });
+        document.getElementById("valTextarea3").addEventListener("input", function () {
+          document.getElementById("to-des").style.display = 'none';
+        });
+        function isInputEmptyOrOnlySpaces(input) {
+          let regex = /^[a-zA-Z\s]*$/;
+          return input.trim() === "" || !regex.test(input);
+        }
+        if (
+          companyName.trim() === "" ||
+          price.trim() === "Price" ||
+          duration.trim() === "Duration" ||
+          description.trim() === ""
+        ) {
+          
+      
+          // Display error messages for specific fields
+          if (companyName.trim() === "") {
+            document.getElementById("to-co-na").style.display = 'block';
+          }
+          if (price.trim() === "Price") {
+            document.getElementById("to-pri").style.display = 'block';
+          }
+          if (duration.trim() === "Duration") {
+            document.getElementById("to-dur").style.display = 'block';
+          }
+          if (description.trim() === "") {
+            document.getElementById("to-des").style.display = 'block';
+          }
+      
+          // Prevent closing the form
+          return;
+        }
+      
+        if (isInputEmptyOrOnlySpaces(companyName)) {
+          document.getElementById("to-co-na").style.display = 'block';
+          document.getElementById("to-pri").style.display = 'none';
+          document.getElementById("to-dur").style.display = 'none';
+          document.getElementById("to-des").style.display = 'none';
+  
+          return;
+        }
+        if (price.trim() === "Price") {
+          document.getElementById("to-co-na").style.display = 'none';
+          document.getElementById("to-pri").style.display = 'block';
+          document.getElementById("to-dur").style.display = 'none';
+          document.getElementById("to-des").style.display = 'none';
+  
+          return;
+        }
+        if (duration.trim() === "Duartion") {
+          document.getElementById("to-co-na").style.display = 'none';
+          document.getElementById("to-pri").style.display = 'none';
+          document.getElementById("to-dur").style.display = 'block';
+          document.getElementById("to-des").style.display = 'none';
+  
+          return;
+        }
+        if (isInputEmptyOrOnlySpaces(description)) {
+          document.getElementById("to-co-na").style.display = 'none';
+          document.getElementById("to-pri").style.display = 'none';
+          document.getElementById("to-dur").style.display = 'none';
+          document.getElementById("to-des").style.display = 'block';
+  
+          return;
+        }
+      
+       
+  
+  console.log("Validation passed");
+        // (Rest of your code for saving data)
+      
+        createNewSpan(companyName, price, duration, description, counterValue);
+  
+        // Reset form fields after saving
+        clearFormFields();
+      
+        hidePopup();
+      
+        // Store counter value in saveFormData
+        const currentCompanyIndex = savedFormData.length - 1;
+        savedFormData[currentCompanyIndex].counterValue = counterValue;
+      };
+      
+      const showPopup = () => {
+        companyNameInput.value = "";
+        priceSelect.value = "Price";
+        durationSelect.value = "Duration";
+        descriptionTextarea.value = "";
+  
+        popupForm.style.display = "block";
+      };
+  
+      const hidePopup = () => {
+        popupForm.style.display = "none";
+        replaceButtonsWithSave();
+      };
+  
+      const replaceButtonsWithSave = () => {
+        saveCancelBtn.style.display = "block";
+        saveCancelBtn.style = "margin-top:40px";
+        saveCancelBtn1.style.display = "none";
+      };
+  
+      const replaceButtonsWithEditDelete = () => {
+        saveCancelBtn.style.display = "none";
+        saveCancelBtn1.style.display = "block";
+        saveCancelBtn1.style = "margin-top:55px";
+  
+      };
+  
+      document.getElementById("adding-more-topic-cover").addEventListener("click", showPopup);
+  
+      cancelButton.addEventListener("click", hidePopup);
+      saveButton.addEventListener("click", savePopupData);
+  
+  
+    });
+  
+  
+  </script>
+  
+
+
+
+
+
+  <!-- popup-form-1  start year and end year -->
+
+  <script>
+    const currentYearSelect = document.getElementById('currentYearSelect');
+    const selectedYearSelect = document.getElementById('selectedYearSelect');
+
+    function populateYears(selectElement) {
+      const currentYear = new Date().getFullYear();
+      for (let year = 2000; year <= currentYear; year++) {
+        const option = document.createElement('option');
+        option.value = year;
+        option.textContent = year;
+        selectElement.appendChild(option);
+      }
+    }
+
+    function updateSelectedYears() {
+      const selectedYear = parseInt(currentYearSelect.value);
+
+      // Clear previous options
+      selectedYearSelect.innerHTML = '<option value="" selected>End Year</option>';
+
+      for (let year = selectedYear; year <= 2026; year++) {
+        const option = document.createElement('option');
+        option.value = year;
+        option.textContent = year;
+        selectedYearSelect.appendChild(option);
+      }
+    }
+
+    populateYears(currentYearSelect);
+
+
+    const startMonthSelect = document.getElementById('startMonth');
+    const endMonthSelect = document.getElementById('startMonth1');
+    const endYearSelect = document.getElementById('selectedYearSelect');
+    const presentCheckbox = document.getElementById('check1');
+    const showPopupButton1 = document.getElementById("showPopupButton");
+
+
+    presentCheckbox.addEventListener('change', function () {
+      if (presentCheckbox.checked) {
+        // Handle present checkbox checked
+
+        endMonthSelect.disabled = true;
+        endYearSelect.disabled = true;
+      } else {
+        // Handle present checkbox unchecked
+        endMonthSelect.disabled = false;
+        endYearSelect.disabled = false;
+      }
+    });
+    showPopupButton1.addEventListener('click', function () {
+      if (showPopupButton1.click) {
+        // Handle present checkbox checked
+
+        endMonthSelect.disabled = true;
+        endYearSelect.disabled = true;
+
+      } else {
+        // Handle present checkbox unchecked
+        endMonthSelect.disabled = false;
+        endYearSelect.disabled = false;
+      }
+    });
+    startMonthSelect.addEventListener('change', function () {
+      if (startMonthSelect.click) {
+        // Handle present checkbox checked
+
+        if (presentCheckbox.checked) {
+          // Handle present checkbox checked
+
+          endMonthSelect.disabled = true;
+          endYearSelect.disabled = true;
+        } else {
+          // Handle present checkbox unchecked
+          endMonthSelect.disabled = false;
+          endYearSelect.disabled = false;
+        }
+
+      } else {
+        // Handle present checkbox unchecked
+        endMonthSelect.disabled = true;
+        endYearSelect.disabled = true;
+
+
+      }
+    });
+
+    currentYearSelect.addEventListener('change', function () {
+      if (currentYearSelect.click) {
+        // Handle present checkbox checked
+
+
+        if (presentCheckbox.checked) {
+          // Handle present checkbox checked
+
+          endMonthSelect.disabled = true;
+          endYearSelect.disabled = true;
+        } else {
+          // Handle present checkbox unchecked
+          endMonthSelect.disabled = false;
+          endYearSelect.disabled = false;
+        }
+
+      } else {
+        // Handle present checkbox unchecked
+        endMonthSelect.disabled = true;
+        endYearSelect.disabled = true;
+
+
+      }
+    });
+  </script>
+
+
+  <!-- popup-form-2  start year and end year -->
+
+
+  <script>
+
+    const currentYearSelect1 = document.getElementById('currentYearSelect1');
+    const selectedYearSelect1 = document.getElementById('selectedYearSelect1');
+
+    function populateYears1(selectElement1) {
+      const currentYear1 = new Date().getFullYear();
+      for (let year = 2000; year <= currentYear1; year++) {
+        const option = document.createElement('option');
+        option.value = year;
+        option.textContent = year;
+        selectElement1.appendChild(option);
+      }
+    }
+
+    function updateSelectedYears1() {
+      const selectedYear1 = parseInt(currentYearSelect1.value);
+
+      // Clear previous options
+      selectedYearSelect1.innerHTML = '<option value="" selected>End Year</option>';
+
+      for (let year = selectedYear1; year <= 2026; year++) {
+        const option = document.createElement('option');
+        option.value = year;
+        option.textContent = year;
+        selectedYearSelect1.appendChild(option);
+      }
+    }
+
+    populateYears1(currentYearSelect1);
+
+    // script.js
+    const startMonthSelect1 = document.getElementById('startMonth2');
+
+    const endMonthSelect1 = document.getElementById('startMonth3');
+    const endYearSelect1 = document.getElementById('selectedYearSelect1');
+    const presentCheckbox1 = document.getElementById('check2');
+    const showPopupButton3 = document.getElementById("showPopupButton2");
+
+
+    presentCheckbox1.addEventListener('change', function () {
+      if (presentCheckbox1.checked) {
+        // Handle present checkbox checked
+
+        endMonthSelect1.disabled = true;
+        endYearSelect1.disabled = true;
+      } else {
+        // Handle present checkbox unchecked
+        endMonthSelect1.disabled = false;
+        endYearSelect1.disabled = false;
+      }
+    });
+    showPopupButton3.addEventListener('click', function () {
+      if (showPopupButton3.click) {
+        // Handle present checkbox checked
+
+        endMonthSelect1.disabled = true;
+        endYearSelect1.disabled = true;
+
+      } else {
+        // Handle present checkbox unchecked
+        endMonthSelect1.disabled = false;
+        endYearSelect1.disabled = false;
+      }
+    });
+    startMonthSelect1.addEventListener('change', function () {
+      if (startMonthSelect1.click) {
+        // Handle present checkbox checked
+        if (presentCheckbox1.checked) {
+          // Handle present checkbox checked
+
+          endMonthSelect1.disabled = true;
+          endYearSelect1.disabled = true;
+        } else {
+          // Handle present checkbox unchecked
+          endMonthSelect1.disabled = false;
+          endYearSelect1.disabled = false;
+        }
+
+      } else {
+        // Handle present checkbox unchecked
+        endMonthSelect1.disabled = true;
+        endYearSelect1.disabled = true;
+
+
+      }
+    });
+    currentYearSelect1.addEventListener('change', function () {
+      if (currentYearSelect1.click) {
+        // Handle present checkbox checked
+        if (presentCheckbox1.checked) {
+          // Handle present checkbox checked
+
+          endMonthSelect1.disabled = true;
+          endYearSelect1.disabled = true;
+        } else {
+          // Handle present checkbox unchecked
+          endMonthSelect1.disabled = false;
+          endYearSelect1.disabled = false;
+        }
+
+      } else {
+        // Handle present checkbox unchecked
+        endMonthSelect1.disabled = true;
+        endYearSelect1.disabled = true;
+
+
+      }
+    });
+
+
+
+
+
+
+
+  </script>
+
+
+
+  <!-- languages script -->
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const selectBox = document.getElementById("showPopupButton3");
+      const options = document.getElementById("popupform3");
+      const checkboxes = document.querySelectorAll(".textbox");
+      const name1 = document.getElementById("name1");
+      const langinput = document.getElementById("lang-input");
+      const name2 = document.getElementById("validationCustom09");
+      const name3 = document.querySelectorAll('div')
+
+
+
+      const body = document.body;
+
+      selectBox.addEventListener("click", function () {
+        options.style.display = "block";
+        body.classList.add("popup-open"); // Add class to prevent background scrolling
+      });
+
+      document.getElementById("ok-lang").addEventListener("click", function (event) {
+        // Ask for confirmation
+
+        // User clicked OK
+        updateSelectedOptions();
+
+        options.style.display = "none";
+        body.classList.remove("popup-open"); // Remove class to allow background scrolling
+        event.preventDefault(); // Prevent form submission
+        console.log('Proceeding with selected options');
+        // Remove class to allow background scrolling
+
+
+      });
+
+      document.getElementById("lang-cancel").addEventListener("click", function () {
+        checkboxes.forEach(function (checkbox) {
+          checkbox.checked = false;
+        });
+        updateSelectedOptions();
+
+
+        options.style.display = "none";
+        body.classList.remove("popup-open"); // Remove class to allow background scrolling
+      });
+
+      function updateSelectedOptions() {
+        const selectedLanguages = [];
+        checkboxes.forEach(function (checkbox) {
+          if (checkbox.checked) {
+            selectedLanguages.push(checkbox.nextSibling.textContent);
+          }
+        });
+        name1.innerHTML = selectedLanguages.map((language) => `<span class="span1">${language}</span>`).join('');
+        langinput.value = selectedLanguages.map((language) => `${language}`).join('');
+
+        if (name1.innerHTML.trim() === "") {
+          // If name1 is empty, show invalid feedback
+
+
+          name3[23].style = 'margin-top:-40px;height:50px';
+          name3[25].style = 'display:block';
+
+          name2.style.display = "block";
+
+          name3[26].style = 'display:block';
+
+
+
+
+
+        } else {
+          // If name1 is not empty, show valid feedback
+          // Clear the feedback message
+
+          name2.style.display = "none";
+          name3[23].style = 'margin-top:10px';
+
+
+
+          name3[25].style = 'display:block !important;margin-top:10px !important';
+          name3[26].style = 'display:none';
+
+          name3[26].removeAttribute('required');
+        }
+
+
+        // Check if name1 is empty
+
+
+
+      }
+
+
+
+
+    });
+
+  </script>
+
+
+
+
+
+  <!-- experience script-1 -->
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      console.log('Script executed!');
+
+      const selectBox = document.getElementById("experience1");
+      const options = document.getElementById("popupform4");
+      const checkboxes = document.querySelectorAll(".textbox4");
+      const sellang = document.querySelectorAll("div");
+      const exper2 = document.getElementById("exper1");
+      const body = document.body;
+      const selectedExperiences = [];
+
+      selectBox.addEventListener("click", function () {
+        options.style.display = "block";
+        body.classList.add("popup-open");
+      });
+
+      document.getElementById("ok-exper").addEventListener("click", function (event) {
+        console.log('Ok button clicked!');
+        updateSelectedOptions();
+        options.style.display = "none";
+        body.classList.remove("popup-open");
+        event.preventDefault();
+        console.log('Proceeding with selected options');
+
+        // Adjust margin based on the content of name2.textContent
+
+
+      });
+
+      document.getElementById("exper-cancel").addEventListener("click", function () {
+        checkboxes.forEach(function (checkbox) {
+          checkbox.checked = false;
+        });
+        updateSelectedOptions();
+        options.style.display = "none";
+        body.classList.remove("popup-open");
+      });
+
+      function updateSelectedOptions() {
+        console.log('Updating selected options...');
+        selectedExperiences.length = 0; // Clear the array
+        checkboxes.forEach(function (checkbox) {
+          if (checkbox.checked) {
+            selectedExperiences.push(checkbox.nextSibling.textContent);
+
+          }
+        });
+        selectBox.innerHTML = selectedExperiences.join(', '); // Display multiple selected options
+        // Store multiple selected options in a hidden input
+        console.log('exper2 value:', exper2.value); // Output the value of exper2 for debugging
+      }
+    });
+
+  </script>
+
+
+  <!-- experience script-2 -->
+
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      // Get the "Ok" button element
+      var okButton = document.getElementById('ok-exper');
+      // Get the "Cancel" button element
+      var cancelButton = document.getElementById('exper-cancel');
+      // Get the "experience1" element
+      var experience1 = document.getElementById('experience1');
+      // Get the "exp-input1" element
+      const exper2 = document.getElementById("exper1");
+
+      let expInput1 = document.getElementById('validationCustom07');
+      const name5 = document.querySelectorAll('div')
+      const name6 = document.querySelectorAll('input')
+      // Variable to store the previous value
+      var previousValue = experience1.textContent;
+
+      // Add a click event listener to the "Ok" button
+      okButton.addEventListener('click', function () {
+        // Get the text content of the selected option
+        var selectedExperience = document.querySelector('.form.checkbox5.textbox4.selected');
+
+        // Set the text content of the "experience1" element
+        if (selectedExperience) {
+          name6[21].removeAttribute('required')
+          name6[21].style = 'border:none'
+          experience1.textContent = selectedExperience.textContent.trim();
+          name5[44].style = 'margin-top:0px;height:50px'
+          expInput1.style.display = "none";
+          name5[45].innerHTML = '';
+          exper2.value = selectedExperience.textContent.trim();
+
+        } else {
+          // Set a default value when no option is selected
+          experience1.textContent = "Years of Experience";
+          name5[44].style = 'margin-top:-30px;width:99%;margin-left:5px'
+          name5[45].innerHTML = 'Please select experience';
+          name6[21].style = 'border:none'
+
+          expInput1.style.display = "block";
+        }
+
+        // Update the previous value
+        previousValue = experience1.textContent;
+
+        // Remove the "selected" class from all options
+        var experienceOptions = document.querySelectorAll('.form.checkbox5.textbox4');
+        experienceOptions.forEach(function (opt) {
+          opt.classList.remove('selected');
+        });
+      });
+
+      // Add a click event listener to the "Cancel" button
+      cancelButton.addEventListener('click', function () {
+        // Set the previous value when "Cancel" is clicked
+        experience1.textContent = previousValue;
+        // If experience1 is not empty, hide exp-input1
+        if (previousValue !== "Years of Experience") {
+          expInput1.style.display = "none";
+        } else {
+          // If experience1 is empty, show exp-input1
+          expInput1.style.display = "block";
+        }
+      });
+
+      // Get all the elements with class "form checkbox5 textbox4"
+      var experienceOptions = document.querySelectorAll('.form.checkbox5.textbox4');
+
+      // Add click event listeners to each option
+      experienceOptions.forEach(function (option) {
+        option.addEventListener('click', function () {
+          // Remove the "selected" class from all options
+          experienceOptions.forEach(function (opt) {
+            opt.classList.remove('selected');
+          });
+
+          // Add the "selected" class to the clicked option
+          option.classList.add('selected');
+        });
+      });
+    });
+
+  </script>
+
+
+
+
+
+  <!-- popup-form-1 and shows -->
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const saveButton = document.getElementById("save-form");
+      const cancelButton = document.getElementById("cancel-form");
+      const showPopupButton = document.getElementById("showPopupButton");
+      const name5 = document.getElementById("name5");
+      const showhistorydetails = document.getElementById("showhistorydetails");
+      const formContainer = document.getElementById("popupForm");
+      const notwork = document.getElementById("not-work");
+      const showhis = document.querySelectorAll('textarea')
+      const entryContainers = [];
+
+
+      document.getElementById("company-name-text").addEventListener("input", function () {
+        document.getElementById("enter-comp-name").style.visibility = "hidden";
+      });
+
+      document.getElementById("company-title-text").addEventListener("input", function () {
+        document.getElementById("enter-comp-title").style.visibility = "hidden";
+      });
+
+      document.getElementById("company-role-text").addEventListener("input", function () {
+        document.getElementById("enter-comp-role").style.visibility = "hidden";
+      });
+
+      document.getElementById("startMonth").addEventListener("input", function () {
+        document.getElementById("enter-start-month").style.visibility = "hidden";
+      });
+
+      document.getElementById("currentYearSelect").addEventListener("input", function () {
+        document.getElementById("enter-start-year").style.visibility = "hidden";
+      });
+
+      document.getElementById("startMonth1").addEventListener("input", function () {
+        document.getElementById("enter-end-month").style.visibility = "hidden";
+      });
+
+      document.getElementById("selectedYearSelect").addEventListener("input", function () {
+        document.getElementById("enter-end-year").style.visibility = "hidden";
+      });
+
+
+
+      saveButton.addEventListener("click", function (event) {
+        event.preventDefault();
+
+        let companyName = document.getElementById("company-name-text").value;
+        let title = document.getElementById("company-title-text").value;
+        let currentRole = document.getElementById("company-role-text").value;
+        let startMonth = document.getElementById("startMonth").value;
+        let startYear = document.getElementById("currentYearSelect").value;
+        let endMonth = document.getElementById("startMonth1").value;
+        let endYear = document.getElementById("selectedYearSelect").value;
+        let isPresent = document.getElementById("check1").checked;
+
+
+        document.getElementById("check1").addEventListener("change", function () {
+          if (document.getElementById("check1").checked) {
+            // Hide endMonth and endYear spans when the checkbox is checked
+            document.getElementById("enter-end-month").style.visibility = "hidden";
+            document.getElementById("enter-end-year").style.visibility = "hidden";
+
+            // Disable endMonthSelect and endYearSelect when the checkbox is checked
+            endMonthSelect.disabled = true;
+            endYearSelect.disabled = true;
+          } else {
+            // Reset to an empty value if needed
+            endMonthSelect.disabled = false;
+            endYearSelect.disabled = false;
+          }
+        });
+
+
+        function isInputEmptyOrOnlySpaces(input) {
+          let regex = /^[a-zA-Z\s]*$/;
+          return input.trim() === "" || !regex.test(input);
+        }
+        // Check if all values are empty
+        if (
+          companyName.trim() === "" &&
+          title.trim() === "" &&
+          currentRole.trim() === "" &&
+          startMonth === "" &&
+          startYear === "" &&
+          (!isPresent && (endMonth === "" && endYear === ""))
+        ) {
+          // Display error messages for all fields
+          document.getElementById("enter-comp-name").style.visibility = "visible";
+          document.getElementById("enter-comp-title").style.visibility = "visible";
+          document.getElementById("enter-comp-role").style.visibility = "visible";
+          document.getElementById("enter-start-month").style.visibility = "visible";
+          document.getElementById("enter-start-year").style.visibility = "visible";
+          document.getElementById("enter-end-month").style.visibility = "visible";
+          document.getElementById("enter-end-year").style.visibility = "visible";
+
+          // Prevent closing the form
+          return;
+        }
+
+
+
+        // Validation for companyName
+        if (isInputEmptyOrOnlySpaces(companyName)) {
+          document.getElementById("enter-comp-name").style.visibility = "visible";
+          document.getElementById("enter-comp-title").style.visibility = "hidden";
+          document.getElementById("enter-comp-role").style.visibility = "hidden";
+          document.getElementById("enter-start-month").style.visibility = "hidden";
+          document.getElementById("enter-start-year").style.visibility = "hidden";
+          document.getElementById("enter-end-month").style.visibility = "hidden";
+          document.getElementById("enter-end-year").style.visibility = "hidden";
+          return;
+        }
+
+        // Validation for title
+        if (isInputEmptyOrOnlySpaces(title)) {
+          document.getElementById("enter-comp-name").style.visibility = "hidden";
+          document.getElementById("enter-comp-title").style.visibility = "visible";
+          document.getElementById("enter-comp-role").style.visibility = "visible";
+          document.getElementById("enter-start-month").style.visibility = "visible";
+          document.getElementById("enter-start-year").style.visibility = "visible";
+          document.getElementById("enter-end-month").style.visibility = "visible";
+          document.getElementById("enter-end-year").style.visibility = "visible";
+          return;
+        }
+
+        // Validation for currentRole
+        if (isInputEmptyOrOnlySpaces(currentRole)) {
+          document.getElementById("enter-comp-name").style.visibility = "hidden";
+          document.getElementById("enter-comp-title").style.visibility = "hidden";
+          document.getElementById("enter-comp-role").style.visibility = "visible";
+          document.getElementById("enter-start-month").style.visibility = "visible";
+          document.getElementById("enter-start-year").style.visibility = "visible";
+          document.getElementById("enter-end-month").style.visibility = "visible";
+          document.getElementById("enter-end-year").style.visibility = "visible";
+          return;
+        }
+
+        // Validation for startMonth
+        if (!startMonth) {
+          document.getElementById("enter-comp-name").style.visibility = "hidden";
+          document.getElementById("enter-comp-title").style.visibility = "hidden";
+          document.getElementById("enter-comp-role").style.visibility = "hidden";
+          document.getElementById("enter-start-month").style.visibility = "visible";
+          document.getElementById("enter-start-year").style.visibility = "visible";
+          document.getElementById("enter-end-month").style.visibility = "visible";
+          document.getElementById("enter-end-year").style.visibility = "visible";
+          return;
+        }
+
+        // Validation for startYear
+        if (!startYear) {
+          document.getElementById("enter-comp-name").style.visibility = "hidden";
+          document.getElementById("enter-comp-title").style.visibility = "hidden";
+          document.getElementById("enter-comp-role").style.visibility = "hidden";
+          document.getElementById("enter-start-month").style.visibility = "hidden";
+          document.getElementById("enter-start-year").style.visibility = "visible";
+          document.getElementById("enter-end-month").style.visibility = "visible";
+          document.getElementById("enter-end-year").style.visibility = "visible";
+          return;
+        }
+
+
+
+        // Validation for isPresent and endMonth/endYear
+        if (!isPresent) {
+          if (!endMonth) {
+            document.getElementById("enter-comp-name").style.visibility = "hidden";
+            document.getElementById("enter-comp-title").style.visibility = "hidden";
+            document.getElementById("enter-comp-role").style.visibility = "hidden";
+            document.getElementById("enter-start-month").style.visibility = "hidden";
+            document.getElementById("enter-start-year").style.visibility = "hidden";
+            document.getElementById("enter-end-month").style.visibility = "visible";
+            document.getElementById("enter-end-year").style.visibility = "visible";
+            return;
+          }
+
+          if (!endYear) {
+            document.getElementById("enter-comp-name").style.visibility = "hidden";
+            document.getElementById("enter-comp-title").style.visibility = "hidden";
+            document.getElementById("enter-comp-role").style.visibility = "hidden";
+            document.getElementById("enter-start-month").style.visibility = "hidden";
+            document.getElementById("enter-start-year").style.visibility = "hidden";
+            document.getElementById("enter-end-month").style.visibility = "hidden";
+            document.getElementById("enter-end-year").style.visibility = "visible";
+            return;
+          }
+        }
+
+
+
+
+
+
+        let newEntryContainer;
+
+        if (window.currentEntryContainer) {
+          newEntryContainer = window.currentEntryContainer;
+
+          // Update the existing container with the new values
+          newEntryContainer.querySelector(".h6-1").textContent = companyName;
+          newEntryContainer.querySelector(".h6-2").textContent = title;
+          newEntryContainer.querySelector(".h6-3").textContent = currentRole;
+          newEntryContainer.querySelector(".p-1").textContent = `${startMonth} ${startYear} - ${isPresent ? "Present" : endMonth + " " + endYear}`;
+        } else {
+          // Create a new entry container
+          newEntryContainer = document.createElement("div");
+          newEntryContainer.className = "form-values";
+          newEntryContainer.style = "width:100%;border:1px solid black";
+
+          let newElement = document.createElement("div");
+          newElement.style = "width:50%;padding-left:50px;padding-top:5px;padding-bottom:5px";
+
+          let newElement1 = document.createElement("div");
+          newElement1.style = "width:50%;padding-left:40px;padding-top:5px;padding-bottom:5px";
+
+          newElement.innerHTML = `
+        <h6 class="h6-1">${companyName}</h6>
+        <h6 class="h6-2">${title}</h6>
+        <h6 class="h6-3">${currentRole}</h6>
+        <p class="p-1">${startMonth} ${startYear} - ${isPresent ? "Present" : endMonth + " " + endYear}</p>
+    `;
+
+          newElement1.innerHTML = `
+        <div class="fa-ellip">
+            <i class="fa-solid fa-ellipsis" onclick="editEntry(${entryContainers.length})"></i>
+        </div>
+        <div class="fa-cir-minus">
+            <i class="fa-solid fa-circle-minus" onclick="deleteForm(this)"></i>
+        </div>
+    `;
+
+          newEntryContainer.appendChild(newElement);
+          newEntryContainer.appendChild(newElement1);
+          newEntryContainer.style = "display:flex; box-shadow: 0 3px 10px rgb(0 0 0 / 0.1);border-radius: 7px;margin-bottom:25px";
+
+          name5.style = "display:block;";
+
+          showhistorydetails.style.display = "block";
+          showhistorydetails.appendChild(newEntryContainer);
+
+          entryContainers.push(newEntryContainer);
+          showhis[2].value += `${companyName} ${title} ${currentRole} ${startMonth} ${startYear} - ${isPresent ? "Present" : endMonth + " " + endYear}\n`;
+        }
+
+        // Clear the currentEntryContainer after saving
+        window.currentEntryContainer = null;
+
+
+
+        // Concatenate the new values with the existing ones
+
+
+
+        newEntryContainer.querySelector(".h6-1").textContent = companyName;
+        newEntryContainer.querySelector(".h6-2").textContent = title;
+        newEntryContainer.querySelector(".h6-3").textContent = currentRole;
+        newEntryContainer.querySelector(".p-1").textContent = `${startMonth} ${startYear} - ${isPresent ? "Present" : endMonth + " " + endYear}`;
+
+        document.getElementById("company-name-text").value = "";
+        document.getElementById("company-title-text").value = "";
+        document.getElementById("company-role-text").value = "";
+        document.getElementById("startMonth").value = "";
+        document.getElementById("currentYearSelect").value = "";
+        document.getElementById("startMonth1").value = "";
+        document.getElementById("selectedYearSelect").value = "";
+        document.getElementById("check1").checked = false;
+        notwork.style.display = 'none';
+        updateShowHisValue()
+        clearErrorMessages();
+        hideForm();
+      });
+
+
+
+      cancelButton.addEventListener("click", function (event) {
+        event.preventDefault();
+
+        document.getElementById("enter-comp-name").style.visibility = "hidden";
+        document.getElementById("enter-comp-title").style.visibility = "hidden";
+        document.getElementById("enter-comp-role").style.visibility = "hidden";
+        document.getElementById("enter-start-month").style.visibility = "hidden";
+        document.getElementById("enter-start-year").style.visibility = "hidden";
+        document.getElementById("enter-end-month").style.visibility = "hidden";
+        document.getElementById("enter-end-year").style.visibility = "hidden";
+
+        document.getElementById("company-name-text").value = "";
+        document.getElementById("company-title-text").value = "";
+        document.getElementById("company-role-text").value = "";
+        document.getElementById("startMonth").value = "";
+        document.getElementById("currentYearSelect").value = "";
+        document.getElementById("startMonth1").value = "";
+        document.getElementById("selectedYearSelect").value = "";
+        document.getElementById("check1").checked = false;
+
+        hideForm();
+      });
+
+      function hideForm() {
+        formContainer.style.display = "none";
+        // Enable form controls when hiding the form
+        enableFormControls(formContainer)
+        body.classList.remove("popup-open"); // Remove class to allow background scrolling
+
+        ;
+      }
+
+      function enableFormControls(formElement) {
+        const inputs = formElement.querySelectorAll("input, select, button, checkbox");
+        inputs.forEach(input => input.removeAttribute("disabled"));
+      }
+
+
+      (function () {
+        window.editEntry = function (index) {
+          window.currentEntryContainer = entryContainers[index];
+
+          let entryContainer = entryContainers[index];
+          let companyName = entryContainer.querySelector(".h6-1").textContent;
+          let title = entryContainer.querySelector(".h6-2").textContent;
+          let currentRole = entryContainer.querySelector(".h6-3").textContent;
+          let dateRange = entryContainer.querySelector(".p-1").textContent;
+
+          document.getElementById("company-name-text").value = companyName;
+          document.getElementById("company-title-text").value = title;
+          document.getElementById("company-role-text").value = currentRole;
+
+          let dateParts = dateRange.split(" - ");
+          let startDateParts = dateParts[0].split(" ");
+          let endDateParts = dateParts[1].split(" ");
+
+          document.getElementById("startMonth").value = startDateParts[0];
+          document.getElementById("currentYearSelect").value = startDateParts[1];
+
+          if (endDateParts[0] === "Present") {
+            document.getElementById("check1").checked = true;
+
+            // Disable endMonthSelect and endYearSelect when the 'Present' checkbox is checked
+            endMonthSelect.disabled = true;
+            endYearSelect.disabled = true;
+          } else {
+            document.getElementById("check1").checked = false;
+            document.getElementById("startMonth1").value = endDateParts[0];
+            document.getElementById("selectedYearSelect").value = endDateParts[1];
+          }
+
+          // Update showhis[2].value with the updated values of all entry containers
+
+
+          showForm();
+        };
+
+        function updateShowHisValue() {
+          // Clear previous values before appending the updated values when editing
+          showhis[2].value = "";
+
+          entryContainers.forEach(container => {
+            const companyName = container.querySelector(".h6-1").textContent;
+            const title = container.querySelector(".h6-2").textContent;
+            const currentRole = container.querySelector(".h6-3").textContent;
+            const dateRange = container.querySelector(".p-1").textContent;
+
+            // Log values to the console for debugging
+            console.log(`${companyName} ${title} ${currentRole} ${dateRange}`);
+
+            showhis[2].value += `${companyName} ${title} ${currentRole} ${dateRange}\n`;
+          });
+        }
+      })();
+
+      function updateShowHisValue() {
+        // Clear previous values before appending the updated values when editing
+        showhis[2].value = "";
+
+        entryContainers.forEach(container => {
+          const companyName = container.querySelector(".h6-1").textContent;
+          const title = container.querySelector(".h6-2").textContent;
+          const currentRole = container.querySelector(".h6-3").textContent;
+          const dateRange = container.querySelector(".p-1").textContent;
+
+          // Log values to the console for debugging
+          console.log(`${companyName} ${title} ${currentRole} ${dateRange}`);
+
+          showhis[2].value += `${companyName} ${title} ${currentRole} ${dateRange}\n`;
+        });
+      }
+
+
+      function clearErrorMessages() {
+        document.getElementById("enter-comp-name").style.visibility = "hidden";
+        document.getElementById("enter-comp-title").style.visibility = "hidden";
+        document.getElementById("enter-comp-role").style.visibility = "hidden";
+        document.getElementById("enter-start-month").style.visibility = "hidden";
+        document.getElementById("enter-start-year").style.visibility = "hidden";
+        document.getElementById("enter-end-month").style.visibility = "hidden";
+        document.getElementById("enter-end-year").style.visibility = "hidden";
+      }
+
+
+
+      const checkBox = document.getElementById("check1");
+      const endMonthSelect = document.getElementById("startMonth1");
+
+      checkBox.addEventListener("change", function () {
+        if (checkBox.checked) {
+          endMonthSelect.value = "";
+          endYearSelect.value = "";
+          endMonthSelect.disabled = true;
+          endYearSelect.disabled = true;
+        } else {
+          // Reset to an empty value if needed
+          endMonthSelect.disabled = false;
+          endYearSelect.disabled = false;
+
+        }
+      });
+
+      function showForm() {
+        document.getElementById("popupForm").style.display = "block";
+      }
+
+
+
+
+    });
+    function deleteForm(deleteIcon) {
+      const formContainer = deleteIcon.closest('.form-values');
+      if (formContainer) {
+        formContainer.remove();
+        checkFormContainers();
+      }
+    }
+
+    function checkFormContainers() {
+      const formContainers = document.querySelectorAll('.form-values');
+      const name5Element = document.getElementById('name5');
+      const notwork = document.getElementById('not-work');
+
+      if (formContainers.length === 0) {
+        // All form containers have been removed, hide the element with id "name5"
+        name5Element.style.display = 'none';
+        notwork.style.display = 'block'
+
+      }
+    }
+
+  </script>
+
+
+
+  <!-- popup-form-2 and shows -->
+
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const saveButton1 = document.getElementById("save-form1");
+      const cancelButton1 = document.getElementById("cancel-form1");
+      const showPopupButton1 = document.getElementById("showPopupButton2");
+      const name6 = document.getElementById("name6");
+      const showhistorydetails1 = document.getElementById("showhistorydetails1");
+      const formContainer1 = document.getElementById("popupForm1");
+      const noteducation = document.getElementById("not-education");
+      const showhis = document.querySelectorAll('textarea')
+      const entryContainers1 = [];
+
+
+      document.getElementById("institute-name-text").addEventListener("input", function () {
+        document.getElementById("enter-insti-name").style.visibility = "hidden";
+      });
+
+      document.getElementById("institute-degree-text").addEventListener("input", function () {
+        document.getElementById("enter-insti-degree").style.visibility = "hidden";
+      });
+
+
+      document.getElementById("institute-field-text").addEventListener("input", function () {
+        document.getElementById("enter-insti-field").style.visibility = "hidden";
+      });
+
+      document.getElementById("startMonth2").addEventListener("input", function () {
+        document.getElementById("enter-start-month1").style.visibility = "hidden";
+      });
+
+      document.getElementById("currentYearSelect1").addEventListener("input", function () {
+        document.getElementById("enter-start-year1").style.visibility = "hidden";
+      });
+
+      document.getElementById("startMonth3").addEventListener("input", function () {
+        document.getElementById("enter-end-month1").style.visibility = "hidden";
+      });
+
+      document.getElementById("selectedYearSelect1").addEventListener("input", function () {
+        document.getElementById("enter-end-year1").style.visibility = "hidden";
+      });
+
+
+      saveButton1.addEventListener("click", function (event) {
+        console.log("Save button clicked");
+        event.preventDefault();
+
+        let companyName1 = document.getElementById("institute-name-text").value;
+        let title1 = document.getElementById("institute-degree-text").value;
+        let currentRole1 = document.getElementById("institute-field-text").value;
+        let startMonth1 = document.getElementById("startMonth2").value;
+        let startYear1 = document.getElementById("currentYearSelect1").value;
+        let endMonth1 = document.getElementById("startMonth3").value;
+        let endYear1 = document.getElementById("selectedYearSelect1").value;
+        let isPresent1 = document.getElementById("check2").checked;
+
+        // Validation: Check if any of the required fields is empty or contains only spaces
+
+        document.getElementById("check2").addEventListener("change", function () {
+          if (document.getElementById("check2").checked) {
+            // Hide endMonth and endYear spans when the checkbox is checked
+            document.getElementById("enter-end-month1").style.visibility = "hidden";
+            document.getElementById("enter-end-year1").style.visibility = "hidden";
+
+            // Disable endMonthSelect and endYearSelect when the checkbox is checked
+            endMonthSelect1.disabled = true;
+            endYearSelect1.disabled = true;
+          } else {
+            // Handle present checkbox unchecked
+            endMonthSelect1.disabled = false;
+            endYearSelect1.disabled = false;
+          }
+        });
+
+
+        function isInputEmptyOrOnlySpaces1(input) {
+          let regex = /^[a-zA-Z\s]*$/;
+          return input.trim() === "" || !regex.test(input);
+        }
+        // Check if all values are empty
+        if (
+          companyName1.trim() === "" &&
+          title1.trim() === "" &&
+          currentRole1.trim() === "" &&
+          startMonth1 === "" &&
+          startYear1 === "" &&
+          (!isPresent1 && (endMonth1 === "" && endYear1 === ""))
+        ) {
+          // Display error messages for all fields
+          document.getElementById("enter-insti-name").style.visibility = "visible";
+          document.getElementById("enter-insti-degree").style.visibility = "visible";
+          document.getElementById("enter-insti-field").style.visibility = "visible";
+          document.getElementById("enter-start-month1").style.visibility = "visible";
+          document.getElementById("enter-start-year1").style.visibility = "visible";
+          document.getElementById("enter-end-month1").style.visibility = "visible";
+          document.getElementById("enter-end-year1").style.visibility = "visible";
+
+          // Prevent closing the form
+          return;
+        }
+
+
+
+        // Validation for companyName
+        if (isInputEmptyOrOnlySpaces1(companyName1)) {
+          document.getElementById("enter-insti-name").style.visibility = "visible";
+          document.getElementById("enter-insti-degree").style.visibility = "hidden";
+          document.getElementById("enter-insti-field").style.visibility = "hidden";
+          document.getElementById("enter-start-month1").style.visibility = "hidden";
+          document.getElementById("enter-start-year1").style.visibility = "hidden";
+          document.getElementById("enter-end-month1").style.visibility = "hidden";
+          document.getElementById("enter-end-year1").style.visibility = "hidden";
+          return;
+        }
+
+        // Validation for title
+        if (isInputEmptyOrOnlySpaces1(title1)) {
+          document.getElementById("enter-insti-name").style.visibility = "hidden";
+          document.getElementById("enter-insti-degree").style.visibility = "visible";
+          document.getElementById("enter-insti-field").style.visibility = "visible";
+          document.getElementById("enter-start-month1").style.visibility = "visible";
+          document.getElementById("enter-start-year1").style.visibility = "visible";
+          document.getElementById("enter-end-month1").style.visibility = "visible";
+          document.getElementById("enter-end-year1").style.visibility = "visible";
+          return;
+        }
+
+        // Validation for currentRole
+        if (isInputEmptyOrOnlySpaces1(currentRole1)) {
+          document.getElementById("enter-insti-name").style.visibility = "hidden";
+          document.getElementById("enter-insti-degree").style.visibility = "hidden";
+          document.getElementById("enter-insti-field").style.visibility = "visible";
+          document.getElementById("enter-start-month1").style.visibility = "visible";
+          document.getElementById("enter-start-year1").style.visibility = "visible";
+          document.getElementById("enter-end-month1").style.visibility = "visible";
+          document.getElementById("enter-end-year1").style.visibility = "visible";
+          return;
+        }
+
+        // Validation for startMonth
+        if (!startMonth1) {
+          document.getElementById("enter-insti-name").style.visibility = "hidden";
+          document.getElementById("enter-insti-degree").style.visibility = "hidden";
+          document.getElementById("enter-insti-field").style.visibility = "hidden";
+          document.getElementById("enter-start-month1").style.visibility = "visible";
+          document.getElementById("enter-start-year1").style.visibility = "visible";
+          document.getElementById("enter-end-month1").style.visibility = "visible";
+          document.getElementById("enter-end-year1").style.visibility = "visible";
+          return;
+        }
+
+        // Validation for startYear
+        if (!startYear1) {
+          document.getElementById("enter-insti-name").style.visibility = "hidden";
+          document.getElementById("enter-insti-degree").style.visibility = "hidden";
+          document.getElementById("enter-insti-field").style.visibility = "hidden";
+          document.getElementById("enter-start-month1").style.visibility = "hidden";
+          document.getElementById("enter-start-year1").style.visibility = "visible";
+          document.getElementById("enter-end-month1").style.visibility = "visible";
+          document.getElementById("enter-end-year1").style.visibility = "visible";
+          return;
+        }
+
+
+
+        // Validation for isPresent and endMonth/endYear
+        if (!isPresent1) {
+          if (!endMonth1) {
+            document.getElementById("enter-insti-name").style.visibility = "hidden";
+            document.getElementById("enter-insti-degree").style.visibility = "hidden";
+            document.getElementById("enter-insti-field").style.visibility = "hidden";
+            document.getElementById("enter-start-month1").style.visibility = "hidden";
+            document.getElementById("enter-start-year1").style.visibility = "hidden";
+            document.getElementById("enter-end-month1").style.visibility = "visible";
+            document.getElementById("enter-end-year1").style.visibility = "visible";
+            return;
+          }
+
+          if (!endYear1) {
+            document.getElementById("enter-insti-name").style.visibility = "hidden";
+            document.getElementById("enter-insti-degree").style.visibility = "hidden";
+            document.getElementById("enter-insti-field").style.visibility = "hidden";
+            document.getElementById("enter-start-month1").style.visibility = "hidden";
+            document.getElementById("enter-start-year1").style.visibility = "hidden";
+            document.getElementById("enter-end-month1").style.visibility = "hidden";
+            document.getElementById("enter-end-year1").style.visibility = "visible";
+            return;
+          }
+        }
+
+
+
+
+
+        let newEntryContainer1;
+
+        if (window.currentEntryContainer1) {
+          // If editing, update the existing entry container
+          newEntryContainer1 = window.currentEntryContainer1;
+          newEntryContainer1.querySelector(".h6-4").textContent = companyName1;
+          newEntryContainer1.querySelector(".h6-5").textContent = title1;
+          newEntryContainer1.querySelector(".h6-6").textContent = currentRole1;
+          newEntryContainer1.querySelector(".p-2").textContent = `${startMonth1} ${startYear1} - ${isPresent1 ? "Present" : endMonth1 + " " + endYear1}`;
+          // Reset for future additions
+        } else {
+          // If adding a new entry, create a new entry container
+          newEntryContainer1 = document.createElement("div");
+          newEntryContainer1.className = "form-values1";
+          newEntryContainer1.style = "width:100%;border:1px solid black";
+
+          let newElement = document.createElement("div");
+          newElement.style = "width:50%;padding-left:50px;padding-top:5px;padding-bottom:5px";
+
+          let newElement1 = document.createElement("div");
+          newElement1.style = "width:50%;padding-left:40px;padding-top:5px;padding-bottom:5px";
+
+          newElement.innerHTML = `
+              <h6 class="h6-4">${companyName1}</h6>
+              <h6 class="h6-5">${title1}</h6>
+              <h6 class="h6-6">${currentRole1}</h6>
+              <p class="p-2">${startMonth1} ${startYear1} - ${isPresent1 ? "Present" : endMonth1 + " " + endYear1}</p>
+            `;
+          newElement1.innerHTML = `
+              <div class="fa-ellip">
+                <i class="fa-solid fa-ellipsis" onclick="editEntry1(${entryContainers1.length})"></i>
+              </div>
+              <div class="fa-cir-minus">
+                <i class="fa-solid fa-circle-minus" onclick="deleteForm1(this)"></i>
+              </div>
+            `;
+
+          newEntryContainer1.appendChild(newElement);
+          newEntryContainer1.appendChild(newElement1);
+          newEntryContainer1.style = "display:flex; box-shadow: 0 3px 10px rgb(0 0 0 / 0.1);border-radius: 7px;margin-bottom:25px";
+
+          name6.style = "display:block;";
+          showhistorydetails1.style.display = "block";
+          showhistorydetails1.appendChild(newEntryContainer1);
+
+          entryContainers1.push(newEntryContainer1);
+          showhis[3].value += `${companyName1} ${title1} ${currentRole1} ${startMonth1} ${startYear1 ? "Present" : endMonth1 + " " + endYear1}\n`;
+
+        }
+        window.currentEntryContainer1 = null;
+
+
+        newEntryContainer1.querySelector(".h6-4").textContent = companyName1;
+        newEntryContainer1.querySelector(".h6-5").textContent = title1;
+        newEntryContainer1.querySelector(".h6-6").textContent = currentRole1;
+        newEntryContainer1.querySelector(".p-2").textContent = `${startMonth1} ${startYear1} - ${isPresent1 ? "Present" : endMonth1 + " " + endYear1}`;
+
+        document.getElementById("institute-name-text").value = "";
+        document.getElementById("institute-degree-text").value = "";
+        document.getElementById("institute-field-text").value = "";
+        document.getElementById("startMonth2").value = "";
+        document.getElementById("currentYearSelect1").value = "";
+        document.getElementById("startMonth3").value = "";
+        document.getElementById("selectedYearSelect1").value = "";
+        document.getElementById("check2").checked = false;
+
+        noteducation.style.display = 'none'
+        updateShowHisValue1()
+        clearErrorMessages();
+        hideForm();
+
+
+        console.log("End of save button event listener")
+      });
+
+      cancelButton1.addEventListener("click", function (event) {
+        event.preventDefault();
+
+        // Hide all the error message spans
+        document.getElementById("enter-insti-name").style.visibility = "hidden";
+        document.getElementById("enter-insti-degree").style.visibility = "hidden";
+        document.getElementById("enter-insti-field").style.visibility = "hidden";
+        document.getElementById("enter-start-month1").style.visibility = "hidden";
+        document.getElementById("enter-start-year1").style.visibility = "hidden";
+        document.getElementById("enter-end-month1").style.visibility = "hidden";
+        document.getElementById("enter-end-year1").style.visibility = "hidden";
+
+        // Clear input values
+        document.getElementById("institute-name-text").value = "";
+        document.getElementById("institute-degree-text").value = "";
+        document.getElementById("institute-field-text").value = "";
+        document.getElementById("startMonth2").value = "";
+        document.getElementById("currentYearSelect1").value = "";
+        document.getElementById("startMonth3").value = "";
+        document.getElementById("selectedYearSelect1").value = "";
+        document.getElementById("check2").checked = false;
+
+        hideForm();
+      });
+
+      function hideForm() {
+        formContainer1.style.display = "none";
+        // Enable form controls when hiding the form
+        enableFormControls1(formContainer1);
+        body.classList.remove("popup-open"); // Remove class to allow background scrolling
+
+
+      }
+
+      function enableFormControls1(formElement1) {
+        const inputs1 = formElement1.querySelectorAll("input, select, button, checkbox");
+        inputs1.forEach(input => input.removeAttribute("disabled"));
+      }
+
+      (function () {
+        window.editEntry1 = function (index) {
+          window.currentEntryContainer1 = entryContainers1[index];
+
+          let entryContainer1 = entryContainers1[index];
+          let companyName1 = entryContainer1.querySelector(".h6-4").textContent;
+          let title1 = entryContainer1.querySelector(".h6-5").textContent;
+          let currentRole1 = entryContainer1.querySelector(".h6-6").textContent;
+          let dateRange1 = entryContainer1.querySelector(".p-2").textContent;
+
+          document.getElementById("institute-name-text").value = companyName1;
+          document.getElementById("institute-degree-text").value = title1;
+          document.getElementById("institute-field-text").value = currentRole1;
+
+          let dateParts1 = dateRange1.split(" - ");
+          let startDateParts1 = dateParts1[0].split(" ");
+          let endDateParts1 = dateParts1[1].split(" ");
+
+          document.getElementById("startMonth2").value = startDateParts1[0];
+          document.getElementById("currentYearSelect1").value = startDateParts1[1];
+
+          if (endDateParts1[0] === "Present") {
+            document.getElementById("check2").checked = true;
+            endMonthSelect1.disabled = true;
+            endYearSelect1.disabled = true;
+          } else {
+            document.getElementById("check2").checked = false;
+            document.getElementById("startMonth3").value = endDateParts1[0];
+            document.getElementById("selectedYearSelect1").value = endDateParts1[1];
+          }
+
+          showForm();
+        };
+        function updateShowHisValue1() {
+          // Clear previous values before appending the updated values when editing
+          showhis[3].value = "";
+
+          entryContainers1.forEach(container => {
+            const companyName1 = container.querySelector(".h6-4").textContent;
+            const title1 = container.querySelector(".h6-5").textContent;
+            const currentRole1 = container.querySelector(".h6-6").textContent;
+            const dateRange1 = container.querySelector(".p-2").textContent;
+
+            // Log values to the console for debugging
+            console.log(`${companyName1} ${title1} ${currentRole1} ${dateRange1}`);
+
+            showhis[3].value += `${companyName1} ${title1} ${currentRole1} ${dateRange1}\n`;
+          });
+        }
+      })();
+
+      function updateShowHisValue1() {
+        // Clear previous values before appending the updated values when editing
+        showhis[3].value = "";
+
+        entryContainers1.forEach(container => {
+          const companyName1 = container.querySelector(".h6-4").textContent;
+          const title1 = container.querySelector(".h6-5").textContent;
+          const currentRole1 = container.querySelector(".h6-6").textContent;
+          const dateRange1 = container.querySelector(".p-2").textContent;
+
+          // Log values to the console for debugging
+          console.log(`${companyName1} ${title1} ${currentRole1} ${dateRange1}`);
+
+          showhis[3].value += `${companyName1} ${title1} ${currentRole1} ${dateRange1}\n`;
+        });
+      }
+
+
+      const checkBox1 = document.getElementById("check2");
+
+      checkBox1.addEventListener("change", function () {
+        if (checkBox1.checked) {
+          endMonthSelect1.value = "";
+          endYearSelect1.value = "";
+          endMonthSelect1.disabled = true;
+          endYearSelect1.disabled = true;
+        } else {
+          // Reset to an empty value if needed
+          endMonthSelect1.disabled = false;
+          endYearSelect1.disabled = false;
+
+        }
+      });
+
+
+
+      function showForm() {
+        document.getElementById("popupForm1").style.display = "block";
+      }
+
+
+    });
+
+
+    function clearErrorMessages() {
+      document.getElementById("enter-comp-name").style.visibility = "hidden";
+      document.getElementById("enter-comp-title").style.visibility = "hidden";
+      document.getElementById("enter-comp-role").style.visibility = "hidden";
+      document.getElementById("enter-start-month").style.visibility = "hidden";
+      document.getElementById("enter-start-year").style.visibility = "hidden";
+      document.getElementById("enter-end-month").style.visibility = "hidden";
+      document.getElementById("enter-end-year").style.visibility = "hidden";
+    }
+
+    function deleteForm1(deleteIcon) {
+      const formContainer1 = deleteIcon.closest('.form-values1');
+      if (formContainer1) {
+        formContainer1.remove();
+        checkFormContainers1();
+      }
+    }
+
+    function checkFormContainers1() {
+      const formContainers1 = document.querySelectorAll('.form-values1');
+      const name6Element = document.getElementById('name6');
+      const noteducation = document.getElementById("not-education");
+
+
+      if (formContainers1.length === 0) {
+        noteducation.style.display = 'block'
+
+        name6Element.style.display = 'none';
+      }
+    }
+  </script>
+
+
+
+
+
+
+
+
+</body>
+
+</html>

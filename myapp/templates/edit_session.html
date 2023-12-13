@@ -1,0 +1,53 @@
+{% extends "index.html" %}
+{% load static %}
+{% block content %}
+
+          <!-- Content wrapper -->
+          <div class="content-wrapper">
+            <!-- Content -->
+
+            <div class="container-xxl flex-grow-1 container-p-y">
+              <!-- <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light"></span> Edit Session</h4> -->
+              <h4 class="fw-bold py-3 mb-3" style="font-size: 26px;"><span class="text-muted fw-light"></span>Edit Session</h4>   
+
+              <!-- Basic Layout & Basic with Icons -->
+              <div class="row">
+                <!-- Basic Layout -->
+                <div class="col-xxl">
+                  <div class="card mb-4">
+                    <!-- <div class="card-header d-flex align-items-center justify-content-between">
+                      <h5 class="mb-0">Session</h5>
+                      <small class="text-muted float-end">Edit Session</small>
+                    </div> -->
+                    <div class="card-body">
+                      <form action="{% url 'edit_session' sid.id %}" method="post" >
+                        {% csrf_token %}
+                        <div class="row mb-3">
+                          <!-- <label class="col-sm-2 col-form-label" for="basic-default-name">Time</label> -->
+                          <label class="col-sm-2 " for="basic-default-name" style="font-size: 15px;"> Session Time </label>
+
+                          <div class="col-sm-10">
+                            <input type="text" class="form-control" value="{{sid.time}}" id="basic-default-name" name="time" placeholder="Enter Time" />
+                            <p style="font-size: 20px;color: red;">{{msg}}</p> 
+                          </div>
+                        </div>
+                        
+                        
+                       
+                        <div class="row justify-content-end">
+                          <div class="col-sm-10">
+                            <button type="submit" class="btn btn-primary">Send</button>
+                          </div>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+                <!-- Basic with Icons -->
+                
+              </div>
+            </div>
+            <!-- / Content -->
+            {% endblock %}        
+
+            

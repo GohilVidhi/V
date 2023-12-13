@@ -1,0 +1,164 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+   <style>
+    *{
+      padding: 0;
+      margin: 0;
+      box-sizing: border-box;
+    }
+    .nav{
+      margin-bottom: 3px;
+    }
+   
+    .tab-1{
+      box-shadow: 0px 0px 5px 0px #888888;
+      margin-left: 75px;
+      color: black !important;
+      padding: 10px 175px;
+    }
+    .tab-2{
+      box-shadow: 1px 0px 5px 0px #888888;
+      color: black !important;
+      padding: 10px 175px;
+    }
+    .active{
+      background-color: rgb(251, 205, 67) !important;
+    }
+    .active1{
+      background-color:white !important;
+    }
+
+
+    .upcoming-main{
+      display: flex;
+      height: 250px;
+      justify-content: space-between;
+      
+      
+    }
+    .history-main{
+      display: flex;
+      height: 250px;
+      justify-content: space-between;
+           
+      
+    }
+    .start-date{
+      display: flex;
+      align-items: center;
+      width: 40%;
+      height: 30px;
+      box-shadow: 1px 0px 5px 0px #888888; 
+      margin-left: 20px;
+    margin-top: 10px;
+      border-radius: 5px;
+      background-color: white;
+
+    }
+    .start-date p{
+      margin-left: 150px;
+      margin-top:15px ;
+    }
+    .start-date .datevalue{
+      margin-left: 10px;
+      border: none;
+      outline: none;
+    }
+    .end-date{
+      display: flex;
+      align-items: center;
+      width: 40%;
+      height: 30px;
+      box-shadow: 1px 0px 5px 0px #888888;
+      margin-right: 20px;
+      margin-top: 10px;
+      background-color: white;
+      border-radius: 5px;
+
+    }
+    .end-date p{
+      margin-left: 150px;
+      margin-top:15px ;
+    }
+    .end-date .datevalue{
+      margin-left:15px;
+      border: none;
+      outline: none;
+    }
+    #pills-home{
+      background-color:#edecec !important;
+      height: 93vh;
+    }
+    #pills-profile{
+      background-color:#edecec !important;
+      height: 93vh;
+    }
+    
+    .schedule img{
+      margin-left: 30%;
+    }
+
+    .no-appointment{
+      height: 110px;
+      width: 30%;
+      margin: auto;
+     font-weight: 200;
+      align-items: center;
+      text-align: center;
+      font-size: 10px;
+    }
+    
+   </style>
+</head>
+<body>
+    <ul class="nav nav-pills" id="pills-tab" role="tablist">
+        <li class="nav-item" role="presentation">
+          <button class="tab-1 nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">Upcoming</button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="tab-2 nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">History</button>
+        </li>
+        
+      </ul>
+      <div class="tab-show tab-content" id="pills-tabContent">
+        <div class="tab-pane fade show active1 active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+          
+          <div class="upcoming-main">
+            <div class="start-date">
+              <p>Start Date</p>
+              <input type="date" name="date" id="date-display" class="datevalue" >
+            </div>
+            <div class="end-date">
+              <p>End Date</p>
+            <input type="date" name="date" id="date-display" class="datevalue" >
+            </div>
+          </div>
+          <div class="schedule"><img src="{% static 'assets/img/elements/1234.png' %}">
+          <div class="no-appointment"><h4>There are no upcoming appointments scheduled.</h4></div></div>
+      </div>
+        <div class="tab-show tab-pane fade show active1 " id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+
+        <div class="history-main">
+          <div class="start-date">
+            <p>Start Date</p>
+            <div><input type="date" name="date" id="date-display" class="datevalue" placeholder="" ></div>
+          </div>
+          <div class="end-date">
+            <p>End Date</p>
+            <input type="date" name="date" id="date-display" class="datevalue" autofocus>
+          </div>
+        </div>
+          <div class="schedule"><img src="{% static 'assets/img/elements/123.png' %}">
+            <div class="no-appointment"><h4>There are no history appointments scheduled.</h4></div></div>
+        </div>
+      </div>
+
+      
+</body>
+</html>
